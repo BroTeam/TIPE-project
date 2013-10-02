@@ -1,4 +1,4 @@
-package testui;
+package com.broteam.tipe.testui;
 
 class Main{
  
