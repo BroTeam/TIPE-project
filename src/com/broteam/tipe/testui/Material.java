@@ -28,5 +28,3 @@ public enum Material {
         return displayName;
     }
 }
-
-//Joff est un con.
