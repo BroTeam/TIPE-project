@@ -44,7 +44,7 @@ public class Window extends JFrame {
         JMenu mnSimulation = new JMenu("Simulation");
         menuBar.add(mnSimulation);
         
-        JMenuItem mntmLancer = new JMenuItem("Choisir un point");
+        JMenuItem mntmLancer = new JMenuItem("Activer un Point d'Accès");
         mnSimulation.add(mntmLancer);
         
         JSplitPane splitPane = new JSplitPane();
@@ -66,9 +66,9 @@ public class Window extends JFrame {
         panel_1.add(tglbtnAp);
         btnGroupSignal.add(tglbtnAp);
         
-        JToggleButton tglbtnRepeater = new JToggleButton("Répéteur");
-        panel_1.add(tglbtnRepeater);
-        btnGroupSignal.add(tglbtnRepeater);
+        //JToggleButton tglbtnRepeater = new JToggleButton("Répéteur");
+        //panel_1.add(tglbtnRepeater);
+        //btnGroupSignal.add(tglbtnRepeater);
         
         JLabel lblNewLabel = new JLabel("Puissance:");
         panel_1.add(lblNewLabel);
