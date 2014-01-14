@@ -107,11 +107,14 @@ public class Window extends JFrame {
         comboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
         comboBox.setModel(new DefaultComboBoxModel<>(Material.values()));
         
-        JPanel panel = new JPanel();
+        //JPanel panel = new JPanel();
+        JPanel panel = new Panel();
         JScrollPane scrollPane = new JScrollPane(panel);
         splitPane.setRightComponent(scrollPane);
 
         splitPane.setDividerLocation(0.20);
+        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
 }
