@@ -9,9 +9,17 @@ import java.awt.Component;
 
 import javax.swing.JLabel;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Window extends JFrame {
     private final ButtonGroup btnGroupSignal = new ButtonGroup();
+    private final Action action = new SwingAction();
+    private String test;
+	private Integer x1;
+	private Integer y1;
     
     public Window() {
         super();
@@ -92,6 +100,12 @@ public class Window extends JFrame {
         panel_2.add(tglbtnWall);
         
         JToggleButton tglbtnRoom = new JToggleButton("Pièce");
+        tglbtnRoom.addActionListener(new ActionListener() {
+        	@Override
+			public void actionPerformed(ActionEvent arg0) {
+        		test = "room";
+        	}
+        });
         btnGroupObstacles.add(tglbtnRoom);
         panel_2.add(tglbtnRoom);
         
@@ -108,7 +122,21 @@ public class Window extends JFrame {
         comboBox.setModel(new DefaultComboBoxModel<>(Material.values()));
         
         //JPanel panel = new JPanel();
+        
         JPanel panel = new Panel();
+        panel.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		x1 = e.getX();
+        		y1 = e.getY();
+        		if (test == "room")	{
+        				System.out.println(x1);
+        				System.out.println(y1);
+        			}
+        		else
+        			System.out.println("Pièce non sélectionnée");
+        	}
+        });
         JScrollPane scrollPane = new JScrollPane(panel);
         splitPane.setRightComponent(scrollPane);
 
@@ -117,4 +145,12 @@ public class Window extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+	private class SwingAction extends AbstractAction {
+		public SwingAction() {
+			putValue(NAME, "SwingAction");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+		}
+	}
 }
