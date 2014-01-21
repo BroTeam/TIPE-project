@@ -38,7 +38,7 @@ public class Panel extends JPanel {
 	
 	Panel(int drawingScale) {
 		shapes = new ArrayList<Shape>();
-		pinceau = new Pinceau(drawingScale);
+		pinceau = new Pinceau();
 		addMouseListener(pinceau);
-	}	
+	}
 }

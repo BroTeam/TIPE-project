@@ -13,8 +13,6 @@ public class Pinceau extends MouseAdapter {
 	private Point ptPress = null; 
 	private Point ptRel = null;
 	public static int shapeSelector = 0;
-	private int drawingScale;
-	private int lR, hR, rC; // dimensions du pinceau
 
 	private Color col = Color.BLACK;
 
@@ -66,16 +64,5 @@ public class Pinceau extends MouseAdapter {
 			default:
 				throw NoShapeChoosed;
 		}
-	}
-	
-	void setDrawingScale(int size) {
-		drawingScale = size;
-		lR = drawingScale;
-		hR = (3 * drawingScale) / 2;
-		rC = drawingScale;
-	}
-
-	public Pinceau(int drawingScale) {
-		this.setDrawingScale(drawingScale);
 	}
 }
