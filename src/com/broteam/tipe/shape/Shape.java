@@ -5,19 +5,23 @@ import java.awt.Graphics;
 
 
 abstract class Shape {
-	protected Point ref;
+	protected Point refPressed;
+	protected Point refReleased;
 	protected Color col = Color.BLACK;
 
 	Shape() {
-		ref = new Point(0, 0);
+		refPressed = new Point(0, 0);
+		refReleased = new Point(0, 0);
 	}
 
-	Shape(int a, int b) {
-		ref = new Point(a, b);
+	Shape(int x1, int y1, int x2, int y2) {
+		refPressed = new Point(x1, y1);
+		refReleased = new Point(x2, y2);
 	}
 
-	Shape(Point a) {
-		ref = new Point(a);
+	Shape(Point a1, Point a2) {
+		refPressed = new Point(a1);
+		refReleased = new Point(a2);
 	}
 
 	abstract void draw(Graphics g);
