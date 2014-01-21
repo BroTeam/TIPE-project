@@ -8,6 +8,7 @@ public class Room extends Shape {
 	Room(Point ptPress, Point ptRel, Color c) {
 		refPressed = ptPress;
 		refReleased = ptRel;
+		col = c;
 		int px = refPressed.getX();
 		int py = refPressed.getY();
 		int rx = refReleased.getX();
@@ -22,7 +23,6 @@ public class Room extends Shape {
 				refPressed = new Point(rx, ry);
 				refReleased = new Point(px, py);
 			}
-		col = c;
 	}
 
 	@Override
