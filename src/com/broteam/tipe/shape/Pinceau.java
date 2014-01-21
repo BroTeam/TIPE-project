@@ -55,8 +55,8 @@ public class Pinceau extends MouseAdapter {
 		switch (shapeSelector) {
 		case 1:
 			return toDraw = new Room(ptPress, ptRel, col);
-			// case 2:
-			// return toDraw = new Wall(ptPress, ptRel, col);
+		case 2:
+			return toDraw = new Wall(ptPress, ptRel, col);
 			// case 3:
 			// return toDraw = new Door(ptPress, ptRel, col);
 		default:

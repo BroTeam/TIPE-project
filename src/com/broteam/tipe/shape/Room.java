@@ -14,8 +14,8 @@ public class Room extends Shape {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(col);
-		// Faire un if pour les rectangles tracé à l'envers c'est à dire pressed
-		// à droite du released.
+		// TODO Faire un if pour les rectangles tracé à l'envers c'est à dire
+		// pressed à droite du released.
 		g.drawRect(refPressed.getX(), refPressed.getY(), refReleased.getX()
 				- refPressed.getX(), refReleased.getY() - refPressed.getY());
 	}
