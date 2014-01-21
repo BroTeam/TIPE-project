@@ -1,16 +1,10 @@
 package com.broteam.tipe.testui;
 
 import javax.swing.JFrame;
-
 import java.awt.BorderLayout;
-import java.awt.Graphics;
-
 import javax.swing.*;
-
 import java.awt.Component;
-
 import javax.swing.JLabel;
-
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,12 +13,12 @@ import java.awt.event.MouseEvent;
 
 public class Window extends JFrame {
 	private final ButtonGroup btnGroupSignal = new ButtonGroup();
-    private final Action action = new SwingAction();
-    private String test;
+    //private final Action action = new SwingAction();
 	public Integer x1;
 	public Integer y1;
 	public Integer x2;
 	public Integer y2;
+	public int test;
     
     public Window() {
         super();
@@ -101,6 +95,12 @@ public class Window extends JFrame {
         panel_2.setLayout(new GridLayout(5, 1, 0, 0));
         
         JToggleButton tglbtnWall = new JToggleButton("Mur/Cloison");
+        tglbtnWall.addActionListener(new ActionListener() {
+        	@Override
+			public void actionPerformed(ActionEvent arg0) {
+        		com.broteam.tipe.shape.Pinceau.setWall();
+        	}
+        });
         btnGroupObstacles.add(tglbtnWall);
         panel_2.add(tglbtnWall);
         
@@ -108,13 +108,19 @@ public class Window extends JFrame {
         tglbtnRoom.addActionListener(new ActionListener() {
         	@Override
 			public void actionPerformed(ActionEvent arg0) {
-        		test = "room";
+        		com.broteam.tipe.shape.Pinceau.setRoom();
         	}
         });
         btnGroupObstacles.add(tglbtnRoom);
         panel_2.add(tglbtnRoom);
         
         JToggleButton tglbtnDoor = new JToggleButton("Porte");
+        tglbtnDoor.addActionListener(new ActionListener() {
+        	@Override
+			public void actionPerformed(ActionEvent arg0) {
+        		com.broteam.tipe.shape.Pinceau.setDoor();
+        	}
+        });
         btnGroupObstacles.add(tglbtnDoor);
         panel_2.add(tglbtnDoor);
         
@@ -128,7 +134,7 @@ public class Window extends JFrame {
         
         //JPanel panel = new JPanel();
         
-        JPanel panel = new Panel();
+        JPanel panel = new Panel(1); //1 est ici un test
         panel.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mousePressed(MouseEvent e) {
@@ -150,12 +156,13 @@ public class Window extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-	private class SwingAction extends AbstractAction {
-		public SwingAction() {
-			putValue(NAME, "SwingAction");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-		}
-	}
+	//private class SwingAction extends AbstractAction {
+	//	public SwingAction() {
+	//		putValue(NAME, "SwingAction");
+	//		putValue(SHORT_DESCRIPTION, "Some short description");
+	//	}
+	//	@Override
+	//	public void actionPerformed(ActionEvent e) {
+	//	}
+	//}
 }
