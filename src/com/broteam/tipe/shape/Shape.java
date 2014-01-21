@@ -3,8 +3,7 @@ package com.broteam.tipe.shape;
 import java.awt.Color;
 import java.awt.Graphics;
 
-
-abstract class Shape {
+public abstract class Shape {
 	protected Point refPressed;
 	protected Point refReleased;
 	protected Color col = Color.BLACK;
@@ -18,11 +17,21 @@ abstract class Shape {
 		refPressed = new Point(x1, y1);
 		refReleased = new Point(x2, y2);
 	}
+	
+	Shape(Point a) {
+		refPressed = new Point(a);
+		refReleased = new Point(0,0);
+	}
+	
+	Shape(Point a, int x2, int y2) {
+		refPressed = new Point(a);
+		refReleased = new Point(x2, y2);
+	}
 
 	Shape(Point a1, Point a2) {
 		refPressed = new Point(a1);
 		refReleased = new Point(a2);
 	}
 
-	abstract void draw(Graphics g);
+	public abstract void draw(Graphics g);
 }
