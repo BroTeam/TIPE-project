@@ -10,7 +10,7 @@ public class Pinceau extends MouseAdapter {
 
 	private static final Exception NoShapeChoosed = null;
 	private int x1, y1, x2, y2;
-	public Point ptPress; 
+	public Point ptPress;
 	public Point ptRel;
 	public static int shapeSelector = 0;
 
@@ -19,7 +19,7 @@ public class Pinceau extends MouseAdapter {
 	public static void setRoom() {
 		shapeSelector = 1;
 	}
-	
+
 	public static void setWall() {
 		shapeSelector = 2;
 	}
@@ -34,7 +34,7 @@ public class Pinceau extends MouseAdapter {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		ptPress = new Point(e.getX(), e.getY());		
+		ptPress = new Point(e.getX(), e.getY());
 	}
 
 	@Override
@@ -50,17 +50,17 @@ public class Pinceau extends MouseAdapter {
 		ecran.add(toDraw);
 	}
 
-	public Shape drawShape(Shape toDraw, Point ptPress, Point ptRel) throws Exception {
-		switch (shapeSelector)
-		{    
-		    case 1:
-		    	return toDraw = new Room(ptPress, ptRel, col);
-		    //case 2:
-		    //	return toDraw = new Wall(ptPress, ptRel, col);
-		    //case 3:
-		    //	return toDraw = new Door(ptPress, ptRel, col);
-			default:
-				throw NoShapeChoosed;
+	public Shape drawShape(Shape toDraw, Point ptPress, Point ptRel)
+			throws Exception {
+		switch (shapeSelector) {
+		case 1:
+			return toDraw = new Room(ptPress, ptRel, col);
+			// case 2:
+			// return toDraw = new Wall(ptPress, ptRel, col);
+			// case 3:
+			// return toDraw = new Door(ptPress, ptRel, col);
+		default:
+			throw NoShapeChoosed;
 		}
 	}
 }

@@ -6,28 +6,28 @@ import javax.swing.JPanel;
 
 import com.broteam.tipe.shape.Pinceau;
 import com.broteam.tipe.shape.Shape;
- 
+
 public class Panel extends JPanel {
-	
+
 	private ArrayList<Shape> shapes;
 
 	Pinceau pinceau;
 
 	public void reloadPanel() {
-			Graphics g = getGraphics();
-			paintComponent(g);
+		Graphics g = getGraphics();
+		paintComponent(g);
 	}
-	
+
 	public void add(Shape f) {
 		shapes.add(f);
 		reloadPanel();
 	}
-	
+
 	void clear() {
 		shapes.clear();
 		reloadPanel();
 	}
-	
+
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -35,7 +35,7 @@ public class Panel extends JPanel {
 			if (s != null)
 				s.draw(g);
 	}
-	
+
 	Panel(int drawingScale) {
 		shapes = new ArrayList<Shape>();
 		pinceau = new Pinceau();

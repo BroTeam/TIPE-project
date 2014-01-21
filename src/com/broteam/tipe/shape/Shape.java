@@ -17,12 +17,12 @@ public abstract class Shape {
 		refPressed = new Point(x1, y1);
 		refReleased = new Point(x2, y2);
 	}
-	
+
 	Shape(Point a) {
 		refPressed = new Point(a);
-		refReleased = new Point(0,0);
+		refReleased = new Point(0, 0);
 	}
-	
+
 	Shape(Point a, int x2, int y2) {
 		refPressed = new Point(a);
 		refReleased = new Point(x2, y2);
