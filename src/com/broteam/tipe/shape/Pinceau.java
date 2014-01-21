@@ -10,8 +10,8 @@ public class Pinceau extends MouseAdapter {
 
 	private static final Exception NoShapeChoosed = null;
 	private int x1, y1, x2, y2;
-	private Point ptPress = null; 
-	private Point ptRel = null;
+	public Point ptPress; 
+	public Point ptRel;
 	public static int shapeSelector = 0;
 
 	private Color col = Color.BLACK;
@@ -34,15 +34,15 @@ public class Pinceau extends MouseAdapter {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		ptPress = new Point(e.getY(), e.getX());		
+		ptPress = new Point(e.getX(), e.getY());		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		ptRel = new Point(e.getY(), e.getX());
+		ptRel = new Point(e.getX(), e.getY());
 		Shape toDraw = null;
 		try {
-			drawShape(toDraw, ptPress, ptRel);
+			toDraw = drawShape(toDraw, ptPress, ptRel);
 		} catch (Exception e1) {
 			System.out.println("Pas de forme sélectionnée.");
 		}
@@ -50,17 +50,15 @@ public class Pinceau extends MouseAdapter {
 		ecran.add(toDraw);
 	}
 
-	public void drawShape(Shape toDraw, Point ptPress, Point ptRel) throws Exception {
-		System.out.println(shapeSelector);
+	public Shape drawShape(Shape toDraw, Point ptPress, Point ptRel) throws Exception {
 		switch (shapeSelector)
 		{    
 		    case 1:
-		    	toDraw = new Room(ptPress, ptRel, col);
-		    	break; 
+		    	return toDraw = new Room(ptPress, ptRel, col);
 		    //case 2:
-			//	toDraw = new Wall(a, b);
+		    //	return toDraw = new Wall(ptPress, ptRel, col);
 		    //case 3:
-			//	toDraw = new Door(a, b);
+		    //	return toDraw = new Door(ptPress, ptRel, col);
 			default:
 				throw NoShapeChoosed;
 		}
