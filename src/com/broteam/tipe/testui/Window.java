@@ -8,8 +8,6 @@ import javax.swing.JLabel;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class Window extends JFrame {
 	private final ButtonGroup btnGroupSignal = new ButtonGroup();
@@ -18,7 +16,7 @@ public class Window extends JFrame {
 	public Integer y1;
 	public Integer x2;
 	public Integer y2;
-	public int test;
+	public int test = 10;
     
     public Window() {
         super();
@@ -134,19 +132,7 @@ public class Window extends JFrame {
         
         //JPanel panel = new JPanel();
         
-        JPanel panel = new Panel(1); //1 est ici un test
-        panel.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mousePressed(MouseEvent e) {
-        		x1 = e.getX();
-        		y1 = e.getY();
-        	}
-            @Override
-			public void mouseReleased(MouseEvent e) {
-            		x2 = e.getX();
-            		y2 = e.getY();
-            }
-        });
+        JPanel panel = new Panel(test); 
         
         JScrollPane scrollPane = new JScrollPane(panel);
         splitPane.setRightComponent(scrollPane);
