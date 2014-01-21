@@ -8,16 +8,19 @@ import com.broteam.tipe.testui.Panel;
 
 public class Pinceau extends MouseAdapter {
 
-	class NoShapeChose extends Exception{ 
-		  public NoShapeChose(){
-		    System.out.println("Aucune forme sélectionnée");
-		  }  
+	class NoShapeChose extends Exception {
+		public NoShapeChose() {
+			System.out.println("Aucune forme sélectionnée");
 		}
-	class notImplemented extends Exception{ 
-		  public notImplemented(){
-		    System.out.println("Fonctionnalité non implémentée [Pour l'instant...]");
-		  }  
+	}
+
+	class notImplemented extends Exception {
+		public notImplemented() {
+			System.out
+					.println("Fonctionnalité non implémentée [Pour l'instant...]");
 		}
+	}
+
 	private int x1, y1, x2, y2;
 	public Point ptPress;
 	public Point ptRel;
@@ -52,7 +55,8 @@ public class Pinceau extends MouseAdapter {
 		Shape toDraw = null;
 		try {
 			toDraw = drawShape(toDraw, ptPress, ptRel);
-		} catch (Exception e1) {	}
+		} catch (Exception e1) {
+		}
 		Panel ecran = (Panel) e.getSource();
 		ecran.add(toDraw);
 	}
