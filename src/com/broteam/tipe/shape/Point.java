@@ -3,7 +3,7 @@ package com.broteam.tipe.shape;
 public class Point {
 	private int x, y;
 
-	Point(int a, int b) {
+	public Point(int a, int b) {
 		x = a;
 		y = b;
 	}
