@@ -13,6 +13,7 @@ public class Room extends Shape {
 		int py = refPressed.getY();
 		int rx = refReleased.getX();
 		int ry = refReleased.getY();
+		// TODO C'est moche ça.
 		if ((px > rx) && (py > ry)) {
 				refPressed = new Point(rx, ry);
 				refReleased = new Point(px, py);
