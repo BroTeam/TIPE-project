@@ -1,13 +1,16 @@
 package com.broteam.tipe.testui;
 
 import javax.swing.JFrame;
+
 import java.awt.BorderLayout;
+import java.awt.Graphics;
 
 import javax.swing.*;
 
 import java.awt.Component;
 
 import javax.swing.JLabel;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,11 +18,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Window extends JFrame {
-    private final ButtonGroup btnGroupSignal = new ButtonGroup();
+	private final ButtonGroup btnGroupSignal = new ButtonGroup();
     private final Action action = new SwingAction();
     private String test;
-	private Integer x1;
-	private Integer y1;
+	public Integer x1;
+	public Integer y1;
+	public Integer x2;
+	public Integer y2;
     
     public Window() {
         super();
@@ -126,17 +131,17 @@ public class Window extends JFrame {
         JPanel panel = new Panel();
         panel.addMouseListener(new MouseAdapter() {
         	@Override
-        	public void mouseClicked(MouseEvent e) {
+        	public void mousePressed(MouseEvent e) {
         		x1 = e.getX();
         		y1 = e.getY();
-        		if (test == "room")	{
-        				System.out.println(x1);
-        				System.out.println(y1);
-        			}
-        		else
-        			System.out.println("Pièce non sélectionnée");
         	}
+            @Override
+			public void mouseReleased(MouseEvent e) {
+            		x2 = e.getX();
+            		y2 = e.getY();
+            }
         });
+        
         JScrollPane scrollPane = new JScrollPane(panel);
         splitPane.setRightComponent(scrollPane);
 
