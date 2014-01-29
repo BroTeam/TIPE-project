@@ -12,10 +12,6 @@ import java.awt.event.ActionListener;
 public class Window extends JFrame {
 	private final ButtonGroup btnGroupSignal = new ButtonGroup();
 	// private final Action action = new SwingAction();
-	public Integer x1;
-	public Integer y1;
-	public Integer x2;
-	public Integer y2;
 
 	public Window() {
 		super();
@@ -124,10 +120,12 @@ public class Window extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Matériau:");
 		panel_2.add(lblNewLabel_1);
 
-		JComboBox<Material> comboBox = new JComboBox<>();
+		JComboBox<Material> comboBox = new JComboBox();
+        //JComboBox<Material> comboBox = new JComboBox<>();
 		panel_2.add(comboBox);
 		comboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
-		comboBox.setModel(new DefaultComboBoxModel<>(Material.values()));
+        comboBox.setModel(new DefaultComboBoxModel(Material.values()));
+		//comboBox.setModel(new DefaultComboBoxModel<>(Material.values()));
 
 		JPanel panel = new Panel();
 
