@@ -21,7 +21,6 @@ public class Pinceau extends MouseAdapter {
 		}
 	}
 
-	private int x1, y1, x2, y2;
 	public Point ptPress;
 	public Point ptRel;
 	public static int shapeSelector = 0;
