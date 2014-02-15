@@ -13,18 +13,17 @@ public class Room extends Shape {
 		int py = refPressed.getY();
 		int rx = refReleased.getX();
 		int ry = refReleased.getY();
-		// TODO C'est moche ça.
 		if ((px > rx) && (py > ry)) {
 				refPressed = new Point(rx, ry);
 				refReleased = new Point(px, py);
-			} else if (px > rx) {
+			} else if (py > ry) {
+                refPressed = new Point(px, ry);
+                refReleased = new Point(rx, py);
+            } else if (px > rx) {
 				refPressed = new Point(rx, py);
 				refReleased = new Point(px, ry);
-			} else if (py > ry) {
-				refPressed = new Point(rx, ry);
-				refReleased = new Point(px, py);
-			}
-	}
+	    }
+    }
 
 	@Override
 	public void draw(Graphics g) {

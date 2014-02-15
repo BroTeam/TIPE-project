@@ -23,6 +23,11 @@ public class Panel extends JPanel {
 		reloadPanel();
 	}
 
+    public void removeLast() {
+        shapes.remove(shapes.size()-1);
+        reloadPanel();
+    }
+
 	void clear() {
 		shapes.clear();
 		reloadPanel();
@@ -40,5 +45,6 @@ public class Panel extends JPanel {
 		shapes = new ArrayList<Shape>();
 		pinceau = new Pinceau();
 		addMouseListener(pinceau);
+        addMouseMotionListener(pinceau);
 	}
 }

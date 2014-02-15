@@ -9,15 +9,16 @@ public class Wall extends Shape {
 		refPressed = ptPress;
 		refReleased = ptRel;
 		col = c;
+      	/*
+		TODO: obliger les traits droits uniquement
+		sans interdir l'affichage d'un trait non perpendiculaire mais en replaçant le trait de façon à ce qu'il soit
+		 correct.
+		*/
 	}
 
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(col);
-		// TODO obliger les traits droits uniquement sans interdir l'affichage
-		// d'un trait non perpendiculaire mais en replaçant le trait de façon à
-		// ce qu'il soit correct.
-		g.drawLine(refPressed.getX(), refPressed.getY(), refReleased.getX(),
-				refReleased.getY());
+        g.drawLine(refPressed.getX(), refPressed.getY(), refReleased.getX(),refReleased.getY());
 	}
 }

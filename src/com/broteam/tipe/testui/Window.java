@@ -120,11 +120,11 @@ public class Window extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Matériau:");
 		panel_2.add(lblNewLabel_1);
 
-		JComboBox<Material> comboBox = new JComboBox();
+		JComboBox<Material> comboBox = new JComboBox<Material>();
         //JComboBox<Material> comboBox = new JComboBox<>();
 		panel_2.add(comboBox);
 		comboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
-        comboBox.setModel(new DefaultComboBoxModel(Material.values()));
+        comboBox.setModel(new DefaultComboBoxModel<Material>(Material.values()));
 		//comboBox.setModel(new DefaultComboBoxModel<>(Material.values()));
 
 		JPanel panel = new Panel();
@@ -134,7 +134,7 @@ public class Window extends JFrame {
 
 		splitPane.setDividerLocation(0.20);
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 
 	// private class SwingAction extends AbstractAction {

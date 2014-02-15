@@ -8,7 +8,14 @@ import com.broteam.tipe.testui.Panel;
 
 public class Pinceau extends MouseAdapter {
 
-	class NoShapeChose extends Exception {
+    // TODO Checker les visibilités mieux
+    private Color col = Color.BLACK;
+    public Point ptPress;
+    public Point ptDrag;
+    public Point ptRel;
+    public static int shapeSelector = 0;
+
+    class NoShapeChose extends Exception {
 		public NoShapeChose() {
 			System.out.println("Aucune forme sélectionnée");
 		}
@@ -20,12 +27,6 @@ public class Pinceau extends MouseAdapter {
 					.println("Fonctionnalité non implémentée [Pour l'instant...]");
 		}
 	}
-
-	public Point ptPress;
-	public Point ptRel;
-	public static int shapeSelector = 0;
-
-	private Color col = Color.BLACK;
 
 	public static void setRoom() {
 		shapeSelector = 1;
@@ -46,19 +47,40 @@ public class Pinceau extends MouseAdapter {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		ptPress = new Point(e.getX(), e.getY());
+        Shape toDraw = null;
+        try {
+            toDraw = drawShape(toDraw, ptPress, ptPress);
+        } catch (Exception e1) {
+        }
+        Panel ecran = (Panel) e.getSource();
+        ecran.add(toDraw);
 	}
 
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		ptRel = new Point(e.getX(), e.getY());
-		Shape toDraw = null;
-		try {
-			toDraw = drawShape(toDraw, ptPress, ptRel);
-		} catch (Exception e1) {
-		}
-		Panel ecran = (Panel) e.getSource();
-		ecran.add(toDraw);
-	}
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        ptDrag = new Point(e.getX(), e.getY());
+        Panel ecran = (Panel) e.getSource();
+        ecran.removeLast();
+        Shape toDraw = null;
+        try {
+            toDraw = drawShape(toDraw, ptPress, ptDrag);
+        } catch (Exception e1) {
+        }
+        ecran.add(toDraw);
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        ptRel = new Point(e.getX(), e.getY());
+        Panel ecran = (Panel) e.getSource();
+        ecran.removeLast();
+        Shape toDraw = null;
+        try {
+            toDraw = drawShape(toDraw, ptPress, ptRel);
+        } catch (Exception e1) {
+        }
+        ecran.add(toDraw);
+    }
 
 	public Shape drawShape(Shape toDraw, Point ptPress, Point ptRel)
 			throws Exception {
