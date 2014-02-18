@@ -31,31 +31,27 @@ public class Pinceau extends MouseAdapter {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		ptPress = new Point(e.getX(), e.getY());
-        Shape toDraw = null;
-        try {
-            toDraw = drawShape(ptPress, ptPress);
-        } catch (Exception e1) {
-        }
-        Panel ecran = (Panel) e.getSource();
-        ecran.add(toDraw);
+        Shape toDraw = drawShape(ptPress, ptPress);
+        Panel screen = (Panel) e.getSource();
+        screen.add(toDraw);
 	}
 
     @Override
     public void mouseDragged(MouseEvent e) {
         Point ptDrag = new Point(e.getX(), e.getY());
-        Panel ecran = (Panel) e.getSource();
-        ecran.removeLast();
+        Panel screen = (Panel) e.getSource();
+        screen.removeLast();
         Shape toDraw = drawShape(ptPress, ptDrag);
-        ecran.add(toDraw);
+        screen.add(toDraw);
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         Point ptRel = new Point(e.getX(), e.getY());
-        Panel ecran = (Panel) e.getSource();
-        ecran.removeLast();
+        Panel screen = (Panel) e.getSource();
+        screen.removeLast();
         Shape toDraw = drawShape(ptPress, ptRel);
-        ecran.add(toDraw);
+        screen.add(toDraw);
     }
 
 	public Shape drawShape(Point ptPress, Point ptRel) {
