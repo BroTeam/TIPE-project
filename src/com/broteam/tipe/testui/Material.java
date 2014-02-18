@@ -23,6 +23,10 @@ public enum Material {
         this.attenuation = attenuation;
     }
 
+	public Double getAttenuation() {
+		return attenuation;
+	}
+
     @Override
     public String toString() {
         return displayName;
