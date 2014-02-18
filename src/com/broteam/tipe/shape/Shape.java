@@ -13,25 +13,18 @@ public abstract class Shape {
 		refReleased = new Point(0, 0);
 	}
 
-	Shape(int x1, int y1, int x2, int y2) {
-		refPressed = new Point(x1, y1);
-		refReleased = new Point(x2, y2);
-	}
-
 	Shape(Point a) {
-		refPressed = new Point(a);
+		refPressed = a;
 		refReleased = new Point(0, 0);
 	}
 
-	Shape(Point a, int x2, int y2) {
-		refPressed = new Point(a);
-		refReleased = new Point(x2, y2);
-	}
-
 	Shape(Point a1, Point a2) {
-		refPressed = new Point(a1);
-		refReleased = new Point(a2);
+		refPressed = a1;
+		refReleased = a2;
 	}
 
+    public void setColor(Color c) {
+        col = c;
+    }
 	public abstract void draw(Graphics g);
 }

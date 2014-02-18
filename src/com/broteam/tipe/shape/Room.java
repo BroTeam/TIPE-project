@@ -5,10 +5,8 @@ import java.awt.Graphics;
 
 public class Room extends Shape {
 
-	Room(Point ptPress, Point ptRel, Color c) {
-		refPressed = ptPress;
-		refReleased = ptRel;
-		col = c;
+	Room(Point ptPress, Point ptRel) {
+		super(ptPress,ptRel);
 		int px = refPressed.getX();
 		int py = refPressed.getY();
 		int rx = refReleased.getX();
