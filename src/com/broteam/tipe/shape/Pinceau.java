@@ -8,24 +8,9 @@ import com.broteam.tipe.testui.Panel;
 
 public class Pinceau extends MouseAdapter {
 
-    // TODO Checker les visibilités mieux
     private Color col = Color.BLACK;
-    public Point ptPress;
-    public Point ptDrag;
-    public Point ptRel;
-    public static int shapeSelector = 0;
-
-    class NoShapeChose extends Exception {
-		public NoShapeChose() {
-			System.out.println("Aucune forme sélectionnée");
-		}
-	}
-
-	class notImplemented extends Exception {
-		public notImplemented() {
-			System.out.println("Fonctionnalité non implémentée [Pour l'instant...]");
-		}
-	}
+    private Point ptPress;
+    private static int shapeSelector = 0;
 
 	public static void setRoom() {
 		shapeSelector = 1;
@@ -57,42 +42,44 @@ public class Pinceau extends MouseAdapter {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        ptDrag = new Point(e.getX(), e.getY());
+        Point ptDrag = new Point(e.getX(), e.getY());
         Panel ecran = (Panel) e.getSource();
         ecran.removeLast();
         Shape toDraw = null;
         try {
             toDraw = drawShape(ptPress, ptDrag);
         } catch (Exception e1) {
+            e1.printStackTrace();
         }
         ecran.add(toDraw);
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        ptRel = new Point(e.getX(), e.getY());
+        Point ptRel = new Point(e.getX(), e.getY());
         Panel ecran = (Panel) e.getSource();
         ecran.removeLast();
         Shape toDraw = null;
         try {
             toDraw = drawShape(ptPress, ptRel);
         } catch (Exception e1) {
+            e1.printStackTrace();
         }
         ecran.add(toDraw);
     }
 
 	public Shape drawShape(Point ptPress, Point ptRel)
-			throws Exception {
-		switch (shapeSelector) {
-		case 1:
-			return new Room(ptPress, ptRel, col);
-		case 2:
-			return new Wall(ptPress, ptRel, col);
-		case 3:
-			throw new notImplemented();
-			// TODO return toDraw = new Door(ptPress, ptRel, col);
-		default:
-			throw new NoShapeChose();
-		}
+		throws Exception {
+            switch (shapeSelector) {
+            case 1:
+                return new Room(ptPress, ptRel, col);
+            case 2:
+                return new Wall(ptPress, ptRel, col);
+            case 3:
+                throw new notImplementedException();
+                // TODO return toDraw = new Door(ptPress, ptRel, col);
+            default:
+                throw new NoShapeChosenException();
+            }
 	}
 }
