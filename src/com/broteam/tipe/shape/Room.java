@@ -15,7 +15,7 @@ public class Room extends Shape {
 		topLeft = new Point(topLeftX, topLeftY);
 
 		width = Math.max(refPressed.x, refReleased.x) - topLeftX;
-		height = Math.max(refPressed.x, refReleased.x) - topLeftY;
+		height = Math.max(refPressed.y, refReleased.y) - topLeftY;
 	}
 
 	@Override
