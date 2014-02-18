@@ -8,7 +8,6 @@ import com.broteam.tipe.testui.Panel;
 
 public class Pinceau extends MouseAdapter {
 
-    private Color col = Color.BLACK;
     private Point ptPress;
     private static int shapeSelector = 0;
 
@@ -25,13 +24,12 @@ public class Pinceau extends MouseAdapter {
 	}
 
 	void setColor(Color c) {
-		col = c;
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		ptPress = new Point(e.getX(), e.getY());
-        Shape toDraw = drawShape(ptPress, ptPress);
+        Shape toDraw = getNewShape(ptPress, ptPress);
         Panel screen = (Panel) e.getSource();
         screen.add(toDraw);
 	}
@@ -40,21 +38,17 @@ public class Pinceau extends MouseAdapter {
     public void mouseDragged(MouseEvent e) {
         Point ptDrag = new Point(e.getX(), e.getY());
         Panel screen = (Panel) e.getSource();
-        screen.removeLast();
-        Shape toDraw = drawShape(ptPress, ptDrag);
-        screen.add(toDraw);
+        screen.replaceLast(getNewShape(ptPress, ptDrag));
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         Point ptRel = new Point(e.getX(), e.getY());
         Panel screen = (Panel) e.getSource();
-        screen.removeLast();
-        Shape toDraw = drawShape(ptPress, ptRel);
-        screen.add(toDraw);
+        screen.replaceLast(getNewShape(ptPress, ptRel));
     }
 
-	public Shape drawShape(Point ptPress, Point ptRel) {
+	public Shape getNewShape(Point ptPress, Point ptRel) {
         switch (shapeSelector) {
         case 1:
             return new Room(ptPress, ptRel);
@@ -62,7 +56,7 @@ public class Pinceau extends MouseAdapter {
             return new Wall(ptPress, ptRel);
         case 3:
             throw new NotImplementedException();
-            // TODO return toDraw = new Door(ptPress, ptRel, col);
+            // TODO return toDraw = new Door(ptPress, ptRel);
         default:
             throw new NoShapeChosenException();
         }

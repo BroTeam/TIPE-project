@@ -1,6 +1,8 @@
 package com.broteam.tipe.testui;
 
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 class Main{
  
@@ -10,12 +12,21 @@ class Main{
       SwingUtilities.invokeLater(new Runnable() {
           @Override
           public void run() {
+        	  setSystemLookAndFeel();
               Window w = new Window();
               w.setSize(500, 300);
               w.setVisible(true);
           }
       });
-      
+  }
+  
+  public static void setSystemLookAndFeel() {
+      try {
+          UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+      } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+              | UnsupportedLookAndFeelException e) {
+          e.printStackTrace();
+      }
   }
  
 }

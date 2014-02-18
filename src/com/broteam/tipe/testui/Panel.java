@@ -1,7 +1,8 @@
 package com.broteam.tipe.testui;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
+import java.util.LinkedList;
+
 import javax.swing.JPanel;
 
 import com.broteam.tipe.shape.Pinceau;
@@ -9,30 +10,49 @@ import com.broteam.tipe.shape.Shape;
 
 public class Panel extends JPanel {
 
-	private ArrayList<Shape> shapes;
+	private LinkedList<Shape> shapes;
 
-	Pinceau pinceau;
+	private Pinceau pinceau;
 
-    //TODO Structure lente, étudier d'autre possibilités.
-
-	public void reloadPanel() {
-		Graphics g = getGraphics();
-		paintComponent(g);
+	/**
+	 * Default constructor.
+	 */
+	Panel() {
+		shapes = new LinkedList<Shape>();
+		pinceau = new Pinceau();
+		addMouseListener(pinceau);
+		addMouseMotionListener(pinceau);
 	}
 
-	public void add(Shape f) {
-		shapes.add(f);
-		reloadPanel();
+	/**
+	 * Adds the specified {@link Shape} to this {@link Panel}.
+	 * 
+	 * @param s
+	 *            The {@link Shape} to add.
+	 */
+	public void add(Shape s) {
+		shapes.add(s);
+		repaint();
 	}
 
-    public void removeLast() {
-        shapes.remove(shapes.size()-1);
-        reloadPanel();
-    }
+	/**
+	 * Replaces the last added {@link Shape} by the specified {@link Shape}.
+	 * 
+	 * @param s
+	 *            The {@link Shape} to place instead of the last one.
+	 */
+	public void replaceLast(Shape s) {
+		shapes.removeLast();
+		shapes.add(s);
+		repaint();
+	}
 
+	/**
+	 * Removes all {@link Shape}s from this {@link Panel}.
+	 */
 	void clear() {
 		shapes.clear();
-		reloadPanel();
+		repaint();
 	}
 
 	@Override
@@ -41,12 +61,5 @@ public class Panel extends JPanel {
 		for (Shape s : shapes)
 			if (s != null)
 				s.draw(g);
-	}
-
-	Panel() {
-		shapes = new ArrayList<Shape>();
-		pinceau = new Pinceau();
-		addMouseListener(pinceau);
-        addMouseMotionListener(pinceau);
 	}
 }
