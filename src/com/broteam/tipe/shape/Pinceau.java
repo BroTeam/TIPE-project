@@ -45,12 +45,7 @@ public class Pinceau extends MouseAdapter {
         Point ptDrag = new Point(e.getX(), e.getY());
         Panel ecran = (Panel) e.getSource();
         ecran.removeLast();
-        Shape toDraw = null;
-        try {
-            toDraw = drawShape(ptPress, ptDrag);
-        } catch (Exception e1) {
-            e1.printStackTrace();
-        }
+        Shape toDraw = drawShape(ptPress, ptDrag);
         ecran.add(toDraw);
     }
 
@@ -59,12 +54,7 @@ public class Pinceau extends MouseAdapter {
         Point ptRel = new Point(e.getX(), e.getY());
         Panel ecran = (Panel) e.getSource();
         ecran.removeLast();
-        Shape toDraw = null;
-        try {
-            toDraw = drawShape(ptPress, ptRel);
-        } catch (Exception e1) {
-            e1.printStackTrace();
-        }
+        Shape toDraw drawShape(ptPress, ptRel);
         ecran.add(toDraw);
     }
 
@@ -76,7 +66,7 @@ public class Pinceau extends MouseAdapter {
             case 2:
                 return new Wall(ptPress, ptRel, col);
             case 3:
-                throw new notImplementedException();
+                throw new NotImplementedException();
                 // TODO return toDraw = new Door(ptPress, ptRel, col);
             default:
                 throw new NoShapeChosenException();

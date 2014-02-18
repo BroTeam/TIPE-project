@@ -105,10 +105,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Pinceau.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Pinceau.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Pinceau.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="20" selection-start="2037" selection-end="2037" vertical-scroll-proportion="0.0" vertical-offset="963" max-vertical-offset="1530">
+            <state line="47" column="36" selection-start="1060" selection-end="1060" vertical-scroll-proportion="0.28042328" vertical-offset="640" max-vertical-offset="1360">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#513#514#0" expanded="true" />
@@ -127,10 +127,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NotImplementedException.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="NotImplementedException.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/NotImplementedException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="3" selection-start="36" selection-end="36" vertical-scroll-proportion="0.059964728" vertical-offset="0" max-vertical-offset="567">
+            <state line="2" column="3" selection-start="36" selection-end="36" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
               <folding />
             </state>
           </provider>
@@ -160,8 +160,8 @@
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Wall.java" />
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/testui/Panel.java" />
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/NoShapeChosenException.java" />
-        <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Pinceau.java" />
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/NotImplementedException.java" />
+        <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Pinceau.java" />
       </list>
     </option>
   </component>
@@ -883,21 +883,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/NotImplementedException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="3" selection-start="36" selection-end="36" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Pinceau.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="20" selection-start="2037" selection-end="2037" vertical-scroll-proportion="0.0" vertical-offset="963" max-vertical-offset="1530">
+        <state line="47" column="36" selection-start="1060" selection-end="1060" vertical-scroll-proportion="0.28042328" vertical-offset="640" max-vertical-offset="1360">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#513#514#0" expanded="true" />
             <element signature="e#527#528#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/NotImplementedException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="3" selection-start="36" selection-end="36" vertical-scroll-proportion="0.059964728" vertical-offset="0" max-vertical-offset="567">
-          <folding />
         </state>
       </provider>
     </entry>
