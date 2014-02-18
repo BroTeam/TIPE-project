@@ -13,6 +13,8 @@ public class Panel extends JPanel {
 
 	Pinceau pinceau;
 
+    //TODO Structure lente, étudier d'autre possibilités.
+
 	public void reloadPanel() {
 		Graphics g = getGraphics();
 		paintComponent(g);

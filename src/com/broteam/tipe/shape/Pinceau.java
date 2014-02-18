@@ -23,8 +23,7 @@ public class Pinceau extends MouseAdapter {
 
 	class notImplemented extends Exception {
 		public notImplemented() {
-			System.out
-					.println("Fonctionnalité non implémentée [Pour l'instant...]");
+			System.out.println("Fonctionnalité non implémentée [Pour l'instant...]");
 		}
 	}
 
@@ -49,7 +48,7 @@ public class Pinceau extends MouseAdapter {
 		ptPress = new Point(e.getX(), e.getY());
         Shape toDraw = null;
         try {
-            toDraw = drawShape(toDraw, ptPress, ptPress);
+            toDraw = drawShape(ptPress, ptPress);
         } catch (Exception e1) {
         }
         Panel ecran = (Panel) e.getSource();
@@ -63,7 +62,7 @@ public class Pinceau extends MouseAdapter {
         ecran.removeLast();
         Shape toDraw = null;
         try {
-            toDraw = drawShape(toDraw, ptPress, ptDrag);
+            toDraw = drawShape(ptPress, ptDrag);
         } catch (Exception e1) {
         }
         ecran.add(toDraw);
@@ -76,19 +75,19 @@ public class Pinceau extends MouseAdapter {
         ecran.removeLast();
         Shape toDraw = null;
         try {
-            toDraw = drawShape(toDraw, ptPress, ptRel);
+            toDraw = drawShape(ptPress, ptRel);
         } catch (Exception e1) {
         }
         ecran.add(toDraw);
     }
 
-	public Shape drawShape(Shape toDraw, Point ptPress, Point ptRel)
+	public Shape drawShape(Point ptPress, Point ptRel)
 			throws Exception {
 		switch (shapeSelector) {
 		case 1:
-			return toDraw = new Room(ptPress, ptRel, col);
+			return new Room(ptPress, ptRel, col);
 		case 2:
-			return toDraw = new Wall(ptPress, ptRel, col);
+			return new Wall(ptPress, ptRel, col);
 		case 3:
 			throw new notImplemented();
 			// TODO return toDraw = new Door(ptPress, ptRel, col);
