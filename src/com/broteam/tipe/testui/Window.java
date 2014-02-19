@@ -17,7 +17,7 @@ public class Window extends JFrame {
 		super();
 		setTitle("Wi-Fi Access Point Broadcasting Simulator");
 
-        final JPanel panel = new Panel();
+        final Panel panel = new Panel();
 
 		JMenuBar menuBar = new JMenuBar();
 		getContentPane().add(menuBar, BorderLayout.NORTH);
@@ -41,7 +41,7 @@ public class Window extends JFrame {
 		menuBar.add(mnEdition);
 
 		JMenuItem mntmToutEffacer = new JMenuItem("Tout effacer");
-        mnEdition.addActionListener(new ActionListener() {
+        mntmToutEffacer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 panel.clear();
