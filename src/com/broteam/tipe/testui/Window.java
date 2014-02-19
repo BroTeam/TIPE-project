@@ -17,6 +17,8 @@ public class Window extends JFrame {
 		super();
 		setTitle("Wi-Fi Access Point Broadcasting Simulator");
 
+        final JPanel panel = new Panel();
+
 		JMenuBar menuBar = new JMenuBar();
 		getContentPane().add(menuBar, BorderLayout.NORTH);
 
@@ -42,7 +44,7 @@ public class Window extends JFrame {
         mnEdition.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                Panel.clear();
+                panel.clear();
             }
         });
 		mnEdition.add(mntmToutEffacer);
@@ -132,8 +134,6 @@ public class Window extends JFrame {
 		comboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
         comboBox.setModel(new DefaultComboBoxModel<Material>(Material.values()));
 		//comboBox.setModel(new DefaultComboBoxModel<>(Material.values()));
-
-		JPanel panel = new Panel();
 
 		JScrollPane scrollPane = new JScrollPane(panel);
 		splitPane.setRightComponent(scrollPane);
