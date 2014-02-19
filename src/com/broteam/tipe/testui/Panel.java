@@ -50,7 +50,7 @@ public class Panel extends JPanel {
 	/**
 	 * Removes all {@link Shape}s from this {@link Panel}.
 	 */
-	void clear() {
+    void clear() {
 		shapes.clear();
 		repaint();
 	}

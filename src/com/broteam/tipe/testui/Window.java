@@ -39,6 +39,12 @@ public class Window extends JFrame {
 		menuBar.add(mnEdition);
 
 		JMenuItem mntmToutEffacer = new JMenuItem("Tout effacer");
+        mnEdition.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                Panel.clear();
+            }
+        });
 		mnEdition.add(mntmToutEffacer);
 
 		JMenu mnSimulation = new JMenu("Simulation");
