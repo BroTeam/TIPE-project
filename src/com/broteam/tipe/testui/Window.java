@@ -18,6 +18,7 @@ public class Window extends JFrame {
 		setTitle("Wi-Fi Access Point Broadcasting Simulator");
 
         final Panel panel = new Panel();
+        panel.setSize(1280,720);
 
 		JMenuBar menuBar = new JMenuBar();
 		getContentPane().add(menuBar, BorderLayout.NORTH);
@@ -136,8 +137,7 @@ public class Window extends JFrame {
 		//comboBox.setModel(new DefaultComboBoxModel<>(Material.values()));
 
 		JScrollPane scrollPane = new JScrollPane(panel);
-		splitPane.setRightComponent(scrollPane);
-
+        splitPane.setRightComponent(scrollPane);
 		splitPane.setDividerLocation(0.20);
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
