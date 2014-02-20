@@ -1,38 +1,28 @@
 package com.broteam.tipe.shape;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class Room extends Shape {
 
-	Room(Point ptPress, Point ptRel, Color c) {
-		refPressed = ptPress;
-		refReleased = ptRel;
-		col = c;
-		int px = refPressed.getX();
-		int py = refPressed.getY();
-		int rx = refReleased.getX();
-		int ry = refReleased.getY();
-		// TODO C'est moche ça.
-		if ((px > rx) && (py > ry)) {
-				refPressed = new Point(rx, ry);
-				refReleased = new Point(px, py);
-			} else if (px > rx) {
-				refPressed = new Point(rx, py);
-				refReleased = new Point(px, ry);
-			} else if (py > ry) {
-				refPressed = new Point(rx, ry);
-				refReleased = new Point(px, py);
-			}
+	private Point topLeft;
+	private int width;
+	private int height;
+
+	Room(Point refPressed, Point refReleased) {
+		int topLeftX = Math.min(refPressed.x, refReleased.x);
+		int topLeftY = Math.min(refPressed.y, refReleased.y);
+
+		topLeft = new Point(topLeftX, topLeftY);
+
+		width = Math.max(refPressed.x, refReleased.x) - topLeftX;
+		height = Math.max(refPressed.y, refReleased.y) - topLeftY;
 	}
 
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(col);
-		int px = refPressed.getX();
-		int py = refPressed.getY();
-		int rx = refReleased.getX();
-		int ry = refReleased.getY();
-		g.drawRect(px, py, Math.abs(rx - px), Math.abs(ry - py));
+		int px = topLeft.x;
+		int py = topLeft.y;
+		g.drawRect(px, py, width, height);
 	}
 }

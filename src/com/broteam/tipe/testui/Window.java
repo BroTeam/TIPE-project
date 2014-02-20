@@ -17,6 +17,9 @@ public class Window extends JFrame {
 		super();
 		setTitle("Wi-Fi Access Point Broadcasting Simulator");
 
+        final Panel panel = new Panel();
+        panel.setSize(1280,720);
+
 		JMenuBar menuBar = new JMenuBar();
 		getContentPane().add(menuBar, BorderLayout.NORTH);
 
@@ -39,6 +42,12 @@ public class Window extends JFrame {
 		menuBar.add(mnEdition);
 
 		JMenuItem mntmToutEffacer = new JMenuItem("Tout effacer");
+        mntmToutEffacer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                panel.clear();
+            }
+        });
 		mnEdition.add(mntmToutEffacer);
 
 		JMenu mnSimulation = new JMenu("Simulation");
@@ -120,21 +129,18 @@ public class Window extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Matériau:");
 		panel_2.add(lblNewLabel_1);
 
-		JComboBox<Material> comboBox = new JComboBox();
+		JComboBox<Material> comboBox = new JComboBox<Material>();
         //JComboBox<Material> comboBox = new JComboBox<>();
 		panel_2.add(comboBox);
 		comboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
-        comboBox.setModel(new DefaultComboBoxModel(Material.values()));
+        comboBox.setModel(new DefaultComboBoxModel<Material>(Material.values()));
 		//comboBox.setModel(new DefaultComboBoxModel<>(Material.values()));
 
-		JPanel panel = new Panel();
-
 		JScrollPane scrollPane = new JScrollPane(panel);
-		splitPane.setRightComponent(scrollPane);
-
+        splitPane.setRightComponent(scrollPane);
 		splitPane.setDividerLocation(0.20);
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 
 	// private class SwingAction extends AbstractAction {
