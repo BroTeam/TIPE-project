@@ -3,6 +3,7 @@ package com.broteam.tipe.testui;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import java.awt.*;
 
 class Main{
  
@@ -14,7 +15,7 @@ class Main{
           public void run() {
         	  setSystemLookAndFeel();
               Window w = new Window();
-              w.setSize(500, 300);
+              w.setSize(800, 600);
               w.setVisible(true);
           }
       });
@@ -27,6 +28,7 @@ class Main{
               | UnsupportedLookAndFeelException e) {
           e.printStackTrace();
       }
-  }
+ }
  
+
 }

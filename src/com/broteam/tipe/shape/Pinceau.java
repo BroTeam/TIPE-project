@@ -1,6 +1,6 @@
 package com.broteam.tipe.shape;
 
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 

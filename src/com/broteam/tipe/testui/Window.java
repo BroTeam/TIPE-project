@@ -1,11 +1,9 @@
 package com.broteam.tipe.testui;
 
 import javax.swing.JFrame;
-import java.awt.BorderLayout;
+import java.awt.*;
 import javax.swing.*;
-import java.awt.Component;
 import javax.swing.JLabel;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,12 +11,12 @@ public class Window extends JFrame {
 	private final ButtonGroup btnGroupSignal = new ButtonGroup();
 	// private final Action action = new SwingAction();
 
+    //Panel de dessin
+    public static final Panel panel = new Panel();
+
 	public Window() {
 		super();
 		setTitle("Wi-Fi Access Point Broadcasting Simulator");
-
-        final Panel panel = new Panel();
-        panel.setSize(1280,720);
 
 		JMenuBar menuBar = new JMenuBar();
 		getContentPane().add(menuBar, BorderLayout.NORTH);
@@ -141,6 +139,7 @@ public class Window extends JFrame {
 		splitPane.setDividerLocation(0.20);
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
 	}
 
 	// private class SwingAction extends AbstractAction {
