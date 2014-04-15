@@ -98,7 +98,7 @@
       <file leaf-file-name="Wall.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Wall.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="19" selection-start="96" selection-end="199" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+            <state line="12" column="10" selection-start="238" selection-end="238" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
               <folding />
             </state>
           </provider>
@@ -125,16 +125,16 @@
       <file leaf-file-name="Room.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Room.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="0" selection-start="488" selection-end="633" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+            <state line="15" column="0" selection-start="362" selection-end="362" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Door.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Door.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Door.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="52" selection-end="52" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
+            <state line="32" column="28" selection-start="1008" selection-end="1008" vertical-scroll-proportion="0.5059445" vertical-offset="161" max-vertical-offset="1343">
               <folding />
             </state>
           </provider>
@@ -144,15 +144,6 @@
         <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Pinceau.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="39" column="64" selection-start="883" selection-end="883" vertical-scroll-proportion="0.0" vertical-offset="348" max-vertical-offset="1122">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NoShapeChosenException.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/NoShapeChosenException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="1" selection-start="819" selection-end="819" vertical-scroll-proportion="0.5172891" vertical-offset="0" max-vertical-offset="723">
               <folding />
             </state>
           </provider>
@@ -169,7 +160,6 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/NotImplementedException.java" />
-        <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Wall.java" />
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Shape.java" />
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/testui/Panel.java" />
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Room.java" />
@@ -177,9 +167,10 @@
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Point.java" />
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/testui/Main.java" />
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Area.java" />
-        <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Door.java" />
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Pinceau.java" />
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/NoShapeChosenException.java" />
+        <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Wall.java" />
+        <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Door.java" />
       </list>
     </option>
   </component>
@@ -1053,13 +1044,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Room.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="488" selection-end="633" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/testui/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="33" selection-start="583" selection-end="583" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
@@ -1078,13 +1062,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Wall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="19" selection-start="96" selection-end="199" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Area.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="9" selection-start="302" selection-end="302" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
@@ -1092,9 +1069,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Door.java">
+    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/NoShapeChosenException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="52" selection-end="52" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
+        <state line="2" column="31" selection-start="64" selection-end="64" vertical-scroll-proportion="0.04702628" vertical-offset="0" max-vertical-offset="723">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Wall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="10" selection-start="238" selection-end="238" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Room.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="362" selection-end="362" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
           <folding />
         </state>
       </provider>
@@ -1106,9 +1097,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/NoShapeChosenException.java">
+    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Door.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="1" selection-start="819" selection-end="819" vertical-scroll-proportion="0.5172891" vertical-offset="0" max-vertical-offset="723">
+        <state line="32" column="28" selection-start="1008" selection-end="1008" vertical-scroll-proportion="0.5059445" vertical-offset="161" max-vertical-offset="1343">
           <folding />
         </state>
       </provider>

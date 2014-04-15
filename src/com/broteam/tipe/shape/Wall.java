@@ -5,11 +5,11 @@ import java.awt.Graphics;
 public class Wall extends Shape {
 
 	private Point p1;
-	private Point p2;
+        private Point p2;
 
-	Wall(Point ptPress, Point ptRel) {
-		p1 = ptPress;
-		p2 = ptRel;
+        Wall(Point ptPress, Point ptRel) {
+            p1 = ptPress;
+            p2 = ptRel;
 		/*
 		 * TODO: obliger les traits droits uniquement sans interdir l'affichage
 		 * d'un trait non perpendiculaire mais en replaçant le trait de façon à
