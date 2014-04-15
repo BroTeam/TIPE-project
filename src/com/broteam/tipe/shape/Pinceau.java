@@ -44,6 +44,7 @@ public class Pinceau extends MouseAdapter {
     @Override
     public void mouseReleased(MouseEvent e) {
         Point ptRel = new Point(e.getX(), e.getY());
+        //System.out.println(e.getX()+","+e.getY());
         Panel screen = (Panel) e.getSource();
         screen.replaceLast(getNewShape(ptPress, ptRel));
     }
