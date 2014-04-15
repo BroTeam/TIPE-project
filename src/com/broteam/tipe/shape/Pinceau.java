@@ -37,6 +37,7 @@ public class Pinceau extends MouseAdapter {
     @Override
     public void mouseDragged(MouseEvent e) {
         Point ptDrag = new Point(e.getX(), e.getY());
+        System.out.println("Pt drag =("+e.getX()+","+e.getY()+")");
         Panel screen = (Panel) e.getSource();
         screen.replaceLast(getNewShape(ptPress, ptDrag));
     }
@@ -56,8 +57,7 @@ public class Pinceau extends MouseAdapter {
         case 2:
             return new Wall(ptPress, ptRel);
         case 3:
-            throw new NotImplementedException();
-            // TODO return toDraw = new Door(ptPress, ptRel);
+            return new Door(ptPress, ptRel);
         default:
             throw new NoShapeChosenException();
         }

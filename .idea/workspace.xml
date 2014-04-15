@@ -113,10 +113,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Area.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Area.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Area.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="29" selection-start="338" selection-end="338" vertical-scroll-proportion="0.38177013" vertical-offset="0" max-vertical-offset="816">
+            <state line="15" column="9" selection-start="302" selection-end="302" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
               <folding />
             </state>
           </provider>
@@ -131,10 +131,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Door.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Door.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Door.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="5" selection-start="416" selection-end="416" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+            <state line="4" column="33" selection-start="86" selection-end="86" vertical-scroll-proportion="0.08982827" vertical-offset="0" max-vertical-offset="757">
               <folding />
             </state>
           </provider>
@@ -143,7 +143,7 @@
       <file leaf-file-name="Pinceau.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Pinceau.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="39" selection-start="667" selection-end="667" vertical-scroll-proportion="0.0" vertical-offset="173" max-vertical-offset="1122">
+            <state line="39" column="64" selection-start="883" selection-end="883" vertical-scroll-proportion="0.0" vertical-offset="348" max-vertical-offset="1122">
               <folding />
             </state>
           </provider>
@@ -167,10 +167,10 @@
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Room.java" />
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/testui/Window.java" />
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Point.java" />
-        <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Door.java" />
-        <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Pinceau.java" />
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/testui/Main.java" />
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Area.java" />
+        <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Door.java" />
+        <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Pinceau.java" />
       </list>
     </option>
   </component>
@@ -1058,20 +1058,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Pinceau.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="39" selection-start="667" selection-end="667" vertical-scroll-proportion="0.0" vertical-offset="173" max-vertical-offset="1122">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Door.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="5" selection-start="416" selection-end="416" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/testui/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="33" selection-start="583" selection-end="583" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
@@ -1099,7 +1085,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Area.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="29" selection-start="338" selection-end="338" vertical-scroll-proportion="0.38177013" vertical-offset="0" max-vertical-offset="816">
+        <state line="15" column="9" selection-start="302" selection-end="302" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Pinceau.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="64" selection-start="883" selection-end="883" vertical-scroll-proportion="0.0" vertical-offset="348" max-vertical-offset="1122">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Door.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="33" selection-start="86" selection-end="86" vertical-scroll-proportion="0.08982827" vertical-offset="0" max-vertical-offset="757">
           <folding />
         </state>
       </provider>

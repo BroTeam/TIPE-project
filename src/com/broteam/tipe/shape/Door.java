@@ -10,7 +10,14 @@ public class Door extends Shape {
     Door(Point ptPress, Point ptRel) {
         p1 = ptPress;
         p2 = ptRel;
-        //TODO: obliger la porte à faire une longueur précise (20px ?).
+        //Math.abs pas nécessaire je pense
+        double lengthDoor = Math.hypot(Math.abs(p1.x - p2.x),Math.abs(p1.y - p2.y));
+        while (lengthDoor > 20) {
+            // Tant que la longueur de la porte est plus grande que 20px
+            p1 = new Point((p1.x)-1, (p1.y)-1);
+            p2 = new Point((p2.x)-1, (p2.y)-1);
+            lengthDoor = Math.hypot(Math.abs(p1.x - p2.x),Math.abs(p1.y - p2.y));
+        }
     }
 
     @Override
