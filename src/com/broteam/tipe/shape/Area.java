@@ -15,7 +15,8 @@ public class Area extends Shape {
             pointsTab[k] =  areaPtTab[k];
         }
     }
-
+    //TODO Tester la méthode.
+    // car j'ai changé les champs (pointsTab) en (areaShape.pointsTab) je ne sais pas si ça marche.
     public boolean isInsideArea(Area areaShape, Point test) {
             int i;
             int j;
