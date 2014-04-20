@@ -12,7 +12,7 @@ public class Window extends JFrame {
 	// private final Action action = new SwingAction();
 
     //Panel de dessin
-    public static final Panel panel = new Panel();
+    public Panel panel = new Panel();
 
 	public Window() {
 		super();
