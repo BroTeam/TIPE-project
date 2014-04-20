@@ -97,13 +97,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Wall.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Wall.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Wall.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="10" selection-start="389" selection-end="389" vertical-scroll-proportion="0.49237806" vertical-offset="0" max-vertical-offset="656">
+            <state line="19" column="10" selection-start="389" selection-end="389" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Point.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Point.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="9" selection-start="925" selection-end="925" vertical-scroll-proportion="0.70951587" vertical-offset="153" max-vertical-offset="918">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Room.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Room.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="0" selection-start="362" selection-end="362" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -128,8 +146,8 @@
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/testui/Window.java" />
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Area.java" />
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Shape.java" />
-        <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Point.java" />
         <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Wall.java" />
+        <option value="$PROJECT_DIR$/src/com/broteam/tipe/shape/Point.java" />
       </list>
     </option>
   </component>
@@ -137,10 +155,10 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="487" />
+    <option name="y" value="41" />
+    <option name="width" value="1291" />
+    <option name="height" value="999" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -611,18 +629,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="487" y="41" width="1291" height="999" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24147122" sideWeight="0.5557185" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2843217" sideWeight="0.5552" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297414" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24946696" sideWeight="0.49936143" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20581897" sideWeight="0.4946695" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24147122" sideWeight="0.44281524" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2843217" sideWeight="0.4432" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27665246" sideWeight="0.47102213" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15625" sideWeight="0.48933902" order="0" side_tool="false" content_ui="tabs" />
@@ -631,8 +649,8 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13486141" sideWeight="0.5278592" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2650862" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20552397" sideWeight="0.5278592" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.282434" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -685,7 +703,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="89" column="24" selection-start="2645" selection-end="2645" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2635">
           <folding>
-            <element signature="e#3867#3877#0" expanded="true" />
+            <element signature="e#3867#3877#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -734,7 +752,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="89" column="24" selection-start="2645" selection-end="2645" vertical-scroll-proportion="0.0" vertical-offset="1513" max-vertical-offset="2635">
           <folding>
-            <element signature="e#3867#3877#0" expanded="true" />
+            <element signature="e#3867#3877#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -783,7 +801,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="89" column="24" selection-start="2645" selection-end="2645" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2635">
           <folding>
-            <element signature="e#3867#3877#0" expanded="true" />
+            <element signature="e#3867#3877#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -832,7 +850,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="89" column="24" selection-start="2645" selection-end="2645" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2635">
           <folding>
-            <element signature="e#3867#3877#0" expanded="true" />
+            <element signature="e#3867#3877#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -881,7 +899,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="40" selection-start="705" selection-end="705" vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="2516">
           <folding>
-            <element signature="e#3867#3877#0" expanded="true" />
+            <element signature="e#3867#3877#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -895,7 +913,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2516">
           <folding>
-            <element signature="e#3867#3877#0" expanded="true" />
+            <element signature="e#3867#3877#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -909,7 +927,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="116" column="35" selection-start="3488" selection-end="3488" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2635">
           <folding>
-            <element signature="e#3867#3877#0" expanded="true" />
+            <element signature="e#3867#3877#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -923,7 +941,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="116" column="35" selection-start="3488" selection-end="3488" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2635">
           <folding>
-            <element signature="e#3867#3877#0" expanded="true" />
+            <element signature="e#3867#3877#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -937,7 +955,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="116" column="35" selection-start="3488" selection-end="3488" vertical-scroll-proportion="0.0" vertical-offset="1972" max-vertical-offset="2516">
           <folding>
-            <element signature="e#3867#3877#0" expanded="true" />
+            <element signature="e#3867#3877#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -986,7 +1004,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="113" column="42" selection-start="3410" selection-end="3410" vertical-scroll-proportion="0.4347826" vertical-offset="1251" max-vertical-offset="2380">
           <folding>
-            <element signature="e#3867#3877#0" expanded="true" />
+            <element signature="e#3867#3877#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -994,13 +1012,6 @@
     <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Pinceau.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="39" column="64" selection-start="883" selection-end="883" vertical-scroll-proportion="0.30566534" vertical-offset="363" max-vertical-offset="1122">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Room.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="362" selection-end="362" vertical-scroll-proportion="0.33596838" vertical-offset="0" max-vertical-offset="759">
           <folding />
         </state>
       </provider>
@@ -1016,6 +1027,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="0" selection-start="146" selection-end="146" vertical-scroll-proportion="0.25914633" vertical-offset="0" max-vertical-offset="656">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Wall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="10" selection-start="389" selection-end="389" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1039,25 +1059,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Point.java">
+    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Room.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="20" selection-start="197" selection-end="197" vertical-scroll-proportion="0.28506097" vertical-offset="0" max-vertical-offset="1020">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#972#973#0" expanded="true" />
-            <element signature="e#996#997#0" expanded="true" />
-            <element signature="e#1038#1039#0" expanded="true" />
-            <element signature="e#1062#1063#0" expanded="true" />
-          </folding>
+        <state line="15" column="0" selection-start="362" selection-end="362" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Wall.java">
+    <entry file="file://$PROJECT_DIR$/src/com/broteam/tipe/shape/Point.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="10" selection-start="389" selection-end="389" vertical-scroll-proportion="0.49237806" vertical-offset="0" max-vertical-offset="656">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="36" column="9" selection-start="925" selection-end="925" vertical-scroll-proportion="0.70951587" vertical-offset="153" max-vertical-offset="918">
+          <folding />
         </state>
       </provider>
     </entry>
