@@ -1,9 +1,8 @@
 package com.broteam.tipe.shape;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 
-public abstract class Shape {
+public abstract class Shape{
 	
 	protected Point refPressed;
 	protected Point refReleased;
@@ -13,9 +12,10 @@ public abstract class Shape {
 		col = Color.BLACK;
 	}
 
+    //@Override
     public void setColor(Color c) {
         col = c;
     }
     
-	public abstract void draw(Graphics g);
+	public abstract void draw(Graphics2D g);
 }

@@ -1,6 +1,7 @@
 package com.broteam.tipe.shape;
 
-import java.awt.Graphics;
+import java.awt.*;
+import java.awt.geom.Line2D;
 
 public class Wall extends Shape {
 
@@ -10,16 +11,12 @@ public class Wall extends Shape {
         Wall(Point ptPress, Point ptRel) {
             p1 = ptPress;
             p2 = ptRel;
-		/*
-		 * TODO: obliger les traits droits uniquement sans interdir l'affichage
-		 * d'un trait non perpendiculaire mais en replaçant le trait de façon à
-		 * ce qu'il soit correct.
-		 */
+            double coefDirect = (p2.y - p2.y)/(p1.x - p1.x);
 	}
 
 	@Override
-	public void draw(Graphics g) {
+	public void draw(Graphics2D g) {
 		g.setColor(col);
-		g.drawLine(p1.x, p1.y, p2.x, p2.y);
+		//g.drawLine(new Line2D.Double(p1.x, p1.y, p2.x, p2.y));
 	}
 }

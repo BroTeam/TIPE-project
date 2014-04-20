@@ -2,22 +2,16 @@ package com.broteam.tipe.shape;
 
 import com.broteam.tipe.testui.Window;
 
-public class Point extends java.awt.Point {
-	
-	public int x;
-	public int y;
-	
-	public Point() {
-		this(0, 0);
-	}
+import java.awt.geom.Point2D;
 
-	public Point(Point a) {
-		this(a.x, a.y);
-	}
+public class Point extends Point2D {
 	
-	public Point(int a, int b) {
-        int maxWidth = Window.panel.getSize().width;
-        int maxHeight = Window.panel.getSize().height;
+	public double x;
+	public double y;
+
+	public Point(double a, double b) {
+        double maxWidth = Window.panel.getSize().width;
+        double maxHeight = Window.panel.getSize().height;
         if ((a < 0) & (b < 0)){
             x = 0;
             y = 0;
@@ -41,5 +35,21 @@ public class Point extends java.awt.Point {
 		    x = a;
 		    y = b;
 	    }
+    }
+
+    @Override
+    public double getX() {
+        return x;
+    }
+
+    @Override
+    public double getY() {
+        return y;
+    }
+
+    @Override
+    public void setLocation(double x, double y) {
+        this.x = x;
+        this.y = y;
     }
 }

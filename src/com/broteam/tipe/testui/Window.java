@@ -114,7 +114,7 @@ public class Window extends JFrame {
 		btnGroupObstacles.add(tglbtnRoom);
 		panel_2.add(tglbtnRoom);
 
-		JToggleButton tglbtnDoor = new JToggleButton("Porte");
+		/*JToggleButton tglbtnDoor = new JToggleButton("Porte");
 		tglbtnDoor.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -122,7 +122,7 @@ public class Window extends JFrame {
 			}
 		});
 		btnGroupObstacles.add(tglbtnDoor);
-		panel_2.add(tglbtnDoor);
+		panel_2.add(tglbtnDoor);*/
 
 		JLabel lblNewLabel_1 = new JLabel("Matériau:");
 		panel_2.add(lblNewLabel_1);
