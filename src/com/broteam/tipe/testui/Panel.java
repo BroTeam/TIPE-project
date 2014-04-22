@@ -1,6 +1,7 @@
 package com.broteam.tipe.testui;
 
 import java.awt.Graphics;
+
 import java.awt.Graphics2D;
 import java.util.LinkedList;
 
@@ -62,6 +63,7 @@ public class Panel extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         for (Element e : elements) {
             if (e != null) {
+            	g2d.setColor(e.getMaterial().getColorMat());
                 g2d.draw(e.getShape());
             }
         }

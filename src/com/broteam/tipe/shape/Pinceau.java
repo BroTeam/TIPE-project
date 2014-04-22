@@ -5,6 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
+import com.broteam.tipe.testui.Material;
 import com.broteam.tipe.testui.Panel;
 
 public class Pinceau extends MouseAdapter {
@@ -45,19 +46,19 @@ public class Pinceau extends MouseAdapter {
     @Override
     public void mouseDragged(MouseEvent e) {
         if (ptPress != null) {
-            replaceShape(e);
+            replaceElement(e);
         }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         if (ptPress != null) {
-            replaceShape(e);
+            replaceElement(e);
             ptPress = null;
         }
     }
 
-    private void replaceShape(MouseEvent e) {
+    private void replaceElement(MouseEvent e) {
         Panel screen = (Panel) e.getSource();
         double xMax = screen.getWidth() - 1;
         double yMax = screen.getHeight() - 1;
@@ -65,7 +66,10 @@ public class Pinceau extends MouseAdapter {
         double y = e.getY();
         x = x > xMax ? xMax : x < 0 ? 0 : x;
         y = y > yMax ? yMax : y < 0 ? 0 : y;
-        screen.replaceLast(getNewShape(ptPress, new Point2D.Double(x, y)));
+        Element newElement = getNewShape(ptPress, new Point2D.Double(x, y));
+        Material mat = (Material) com.broteam.tipe.testui.Window.comboBox.getSelectedItem();
+        newElement.setMaterial(mat);
+        screen.replaceLast(newElement);
     }
 
     public Element getNewShape(Point2D ptPress, Point2D ptRel) throws NoShapeChosenException {

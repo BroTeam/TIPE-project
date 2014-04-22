@@ -13,6 +13,7 @@ public class Window extends JFrame {
 
     //Panel de dessin
     public Panel panel = new Panel();
+    public static JComboBox<Material> comboBox;
 
 	public Window() {
 		super();
@@ -127,7 +128,7 @@ public class Window extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Matériau:");
 		panel_2.add(lblNewLabel_1);
 
-		JComboBox<Material> comboBox = new JComboBox<Material>();
+		comboBox = new JComboBox<Material>();
         //JComboBox<Material> comboBox = new JComboBox<>();
 		panel_2.add(comboBox);
 		comboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
