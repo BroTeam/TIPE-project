@@ -2,18 +2,16 @@ package com.broteam.tipe.testui;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.awt.geom.Area;
-import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 
 import javax.swing.JPanel;
 
+import com.broteam.tipe.shape.Element;
 import com.broteam.tipe.shape.Pinceau;
 
 public class Panel extends JPanel {
 
-    private LinkedList<Shape> shapes;
+    private LinkedList<Element> elements;
 
     private Pinceau pinceau;
 
@@ -21,40 +19,40 @@ public class Panel extends JPanel {
      * Default constructor.
      */
     Panel() {
-        shapes = new LinkedList<>();
+    	elements = new LinkedList<>();
         pinceau = new Pinceau();
         addMouseListener(pinceau);
         addMouseMotionListener(pinceau);
     }
 
     /**
-     * Adds the specified {@link Shape} to this {@link Panel}.
+     * Adds the specified {@link Element} to this {@link Panel}.
      * 
-     * @param s
-     *            The {@link Shape} to add.
+     * @param e
+     *            The {@link Element} to add.
      */
-    public void add(Shape s) {
-        shapes.add(s);
+    public void add(Element e) {
+    	elements.add(e);
         repaint();
     }
 
     /**
-     * Replaces the last added {@link Shape} by the specified {@link Shape}.
+     * Replaces the last added {@link Element} by the specified {@link Element}.
      * 
-     * @param s
-     *            The {@link Shape} to place instead of the last one.
+     * @param e
+     *            The {@link Element} to place instead of the last one.
      */
-    public void replaceLast(Shape s) {
-        shapes.removeLast();
-        shapes.add(s);
+    public void replaceLast(Element e) {
+    	elements.removeLast();
+    	elements.add(e);
         repaint();
     }
 
     /**
-     * Removes all {@link Shape}s from this {@link Panel}.
+     * Removes all {@link Element}s from this {@link Panel}.
      */
     void clear() {
-        shapes.clear();
+    	elements.clear();
         repaint();
     }
 
@@ -62,9 +60,9 @@ public class Panel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        for (Shape s : shapes) {
-            if (s != null) {
-                g2d.draw(s);
+        for (Element e : elements) {
+            if (e != null) {
+                g2d.draw(e.getShape());
             }
         }
     }

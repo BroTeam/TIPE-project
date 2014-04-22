@@ -1,7 +1,6 @@
 package com.broteam.tipe.shape;
 
 import java.awt.Color;
-import java.awt.Shape;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
@@ -69,7 +68,7 @@ public class Pinceau extends MouseAdapter {
         screen.replaceLast(getNewShape(ptPress, new Point2D.Double(x, y)));
     }
 
-    public Shape getNewShape(Point2D ptPress, Point2D ptRel) throws NoShapeChosenException {
+    public Element getNewShape(Point2D ptPress, Point2D ptRel) throws NoShapeChosenException {
         switch (shapeSelector) {
         case 1:
             return new Room(ptPress, ptRel);
