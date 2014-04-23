@@ -1,8 +1,8 @@
 package com.broteam.tipe.testui;
 
 import java.awt.Graphics;
-
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.util.LinkedList;
 
 import javax.swing.JPanel;
@@ -14,18 +14,13 @@ public class Panel extends JPanel {
 
     private LinkedList<Element> elements;
 
-    private Pinceau pinceau;
-
     /**
      * Default constructor.
      */
     Panel() {
     	elements = new LinkedList<>();
-        pinceau = new Pinceau();
-        addMouseListener(pinceau);
-        addMouseMotionListener(pinceau);
     }
-
+    
     /**
      * Adds the specified {@link Element} to this {@link Panel}.
      * 
@@ -63,8 +58,9 @@ public class Panel extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         for (Element e : elements) {
             if (e != null) {
+            	System.out.println(e);
             	g2d.setColor(e.getMaterial().getColorMat());
-                g2d.draw(e.getShape());
+            	g2d.draw(e.getShape());
             }
         }
     }

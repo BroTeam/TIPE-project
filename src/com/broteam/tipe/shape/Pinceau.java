@@ -7,11 +7,17 @@ import java.awt.geom.Point2D;
 
 import com.broteam.tipe.testui.Material;
 import com.broteam.tipe.testui.Panel;
+import com.broteam.tipe.testui.Window;
 
 public class Pinceau extends MouseAdapter {
 
     private Point2D ptPress;
     private static int shapeSelector = 0;
+    private Window win;
+    
+    public Pinceau(Window w) {
+    	win = w;
+    }
 
     public static void setRoom() {
         shapeSelector = 1;
@@ -23,9 +29,6 @@ public class Pinceau extends MouseAdapter {
 
     public static void setDoor() {
         shapeSelector = 3;
-    }
-
-    void setColor(Color c) {
     }
 
     @Override
@@ -67,7 +70,7 @@ public class Pinceau extends MouseAdapter {
         x = x > xMax ? xMax : x < 0 ? 0 : x;
         y = y > yMax ? yMax : y < 0 ? 0 : y;
         Element newElement = getNewShape(ptPress, new Point2D.Double(x, y));
-        Material mat = (Material) com.broteam.tipe.testui.Window.comboBox.getSelectedItem();
+        Material mat = (Material) win.comboBox.getSelectedItem();
         newElement.setMaterial(mat);
         screen.replaceLast(newElement);
     }

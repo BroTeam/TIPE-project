@@ -1,9 +1,13 @@
 package com.broteam.tipe.testui;
 
 import javax.swing.JFrame;
+
 import java.awt.*;
+
 import javax.swing.*;
-import javax.swing.JLabel;
+
+import com.broteam.tipe.shape.Pinceau;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,12 +17,16 @@ public class Window extends JFrame {
 
     //Panel de dessin
     public Panel panel = new Panel();
-    public static JComboBox<Material> comboBox;
+    public JComboBox<Material> comboBox;
 
 	public Window() {
 		super();
 		setTitle("Wi-Fi Access Point Broadcasting Simulator");
-
+		
+		Pinceau pinceau = new Pinceau(this);
+        panel.addMouseListener(pinceau);
+        panel.addMouseMotionListener(pinceau);
+		
 		JMenuBar menuBar = new JMenuBar();
 		getContentPane().add(menuBar, BorderLayout.NORTH);
 
