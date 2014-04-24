@@ -18,7 +18,7 @@ public class Window extends JFrame {
 
     //Panel de dessin
     public Panel panel = new Panel();
-    public JComboBox<Material> comboBox;
+    private JComboBox<Material> comboBox;
 
 	public Window() {
 		super();
@@ -150,6 +150,10 @@ public class Window extends JFrame {
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+	}
+	
+	public Material getSelectedMaterial() {
+		return (Material) this.comboBox.getSelectedItem();
 	}
 
 	// private class SwingAction extends AbstractAction {

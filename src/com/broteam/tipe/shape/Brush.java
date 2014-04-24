@@ -73,7 +73,7 @@ public class Brush extends MouseAdapter {
     }
    
     public Element getNewElement(Point2D ptPress, Point2D ptRel) throws NoShapeChosenException {
-    	Material mat = (Material) win.comboBox.getSelectedItem();
+    	Material mat = win.getSelectedMaterial();
     	switch (shapeSelector) {
         case 1:
             return new Room(ptPress, ptRel, mat);
