@@ -1,4 +1,4 @@
-package com.broteam.tipe.shape;
+package com.broteam.tipe.element;
 
 import java.awt.*;
 

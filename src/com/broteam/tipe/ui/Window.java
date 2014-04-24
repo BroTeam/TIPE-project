@@ -1,4 +1,4 @@
-package com.broteam.tipe.testui;
+package com.broteam.tipe.ui;
 
 import javax.swing.JFrame;
 
@@ -6,8 +6,8 @@ import java.awt.*;
 
 import javax.swing.*;
 
-import com.broteam.tipe.shape.Brush;
-import com.broteam.tipe.shape.Material;
+import com.broteam.tipe.element.Brush;
+import com.broteam.tipe.element.Material;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -108,7 +108,7 @@ public class Window extends JFrame {
 		tglbtnWall.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				com.broteam.tipe.shape.Brush.setWall();
+				com.broteam.tipe.element.Brush.setWall();
 			}
 		});
 		btnGroupObstacles.add(tglbtnWall);
@@ -118,7 +118,7 @@ public class Window extends JFrame {
 		tglbtnRoom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				com.broteam.tipe.shape.Brush.setRoom();
+				com.broteam.tipe.element.Brush.setRoom();
 			}
 		});
 		btnGroupObstacles.add(tglbtnRoom);

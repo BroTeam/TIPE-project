@@ -1,4 +1,4 @@
-package com.broteam.tipe.testui;
+package com.broteam.tipe.ui;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -7,8 +7,8 @@ import java.util.LinkedList;
 
 import javax.swing.JPanel;
 
-import com.broteam.tipe.shape.Element;
-import com.broteam.tipe.shape.Material;
+import com.broteam.tipe.element.Element;
+import com.broteam.tipe.element.Material;
 
 public class Panel extends JPanel {
 

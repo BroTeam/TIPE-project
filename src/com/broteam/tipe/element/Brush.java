@@ -1,13 +1,11 @@
-package com.broteam.tipe.shape;
+package com.broteam.tipe.element;
 
-import java.awt.Color;
-import java.awt.Shape;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
-import com.broteam.tipe.testui.Panel;
-import com.broteam.tipe.testui.Window;
+import com.broteam.tipe.ui.Panel;
+import com.broteam.tipe.ui.Window;
 
 public class Brush extends MouseAdapter {
 

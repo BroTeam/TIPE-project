@@ -1,4 +1,4 @@
-package com.broteam.tipe.testui;
+package com.broteam.tipe.ui;
 
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
