@@ -9,13 +9,13 @@ import com.broteam.tipe.testui.Material;
 import com.broteam.tipe.testui.Panel;
 import com.broteam.tipe.testui.Window;
 
-public class Pinceau extends MouseAdapter {
+public class Brush extends MouseAdapter {
 
     private Point2D ptPress;
     private static int shapeSelector = 0;
     private Window win;
     
-    public Pinceau(Window w) {
+    public Brush(Window w) {
     	win = w;
     }
 

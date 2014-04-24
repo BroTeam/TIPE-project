@@ -1,14 +1,13 @@
 package com.broteam.tipe.testui;
 
 import java.awt.Graphics;
+
 import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
 import java.util.LinkedList;
 
 import javax.swing.JPanel;
 
 import com.broteam.tipe.shape.Element;
-import com.broteam.tipe.shape.Pinceau;
 
 public class Panel extends JPanel {
 

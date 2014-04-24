@@ -2,11 +2,12 @@ package com.broteam.tipe.testui;
 
 import javax.swing.JFrame;
 
+
 import java.awt.*;
 
 import javax.swing.*;
 
-import com.broteam.tipe.shape.Pinceau;
+import com.broteam.tipe.shape.Brush;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,9 +24,9 @@ public class Window extends JFrame {
 		super();
 		setTitle("Wi-Fi Access Point Broadcasting Simulator");
 		
-		Pinceau pinceau = new Pinceau(this);
-        panel.addMouseListener(pinceau);
-        panel.addMouseMotionListener(pinceau);
+		Brush brush = new Brush(this);
+        panel.addMouseListener(brush);
+        panel.addMouseMotionListener(brush);
 		
 		JMenuBar menuBar = new JMenuBar();
 		getContentPane().add(menuBar, BorderLayout.NORTH);
@@ -107,7 +108,7 @@ public class Window extends JFrame {
 		tglbtnWall.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				com.broteam.tipe.shape.Pinceau.setWall();
+				com.broteam.tipe.shape.Brush.setWall();
 			}
 		});
 		btnGroupObstacles.add(tglbtnWall);
@@ -117,7 +118,7 @@ public class Window extends JFrame {
 		tglbtnRoom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				com.broteam.tipe.shape.Pinceau.setRoom();
+				com.broteam.tipe.shape.Brush.setRoom();
 			}
 		});
 		btnGroupObstacles.add(tglbtnRoom);
