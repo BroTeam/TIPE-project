@@ -5,8 +5,8 @@ import java.awt.geom.Rectangle2D;
 
 public class Room extends Element {
 
-	Room(Point2D refPressed, Point2D refReleased) {
-        super(new Rectangle2D.Double());
+	Room(Point2D refPressed, Point2D refReleased, Material mat) {
+        super(new Rectangle2D.Double(), mat);
         ((Rectangle2D.Double) getShape()).setFrameFromDiagonal(refPressed, refReleased);
 	}
 

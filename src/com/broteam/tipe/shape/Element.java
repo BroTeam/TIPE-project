@@ -1,23 +1,28 @@
 package com.broteam.tipe.shape;
 
 import java.awt.Shape;
-
-import com.broteam.tipe.testui.Material;
+import java.lang.IllegalArgumentException;
 
 public class Element {
 	
 	Material mat;
 	Shape sha;
 	
-	Element(Shape s) {
+	Element(Shape s, Material m) {
 		sha = s;
+		setMaterial(m);
 	}
+	
 	public Shape getShape() {
 		return sha;
 	}
 	
-	public void setMaterial(Material m) {
-		mat = m;
+	public void setMaterial(Material m)  {
+		if (m != null) {
+			mat = m;	
+		} else {
+			throw new IllegalArgumentException();
+		}
 	}
 	
 	public Material getMaterial() {

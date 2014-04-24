@@ -2,12 +2,12 @@ package com.broteam.tipe.testui;
 
 import javax.swing.JFrame;
 
-
 import java.awt.*;
 
 import javax.swing.*;
 
 import com.broteam.tipe.shape.Brush;
+import com.broteam.tipe.shape.Material;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

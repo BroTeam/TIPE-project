@@ -5,8 +5,8 @@ import java.awt.geom.Point2D;
 
 public class Wall extends Element {
 
-    public Wall(Point2D start, Point2D end) {
-        super(new Line2D.Double(start, end));
+    public Wall(Point2D start, Point2D end, Material mat) {
+        super(new Line2D.Double(start, end), mat);
     }
 
 }

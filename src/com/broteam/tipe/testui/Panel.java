@@ -1,13 +1,14 @@
 package com.broteam.tipe.testui;
 
+import java.awt.Color;
 import java.awt.Graphics;
-
 import java.awt.Graphics2D;
 import java.util.LinkedList;
 
 import javax.swing.JPanel;
 
 import com.broteam.tipe.shape.Element;
+import com.broteam.tipe.shape.Material;
 
 public class Panel extends JPanel {
 
@@ -56,10 +57,11 @@ public class Panel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         for (Element e : elements) {
-            if (e != null) {
-            	System.out.println(e);
-            	g2d.setColor(e.getMaterial().getColorMat());
-            	g2d.draw(e.getShape());
+        	if (e != null) {
+                Material m = e.getMaterial();
+                Color c = m.getColorMat();
+                g2d.setColor(c);
+                g2d.draw(e.getShape());
             }
         }
     }
