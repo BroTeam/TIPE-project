@@ -28,6 +28,10 @@ public class Brush extends MouseAdapter {
     public static void setDoor() {
         shapeSelector = 3;
     }
+    
+    public static void setAP() {
+        shapeSelector = 4;
+    }
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -79,6 +83,8 @@ public class Brush extends MouseAdapter {
             return new Wall(ptPress, ptRel, mat);
         case 3:
             return new Door(ptPress, ptRel, mat);
+        case 4:
+        	return new AccessPoint(ptPress, ptRel);
         default:
             throw new NoShapeChosenException();
         }

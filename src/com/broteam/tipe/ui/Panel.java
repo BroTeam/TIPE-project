@@ -7,13 +7,14 @@ import java.util.LinkedList;
 
 import javax.swing.JPanel;
 
+import com.broteam.tipe.element.AccessPoint;
 import com.broteam.tipe.element.Element;
 import com.broteam.tipe.element.Material;
 
 public class Panel extends JPanel {
 
     private LinkedList<Element> elements;
-
+    
     /**
      * Default constructor.
      */
@@ -61,7 +62,12 @@ public class Panel extends JPanel {
                 Material m = e.getMaterial();
                 Color c = m.getColorMat();
                 g2d.setColor(c);
-                g2d.draw(e.getShape());
+				if (e.getClass().getName() == "com.broteam.tipe.element.AccessPoint") {
+					AccessPoint ap = (AccessPoint) e;
+					g.drawImage(ap.getImage(), (int) ap.getPtAP().getX(), (int) ap.getPtAP().getY(), null);
+                } else {
+                	g2d.draw(e.getShape());
+                }
             }
         }
     }

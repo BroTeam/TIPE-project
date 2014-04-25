@@ -82,6 +82,12 @@ public class Window extends JFrame {
 		JToggleButton tglbtnAp = new JToggleButton("AP");
 		panel_1.add(tglbtnAp);
 		btnGroupSignal.add(tglbtnAp);
+		tglbtnAp.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				com.broteam.tipe.element.Brush.setAP();
+			}
+		});
 
 		// JToggleButton tglbtnRepeater = new JToggleButton("Répéteur");
 		// panel_1.add(tglbtnRepeater);
