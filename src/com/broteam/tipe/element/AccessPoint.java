@@ -13,10 +13,12 @@ public class AccessPoint extends Element {
 	private BufferedImage img;
 	private Point2D ptAP;
 	private static Material m = Material.BOX;
+	private int power;
 	
-	public AccessPoint(Point2D start, Point2D end) {
+	public AccessPoint(Point2D start, Point2D end, int pow) {
         super(new Line2D.Double(start, end), m);
 		ptAP = start;
+		power = pow;
 		try {
 		    img = ImageIO.read(new File("images/ap.png"));
 		} catch (IOException e) {
@@ -29,6 +31,10 @@ public class AccessPoint extends Element {
 	
 	public Point2D getPtAP() {
 		return ptAP;
+	}
+	
+	public int getPowerAP() {
+		return power;
 	}
 	
 }

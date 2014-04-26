@@ -13,12 +13,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Window extends JFrame {
-	private final ButtonGroup btnGroupSignal = new ButtonGroup();
-	// private final Action action = new SwingAction();
-
-    //Panel de dessin
+	
     public Panel panel = new Panel();
+    
+	private final ButtonGroup btnGroupSignal = new ButtonGroup();
     private JComboBox<Material> comboBox;
+    private JSlider slider;
 
 	public Window() {
 		super();
@@ -89,16 +89,23 @@ public class Window extends JFrame {
 			}
 		});
 
-		// JToggleButton tglbtnRepeater = new JToggleButton("Répéteur");
-		// panel_1.add(tglbtnRepeater);
-		// btnGroupSignal.add(tglbtnRepeater);
+		/* JToggleButton tglbtnRepeater = new JToggleButton("Répéteur");
+		panel_1.add(tglbtnRepeater);
+		btnGroupSignal.add(tglbtnRepeater);*/
 
-		JLabel lblNewLabel = new JLabel("Puissance:");
+		JLabel lblNewLabel = new JLabel("Puissance (en mW):");
 		panel_1.add(lblNewLabel);
 
-		JSlider slider = new JSlider();
-		panel_1.add(slider);
+		// Pour les puissances voir ici http://en.wikipedia.org/wiki/DBm
+		// http://assistance.orange.fr/le-wi-fi-et-la-sante-770.php#
+		slider = new JSlider(JSlider.HORIZONTAL, 100, 1000, 100);
+		slider.setMinorTickSpacing(100);  
+		slider.setMajorTickSpacing(300);  
+		slider.setPaintTicks(true);  
+		slider.setPaintLabels(true);  
 		slider.setAlignmentX(Component.LEFT_ALIGNMENT);
+		panel_1.add(slider);
+		
 
 		ButtonGroup btnGroupObstacles = new ButtonGroup();
 
@@ -161,14 +168,9 @@ public class Window extends JFrame {
 	public Material getSelectedMaterial() {
 		return (Material) this.comboBox.getSelectedItem();
 	}
-
-	// private class SwingAction extends AbstractAction {
-	// public SwingAction() {
-	// putValue(NAME, "SwingAction");
-	// putValue(SHORT_DESCRIPTION, "Some short description");
-	// }
-	// @Override
-	// public void actionPerformed(ActionEvent e) {
-	// }
-	// }
+	
+	public int getSliderValue() {
+		return this.slider.getValue();
+	}
+	
 }
