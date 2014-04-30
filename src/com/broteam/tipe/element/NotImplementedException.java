@@ -1,4 +1,4 @@
-package com.broteam.tipe.shape;
+package com.broteam.tipe.element;
 
 /**
  * Created by Titouan on 18/02/14.

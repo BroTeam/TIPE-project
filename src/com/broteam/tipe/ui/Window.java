@@ -1,25 +1,33 @@
-package com.broteam.tipe.testui;
+package com.broteam.tipe.ui;
 
 import javax.swing.JFrame;
-import java.awt.BorderLayout;
+
+import java.awt.*;
+
 import javax.swing.*;
-import java.awt.Component;
-import javax.swing.JLabel;
-import java.awt.GridLayout;
+
+import com.broteam.tipe.element.Brush;
+import com.broteam.tipe.element.Material;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Window extends JFrame {
+	
+    public Panel panel = new Panel();
+    
 	private final ButtonGroup btnGroupSignal = new ButtonGroup();
-	// private final Action action = new SwingAction();
+    private JComboBox<Material> comboBox;
+    private JSlider slider;
 
 	public Window() {
 		super();
 		setTitle("Wi-Fi Access Point Broadcasting Simulator");
-
-        final Panel panel = new Panel();
-        panel.setSize(1280,720);
-
+		
+		Brush brush = new Brush(this);
+        panel.addMouseListener(brush);
+        panel.addMouseMotionListener(brush);
+		
 		JMenuBar menuBar = new JMenuBar();
 		getContentPane().add(menuBar, BorderLayout.NORTH);
 
@@ -74,17 +82,30 @@ public class Window extends JFrame {
 		JToggleButton tglbtnAp = new JToggleButton("AP");
 		panel_1.add(tglbtnAp);
 		btnGroupSignal.add(tglbtnAp);
+		tglbtnAp.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				com.broteam.tipe.element.Brush.setAP();
+			}
+		});
 
-		// JToggleButton tglbtnRepeater = new JToggleButton("Répéteur");
-		// panel_1.add(tglbtnRepeater);
-		// btnGroupSignal.add(tglbtnRepeater);
+		/* JToggleButton tglbtnRepeater = new JToggleButton("Répéteur");
+		panel_1.add(tglbtnRepeater);
+		btnGroupSignal.add(tglbtnRepeater);*/
 
-		JLabel lblNewLabel = new JLabel("Puissance:");
+		JLabel lblNewLabel = new JLabel("Puissance (en mW):");
 		panel_1.add(lblNewLabel);
 
-		JSlider slider = new JSlider();
-		panel_1.add(slider);
+		// Pour les puissances voir ici http://en.wikipedia.org/wiki/DBm
+		// http://assistance.orange.fr/le-wi-fi-et-la-sante-770.php#
+		slider = new JSlider(JSlider.HORIZONTAL, 100, 1000, 100);
+		slider.setMinorTickSpacing(100);  
+		slider.setMajorTickSpacing(300);  
+		slider.setPaintTicks(true);  
+		slider.setPaintLabels(true);  
 		slider.setAlignmentX(Component.LEFT_ALIGNMENT);
+		panel_1.add(slider);
+		
 
 		ButtonGroup btnGroupObstacles = new ButtonGroup();
 
@@ -100,7 +121,7 @@ public class Window extends JFrame {
 		tglbtnWall.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				com.broteam.tipe.shape.Pinceau.setWall();
+				com.broteam.tipe.element.Brush.setWall();
 			}
 		});
 		btnGroupObstacles.add(tglbtnWall);
@@ -110,13 +131,13 @@ public class Window extends JFrame {
 		tglbtnRoom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				com.broteam.tipe.shape.Pinceau.setRoom();
+				com.broteam.tipe.element.Brush.setRoom();
 			}
 		});
 		btnGroupObstacles.add(tglbtnRoom);
 		panel_2.add(tglbtnRoom);
 
-		JToggleButton tglbtnDoor = new JToggleButton("Porte");
+		/*JToggleButton tglbtnDoor = new JToggleButton("Porte");
 		tglbtnDoor.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -124,12 +145,12 @@ public class Window extends JFrame {
 			}
 		});
 		btnGroupObstacles.add(tglbtnDoor);
-		panel_2.add(tglbtnDoor);
+		panel_2.add(tglbtnDoor);*/
 
 		JLabel lblNewLabel_1 = new JLabel("Matériau:");
 		panel_2.add(lblNewLabel_1);
 
-		JComboBox<Material> comboBox = new JComboBox<Material>();
+		comboBox = new JComboBox<Material>();
         //JComboBox<Material> comboBox = new JComboBox<>();
 		panel_2.add(comboBox);
 		comboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -141,15 +162,15 @@ public class Window extends JFrame {
 		splitPane.setDividerLocation(0.20);
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-	}
 
-	// private class SwingAction extends AbstractAction {
-	// public SwingAction() {
-	// putValue(NAME, "SwingAction");
-	// putValue(SHORT_DESCRIPTION, "Some short description");
-	// }
-	// @Override
-	// public void actionPerformed(ActionEvent e) {
-	// }
-	// }
+	}
+	
+	public Material getSelectedMaterial() {
+		return (Material) this.comboBox.getSelectedItem();
+	}
+	
+	public int getSliderValue() {
+		return this.slider.getValue();
+	}
+	
 }
