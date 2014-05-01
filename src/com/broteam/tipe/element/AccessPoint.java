@@ -12,11 +12,10 @@ public class AccessPoint extends Element {
 	
 	private BufferedImage img;
 	private Point2D ptAP;
-	private static Material m = Material.BOX;
 	private int power;
 	
 	public AccessPoint(Point2D start, Point2D end, int pow) {
-        super(new Line2D.Double(start, end), m);
+        super(new Line2D.Double(start, end));
 		ptAP = start;
 		power = pow;
 		try {

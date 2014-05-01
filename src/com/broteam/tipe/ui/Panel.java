@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import com.broteam.tipe.element.AccessPoint;
 import com.broteam.tipe.element.Element;
+import com.broteam.tipe.element.Obstacle;
 import com.broteam.tipe.element.Material;
 
 public class Panel extends JPanel {
@@ -23,10 +24,10 @@ public class Panel extends JPanel {
     }
     
     /**
-     * Adds the specified {@link Element} to this {@link Panel}.
+     * Adds the specified {@link Obstacle} to this {@link Panel}.
      * 
      * @param e
-     *            The {@link Element} to add.
+     *            The {@link Obstacle} to add.
      */
     public void add(Element e) {
     	elements.add(e);
@@ -34,10 +35,10 @@ public class Panel extends JPanel {
     }
 
     /**
-     * Replaces the last added {@link Element} by the specified {@link Element}.
+     * Replaces the last added {@link Obstacle} by the specified {@link Obstacle}.
      * 
      * @param e
-     *            The {@link Element} to place instead of the last one.
+     *            The {@link Obstacle} to place instead of the last one.
      */
     public void replaceLast(Element e) {
     	elements.removeLast();
@@ -46,7 +47,7 @@ public class Panel extends JPanel {
     }
 
     /**
-     * Removes all {@link Element}s from this {@link Panel}.
+     * Removes all {@link Obstacle}s from this {@link Panel}.
      */
     void clear() {
     	elements.clear();
@@ -59,14 +60,15 @@ public class Panel extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         for (Element e : elements) {
         	if (e != null) {
-                Material m = e.getMaterial();
-                Color c = m.getColorMat();
-                g2d.setColor(c);
 				if (e.getClass().getName() == "com.broteam.tipe.element.AccessPoint") {
 					AccessPoint ap = (AccessPoint) e;
 					g.drawImage(ap.getImage(), (int) ap.getPtAP().getX(), (int) ap.getPtAP().getY(), null);
                 } else {
-                	g2d.draw(e.getShape());
+                	Obstacle o = (Obstacle) e;
+                    Material m = o.getMaterial();
+                    Color c = m.getColorMat();
+                    g2d.setColor(c);
+                	g2d.draw(o.getShape());
                 }
             }
         }
