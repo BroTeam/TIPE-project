@@ -2,11 +2,11 @@ package com.broteam.tipe.element;
 
 import java.awt.Shape;
 
-public class Element {
+public abstract class Element {
 
 	Shape sha;
 
-	Element(Shape s) {
+	protected Element(Shape s) {
 		sha = s;
 	}
 	
