@@ -34,8 +34,8 @@ public enum Material {
 	 * </p>
 	 * p<sub>2</sub> = p<sub>1</sub> * {@code getAttenuationFactor()}
 	 * <ul>
-	 * <li>p<sub>1</sub> is the signal power before passing through this material</dd>
-	 * <li>p<sub>2</sub> is the signal power after passing through this material</dd>
+	 * <li>p<sub>1</sub> is the signal power before passing through this material</li>
+	 * <li>p<sub>2</sub> is the signal power after passing through this material</li>
 	 * </ul>
 	 * 
 	 * @return the multiplicative attenuation factor of this material.
