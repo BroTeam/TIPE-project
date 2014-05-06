@@ -100,7 +100,7 @@ public enum Side {
      *         or {@link Side#OUT} if the point is not on the rectangle boundaries.
      */
     public static Side get(double x, double y, double rectWidth, double rectHeight) {
-        if (x >= 0 && x <= rectWidth && y >= 0 && y <= rectWidth) {
+        if (x >= 0 && x <= rectWidth && y >= 0 && y <= rectHeight) {
             if (x == 0) {
                 return Side.LEFT;
             } else if (x == rectWidth) {
