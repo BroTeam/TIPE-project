@@ -31,7 +31,32 @@ public class SignalArea extends java.awt.geom.Area {
 	 *            The direction to follow when projecting {@code source}
 	 * @return The resulting point, which is on an edge of the window.
 	 */
-	private static Point2D getProjectionOnEdge(Point2D source, Point2D wayPoint) {
+	private static Point2D getProjectionOnEdge(Point2D source, Point2D wayPoint, double panelWidth, double panelHeight) {
+		double x1 = source.getX();
+		double y1 = source.getY();
+		double x2 = source.getX();
+		double y2 = source.getY();
+		double a = y2 - y1;
+		double b = x1 - x2;
+		double c = -b*y1 - a*x1;
+		Point2D inter1;
+		Point2D inter2;
+		if (a > 0) {
+			//Intersection avec la droite y = y_max
+			double ymax = panelHeight;		
+			inter1 = new Point2D.Double(-(c+b*ymax)/a, ymax);
+		} else {
+			//Intersection avec la droite y = 0
+			inter1 = new Point2D.Double(-c/a, 0);
+		}
+		if (b > 0) {
+			//Intersection avec la droite x = 0
+			inter2 = new Point2D.Double(0, -c/b);
+		} else {
+			//Intersection avec la droite x = x_max
+			double xmax = panelWidth;
+			inter2 = new Point2D.Double(xmax, -(c+a*xmax)/b);
+		}
 		// TODO
 		return null;
 	}
@@ -65,8 +90,4 @@ public class SignalArea extends java.awt.geom.Area {
 		return null;
 	}
 
-	private static double getCoefDirect(Line2D l) {
-		// TODO test pour coef direct infini !
-		return ((l.getP2().getY() - l.getP1().getY()) / (l.getP2().getX() - l.getP1().getX()));
-	}
 }
