@@ -8,31 +8,31 @@ import java.awt.geom.Point2D;
 public enum Side {
     TOP {
         @Override
-        public Point2D getCorner(double panelWidth, double panelHeight) {
-            return new Point2D.Double(panelWidth, 0);
+        public Point2D getCorner(double rectWidth, double rectHeight) {
+            return new Point2D.Double(rectWidth, 0);
         }
     },
     RIGHT {
         @Override
-        public Point2D getCorner(double panelWidth, double panelHeight) {
-            return new Point2D.Double(panelWidth, panelHeight);
+        public Point2D getCorner(double rectWidth, double rectHeight) {
+            return new Point2D.Double(rectWidth, rectHeight);
         }
     },
     BOTTOM {
         @Override
-        public Point2D getCorner(double panelWidth, double panelHeight) {
-            return new Point2D.Double(0, panelHeight);
+        public Point2D getCorner(double rectWidth, double rectHeight) {
+            return new Point2D.Double(0, rectHeight);
         }
     },
     LEFT {
         @Override
-        public Point2D getCorner(double panelWidth, double panelHeight) {
+        public Point2D getCorner(double rectWidth, double rectHeight) {
             return new Point2D.Double(0, 0);
         }
     },
     OUT {
         @Override
-        public Point2D getCorner(double panelWidth, double panelHeight) {
+        public Point2D getCorner(double rectWidth, double rectHeight) {
             throw new RuntimeException("OUT is not a side, cannot call getCorner()");
         }
     };
@@ -82,7 +82,7 @@ public enum Side {
     public static Side get(Point2D point, double rectWidth, double rectHeight) {
         double x = point.getX();
         double y = point.getY();
-        return getSide(x, y, rectWidth, rectHeight);
+        return get(x, y, rectWidth, rectHeight);
     }
 
     /**
@@ -99,7 +99,7 @@ public enum Side {
      * @return the {@link Side} of the rectangle where the specified point belongs,
      *         or {@link Side#OUT} if the point is not on the rectangle boundaries.
      */
-    public static Side getSide(double x, double y, double rectWidth, double rectHeight) {
+    public static Side get(double x, double y, double rectWidth, double rectHeight) {
         if (x >= 0 && x <= rectWidth) {
             if (y == 0) {
                 return Side.TOP;

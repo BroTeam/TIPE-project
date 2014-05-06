@@ -104,8 +104,6 @@ public class SignalArea extends java.awt.geom.Area {
         }
         // add the projection of the first point of the wall
         shadow.lineTo((int) projectP1.getX(), (int) projectP1.getY());
-        // TODO complete this
-
         shadow.closePath();
         return shadow;
     }
