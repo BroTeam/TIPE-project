@@ -94,7 +94,6 @@ public class SignalArea extends java.awt.geom.Area {
         // hourglass-like polygons
 
         // add the wall as one side of the polygon
-        // TODO start by the other one depending on the relative position of source w.r.t. the wall
         shadow.moveTo((int) wall.getX1(), (int) wall.getY1());
         shadow.lineTo((int) wall.getX2(), (int) wall.getY2());
         // add the projection of the second point of the wall
