@@ -1,4 +1,4 @@
-package com.broteam.tipe.element;
+package com.broteam.tipe.math;
 
 import java.awt.geom.Point2D;
 
@@ -100,24 +100,17 @@ public enum Side {
      *         or {@link Side#OUT} if the point is not on the rectangle boundaries.
      */
     public static Side get(double x, double y, double rectWidth, double rectHeight) {
-        if (x >= 0 && x <= rectWidth) {
-            if (y == 0) {
-                return Side.TOP;
-            } else if (y == rectHeight) {
-                return Side.BOTTOM;
-            } else {
-                return Side.OUT;
-            }
-        } else if (y >= 0 && y <= rectHeight) {
+        if (x >= 0 && x <= rectWidth && y >= 0 && y <= rectWidth) {
             if (x == 0) {
                 return Side.LEFT;
             } else if (x == rectWidth) {
                 return Side.RIGHT;
-            } else {
-                return Side.OUT;
+            } else if (y == 0) {
+                return Side.TOP;
+            } else if (y == rectHeight) {
+                return Side.BOTTOM;
             }
-        } else {
-            return Side.OUT;
         }
+        return Side.OUT;
     }
 }

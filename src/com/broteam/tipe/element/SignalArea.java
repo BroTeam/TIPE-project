@@ -5,6 +5,9 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
 
+import com.broteam.tipe.math.LineEquation;
+import com.broteam.tipe.math.Side;
+
 /**
  * Created by Titouan on 15/04/14.
  */
@@ -33,19 +36,17 @@ public class SignalArea extends java.awt.geom.Area {
      * @return The resulting point, which is on an edge of the window.
      */
     private static Point2D getProjectionOnEdge(Point2D source, Point2D wayPoint, double panelWidth, double panelHeight) {
-        double a = source.getY() - source.getY();
-        double b = source.getX() - source.getX();
-        double c = -b * source.getY() - a * source.getX();
+        LineEquation eq = new LineEquation(source, wayPoint);
         double interX; // X coord of the intersection
         double interY; // Y coord of the intersection
 
-        if (a > 0) {
+        if (eq.a > 0) {
             // Intersection avec la droite y = y_max
-            interX = -(c + b * panelHeight) / a;
+            interX = -(eq.c + eq.b * panelHeight) / eq.a;
             interY = panelHeight;
         } else {
             // Intersection avec la droite y = 0
-            interX = -c / a;
+            interX = -eq.c / eq.a;
             interY = 0;
         }
         if (interX >= 0 && interX <= panelWidth) {
@@ -53,14 +54,14 @@ public class SignalArea extends java.awt.geom.Area {
             return new Point2D.Double(interX, interY);
         }
 
-        if (b > 0) {
+        if (eq.b > 0) {
             // Intersection avec la droite x = 0
             interX = 0;
-            interY = -c / b;
+            interY = -eq.c / eq.b;
         } else {
             // Intersection avec la droite x = x_max
             interX = panelWidth;
-            interY = -(c + a * panelWidth) / b;
+            interY = -(eq.c + eq.a * panelWidth) / eq.b;
         }
         if (interY >= 0 && interY <= panelHeight) {
             // this point is in the boundaries
@@ -83,6 +84,10 @@ public class SignalArea extends java.awt.geom.Area {
      */
     private static Shape getWallShadow(Point2D source, Line2D wall, double panelWidth, double panelHeight) {
         Path2D shadow = new Path2D.Double();
+        LineEquation eq = new LineEquation(wall);
+        boolean clockwise = eq.getRelativePostion(source);
+        Point2D P1 = clockwise ? wall.getP1() : wall.getP2();
+        Point2D P2 = clockwise ? wall.getP2() : wall.getP1();
         Point2D projectP1 = getProjectionOnEdge(source, wall.getP1(), panelWidth, panelHeight);
         Point2D projectP2 = getProjectionOnEdge(source, wall.getP2(), panelWidth, panelHeight);
         // WARNING the points below are added in a specific order to avoid
@@ -100,12 +105,12 @@ public class SignalArea extends java.awt.geom.Area {
         while (s != s2) {
             Point2D corner = s.getCorner(panelWidth, panelHeight);
             shadow.lineTo(corner.getX(), corner.getY());
-            s2 = s2.next();
+            s = s.next();
         }
         // add the projection of the first point of the wall
         shadow.lineTo((int) projectP1.getX(), (int) projectP1.getY());
         shadow.closePath();
         return shadow;
     }
-
+    
 }
