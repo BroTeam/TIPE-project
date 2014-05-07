@@ -89,7 +89,7 @@ public class Brush extends MouseAdapter {
         case 3:
             return new Door(ptPress, ptRel, mat);
         case 4:
-        	return new AccessPoint(ptPress, ptRel, pow);
+        	return new AccessPoint(ptRel, pow);
         default:
             throw new NoShapeChosenException();
         }

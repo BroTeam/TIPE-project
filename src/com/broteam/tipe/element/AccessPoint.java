@@ -1,6 +1,5 @@
 package com.broteam.tipe.element;
 
-import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -14,10 +13,10 @@ public class AccessPoint extends Element {
 	private Point2D location;
 	private int power;
 	
-	public AccessPoint(Point2D start, Point2D end, int pow) {
+	public AccessPoint(Point2D location, int power) {
         super(null);
-		location = start;
-		power = pow;
+		this.location = location;
+		this.power = power;
 		try {
 		    img = ImageIO.read(new File("images/ap.png"));
 		} catch (IOException e) {
