@@ -6,8 +6,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
-import com.broteam.tipe.element.Brush;
-import com.broteam.tipe.element.Material;
+import com.broteam.tipe.signal.Material;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -85,7 +84,7 @@ public class Window extends JFrame {
 		tglbtnAp.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				com.broteam.tipe.element.Brush.setAP();
+				com.broteam.tipe.ui.Brush.setAP();
 			}
 		});
 
@@ -121,7 +120,7 @@ public class Window extends JFrame {
 		tglbtnWall.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				com.broteam.tipe.element.Brush.setWall();
+				com.broteam.tipe.ui.Brush.setWall();
 			}
 		});
 		btnGroupObstacles.add(tglbtnWall);
@@ -131,7 +130,7 @@ public class Window extends JFrame {
 		tglbtnRoom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				com.broteam.tipe.element.Brush.setRoom();
+				com.broteam.tipe.ui.Brush.setRoom();
 			}
 		});
 		btnGroupObstacles.add(tglbtnRoom);

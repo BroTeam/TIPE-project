@@ -4,6 +4,9 @@ import java.awt.Shape;
 import java.lang.IllegalArgumentException;
 import java.util.List;
 
+import com.broteam.tipe.signal.Material;
+import com.broteam.tipe.signal.SignalArea;
+
 public abstract class Obstacle extends Element {
 
 	Material mat;
@@ -36,8 +39,10 @@ public abstract class Obstacle extends Element {
 	 * @param ap
 	 *            The {@link AccessPoint} creating the signal that projects the
 	 *            desired shadows.
+	 * @param panelWidth TODO
+	 * @param panelHeight TODO
 	 * 
 	 * @return a non-null list of {@code Area}s.
 	 */
-	public abstract List<SignalArea> getShadows(AccessPoint ap);
+	public abstract List<SignalArea> getAttenuatedAreas(AccessPoint ap, double panelWidth, double panelHeight);
 }

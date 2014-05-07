@@ -1,4 +1,4 @@
-package com.broteam.tipe.element;
+package com.broteam.tipe.signal;
 
 import java.awt.Color;
 

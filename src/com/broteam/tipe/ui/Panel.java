@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import com.broteam.tipe.element.AccessPoint;
 import com.broteam.tipe.element.Element;
 import com.broteam.tipe.element.Obstacle;
-import com.broteam.tipe.element.Material;
+import com.broteam.tipe.signal.Material;
 
 public class Panel extends JPanel {
 

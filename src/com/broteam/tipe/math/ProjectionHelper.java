@@ -4,7 +4,6 @@ import java.awt.Shape;
 import java.awt.geom.Line2D;
 import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
 
 public class ProjectionHelper {
 
@@ -70,8 +69,6 @@ public class ProjectionHelper {
      *            The width of the panel (maximum X).
      * @param panelHeight
      *            The height of the panel (maximum Y).
-     * @param panelWidth 
-     * @param panelHeight 
      * @return A polygon delimited by the wall, the edges of the window, and the
      *         lines projected from the source and the wall's extremities.
      */
@@ -80,29 +77,29 @@ public class ProjectionHelper {
         
         LineEquation eq = new LineEquation(wall);
         boolean clockwise = eq.getRelativePostion(source);
-        Point2D P1 = clockwise ? wall.getP1() : wall.getP2();
-        Point2D P2 = clockwise ? wall.getP2() : wall.getP1();
+        Point2D p1 = clockwise ? wall.getP1() : wall.getP2();
+        Point2D p2 = clockwise ? wall.getP2() : wall.getP1();        
+        Point2D p1proj = getProjectionOnEdge(source, p1, panelWidth, panelHeight);
+        Point2D p2proj = getProjectionOnEdge(source, p2, panelWidth, panelHeight);
         
-        Point2D projectP1 = getProjectionOnEdge(source, wall.getP1(), panelWidth, panelHeight);
-        Point2D projectP2 = getProjectionOnEdge(source, wall.getP2(), panelWidth, panelHeight);
         // WARNING the points below are added in a specific order to avoid
         // hourglass-like polygons
 
         // add the wall as one side of the polygon
-        shadow.moveTo((int) wall.getX2(), (int) wall.getY2());
-        shadow.lineTo((int) wall.getX1(), (int) wall.getY1());
+        shadow.moveTo((int) p2.getX(), (int) p2.getY());
+        shadow.lineTo((int) p1.getX(), (int) p1.getY());
         // add the projection of the second point of the wall
-        shadow.lineTo((int) projectP1.getX(), (int) projectP1.getY());
+        shadow.lineTo((int) p1proj.getX(), (int) p1proj.getY());
         // add possible corners between the 2 projections
-        Side s = Side.get(projectP1, panelWidth, panelHeight);
-        Side s2 = Side.get(projectP2, panelWidth, panelHeight);
+        Side s = Side.get(p1proj, panelWidth, panelHeight);
+        Side s2 = Side.get(p2proj, panelWidth, panelHeight);
         while (s != s2) {
             Point2D corner = s.getCorner(panelWidth, panelHeight);
             shadow.lineTo(corner.getX(), corner.getY());
             s = s.next();
         }
         // add the projection of the first point of the wall
-        shadow.lineTo((int) projectP2.getX(), (int) projectP2.getY());
+        shadow.lineTo((int) p2proj.getX(), (int) p2proj.getY());
         shadow.closePath();
         return shadow;
     }
