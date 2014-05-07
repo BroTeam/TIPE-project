@@ -1,20 +1,19 @@
 package com.broteam.tipe.signal;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class AreaIntersector {
 
 	public static IntersectionCase intersect(SignalArea area1, SignalArea area2, List<SignalArea> result) {
-		// il m'oblige à la mettre static  normal ?
 		
-		return result;
+		return ;
 	}
 
 	public static List<SignalArea> createExclusiveAreas(List<SignalArea> overlappingAreas) {
 		List<SignalArea> mutExAreas =  new ArrayList<>();
 		while (!overlappingAreas.isEmpty()) {
-			//a inline ?
 			SignalArea current = overlappingAreas.remove(0);
 			addAreaToExclusiveList(current, mutExAreas);
 		}
@@ -22,24 +21,35 @@ public class AreaIntersector {
 	}
 
 	public static void addAreaToExclusiveList(SignalArea areaToAdd, List<SignalArea> mutExAreas) {
+		SignalArea current = areaToAdd;
+		List<SignalArea> currentMutEx =  new LinkedList<>();
+		ArrayList<SignalArea> result =  new ArrayList<>();
 		while (!mutExAreas.isEmpty()) {
 			SignalArea exclusive = mutExAreas.remove(0);
-			List<SignalArea> result =  new ArrayList<>();; // A CHANGER vide au lieu de null ! 
-			switch (intersect(areaToAdd, exclusive, result)) {
+			result.clear();
+			switch (intersect(current, exclusive, result)) {
 			case DISTINCT:
-				
+				currentMutEx.add(result.get(1)); // On ajoute exclusive à la CME
 				break;
 			case CONTAINS:
-				
+				currentMutEx.add(result.get(1)); // On ajoute l'intersection à la CME
+				current = result.get(0);
 				break;
 			case CONTAINED:
-				
-				break;
+				currentMutEx.add(result.get(0)); // On ajoute exclusive-intersection à la CME
+				currentMutEx.add(result.get(1)); // On ajoute l'intersection à la CME
+				mutExAreas.addAll(currentMutEx);
+				currentMutEx.clear();
+				return;
 			case INTERSECTS:
-				
+				currentMutEx.add(result.get(0)); // On ajoute exclusive-intersection à la CME
+				currentMutEx.add(result.get(2)); // On ajoute l'intersection à la CME
+				current = result.get(1);
 				break;
 			}
 		}
+		mutExAreas.add(current);
+		mutExAreas.addAll(currentMutEx);
 	}
 
 }
