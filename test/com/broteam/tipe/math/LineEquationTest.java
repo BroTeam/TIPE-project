@@ -15,7 +15,7 @@ public class LineEquationTest {
 
         LineEquation le = new LineEquation(new Line2D.Double(2, 5, 1, 5));
         Point2D p = new Point2D.Double();
-        
+
         p.setLocation(3, 5.1);
         assertTrue("Relative position should be true: clockwise triangle", le.getRelativePostion(p));
 

@@ -1,6 +1,7 @@
 package com.broteam.tipe.math;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -33,17 +34,17 @@ public class SideTest {
 
         assertEquals("Side should be OUT (middle of rect)", Side.get(3, 3.5, width, height), Side.OUT);
         assertEquals("Side should be OUT (middle of rect)", Side.get(5, 8, width, height), Side.OUT);
-        
+
         assertEquals("Side should be OUT (x < 0)", Side.get(-0.0001, 3, width, height), Side.OUT);
         assertEquals("Side should be OUT (x < 0)", Side.get(-2.5, 3, width, height), Side.OUT);
         assertEquals("Side should be OUT (x > width)", Side.get(width + 0.0001, 3, width, height), Side.OUT);
         assertEquals("Side should be OUT (x > width)", Side.get(width + 20, 3, width, height), Side.OUT);
-        
+
         assertEquals("Side should be OUT (y < 0)", Side.get(3, -0.0001, width, height), Side.OUT);
         assertEquals("Side should be OUT (y < 0)", Side.get(3, -15, width, height), Side.OUT);
         assertEquals("Side should be OUT (y > height)", Side.get(3, height + 0.0001, width, height), Side.OUT);
         assertEquals("Side should be OUT (y > height)", Side.get(3, height + 25, width, height), Side.OUT);
-        
+
         Side s;
         s = Side.get(0, 0, width, height);
         assertTrue("Side should be LEFT or TOP (top-left corner)", s == Side.LEFT || s == Side.TOP);

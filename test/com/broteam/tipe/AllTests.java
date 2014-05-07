@@ -9,7 +9,7 @@ import com.broteam.tipe.math.ProjectionHelperTest;
 import com.broteam.tipe.math.SideTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({LineEquationTest.class, SideTest.class, ProjectionHelperTest.class})
+@SuiteClasses({ LineEquationTest.class, SideTest.class, ProjectionHelperTest.class })
 public class AllTests {
 
 }

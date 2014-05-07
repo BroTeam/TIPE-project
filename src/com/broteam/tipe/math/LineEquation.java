@@ -18,7 +18,7 @@ public class LineEquation {
     /**
      * Creates a new {@link LineEquation} representing the straight line going
      * through the specified 2 points.
-     * 
+     *
      * @param p1
      *            First point.
      * @param p2
@@ -32,7 +32,7 @@ public class LineEquation {
 
     /**
      * Creates a new {@link LineEquation} for specified line.
-     * 
+     *
      * @param line
      *            The line.
      */
@@ -49,7 +49,7 @@ public class LineEquation {
      * {@code P1}, {@code P2}). The returned value describes whether that triangle is
      * drawn clockwise or anti-clockwise.
      * </p>
-     * 
+     *
      * @param point
      *            The point to get the position for.
      * @return {@code true} if the triangle is drawn clockwise, {@code false}

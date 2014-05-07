@@ -16,9 +16,9 @@ public class Brush extends MouseAdapter {
     private Point2D ptPress;
     private static int shapeSelector = 0;
     private Window win;
-    
+
     public Brush(Window w) {
-    	win = w;
+        win = w;
     }
 
     public static void setRoom() {
@@ -32,7 +32,7 @@ public class Brush extends MouseAdapter {
     public static void setDoor() {
         shapeSelector = 3;
     }
-    
+
     public static void setAP() {
         shapeSelector = 4;
     }
@@ -77,11 +77,11 @@ public class Brush extends MouseAdapter {
         y = y > yMax ? yMax : y < 0 ? 0 : y;
         screen.replaceLast(getNewElement(ptPress, new Point2D.Double(x, y)));
     }
-   
+
     public Element getNewElement(Point2D ptPress, Point2D ptRel) throws NoShapeChosenException {
-    	Material mat = win.getSelectedMaterial();
-    	int pow = win.getSliderValue();
-    	switch (shapeSelector) {
+        Material mat = win.getSelectedMaterial();
+        int pow = win.getSliderValue();
+        switch (shapeSelector) {
         case 1:
             return new Room(ptPress, ptRel, mat);
         case 2:
@@ -89,7 +89,7 @@ public class Brush extends MouseAdapter {
         case 3:
             return new Door(ptPress, ptRel, mat);
         case 4:
-        	return new AccessPoint(ptRel, pow);
+            return new AccessPoint(ptRel, pow);
         default:
             throw new NoShapeChosenException();
         }

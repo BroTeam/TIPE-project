@@ -10,7 +10,7 @@ public class ProjectionHelper {
     /**
      * Returns the point that is the projection of the {@code source} to the edge of
      * the specified rectangle, when projected in the direction of {@code wayPoint}.
-     * 
+     *
      * @param source
      *            The point to project to the edge.
      * @param wayPoint
@@ -60,7 +60,7 @@ public class ProjectionHelper {
     /**
      * Returns the shadow of the specified wall when lit from the specified source.
      * The returned polygon should extend to the edge of the window.
-     * 
+     *
      * @param source
      *            The source lighting the wall.
      * @param wall
@@ -74,14 +74,14 @@ public class ProjectionHelper {
      */
     public static Shape getWallShadow(Point2D source, Line2D wall, double panelWidth, double panelHeight) {
         Path2D shadow = new Path2D.Double();
-        
+
         LineEquation eq = new LineEquation(wall);
         boolean clockwise = eq.getRelativePostion(source);
         Point2D p1 = clockwise ? wall.getP1() : wall.getP2();
-        Point2D p2 = clockwise ? wall.getP2() : wall.getP1();        
+        Point2D p2 = clockwise ? wall.getP2() : wall.getP1();
         Point2D p1proj = getProjectionOnEdge(source, p1, panelWidth, panelHeight);
         Point2D p2proj = getProjectionOnEdge(source, p2, panelWidth, panelHeight);
-        
+
         // WARNING the points below are added in a specific order to avoid
         // hourglass-like polygons
 

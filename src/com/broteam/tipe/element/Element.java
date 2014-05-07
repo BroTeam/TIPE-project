@@ -4,14 +4,14 @@ import java.awt.Shape;
 
 public abstract class Element {
 
-	Shape sha;
+    Shape sha;
 
-	protected Element(Shape s) {
-		sha = s;
-	}
-	
-	public Shape getShape() {
-		return sha;
-	}
-	
+    protected Element(Shape s) {
+        sha = s;
+    }
+
+    public Shape getShape() {
+        return sha;
+    }
+
 }

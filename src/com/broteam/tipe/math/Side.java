@@ -42,7 +42,7 @@ public enum Side {
     /**
      * Returns the next side, in clockwise order. This method must not be called on
      * {@link Side#OUT}, it throws an exception.
-     * 
+     *
      * @return the next side, in clockwise order.
      */
     public Side next() {
@@ -57,7 +57,7 @@ public enum Side {
      * This method returns the first corner (of the specified rectangle) that is
      * reached when going clockwise around the rectangle, starting from the middle of
      * this {@code Side}.
-     * 
+     *
      * @param rectWidth
      *            The width of the rectangle.
      * @param rectHeight
@@ -69,7 +69,7 @@ public enum Side {
 
     /**
      * Returns the {@link Side} of the rectangle where the specified point belongs.
-     * 
+     *
      * @param point
      *            The point to find the side of.
      * @param rectWidth
@@ -87,7 +87,7 @@ public enum Side {
 
     /**
      * Returns the {@link Side} of the rectangle where the specified point belongs.
-     * 
+     *
      * @param x
      *            The x coordinate of the point.
      * @param y
