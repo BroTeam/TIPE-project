@@ -1,8 +1,10 @@
-package com.broteam.tipe.ui;
+package com.broteam.tipe;
 
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
+import com.broteam.tipe.ui.Window;
 
 class Main {
 

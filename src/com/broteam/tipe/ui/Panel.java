@@ -62,7 +62,7 @@ public class Panel extends JPanel {
         	if (e != null) {
 				if (e.getClass().getName() == "com.broteam.tipe.element.AccessPoint") {
 					AccessPoint ap = (AccessPoint) e;
-					g.drawImage(ap.getImage(), (int) ap.getPtAP().getX(), (int) ap.getPtAP().getY(), null);
+					g.drawImage(ap.getImage(), (int) ap.getLocation().getX(), (int) ap.getLocation().getY(), null);
                 } else {
                 	Obstacle o = (Obstacle) e;
                     Material m = o.getMaterial();

@@ -11,12 +11,12 @@ import javax.imageio.ImageIO;
 public class AccessPoint extends Element {
 	
 	private BufferedImage img;
-	private Point2D ptAP;
+	private Point2D location;
 	private int power;
 	
 	public AccessPoint(Point2D start, Point2D end, int pow) {
-        super(new Line2D.Double(start, end));
-		ptAP = start;
+        super(null);
+		location = start;
 		power = pow;
 		try {
 		    img = ImageIO.read(new File("images/ap.png"));
@@ -28,11 +28,11 @@ public class AccessPoint extends Element {
 		return img;
 	}
 	
-	public Point2D getPtAP() {
-		return ptAP;
+	public Point2D getLocation() {
+		return location;
 	}
 	
-	public int getPowerAP() {
+	public int getPower() {
 		return power;
 	}
 	
