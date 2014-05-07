@@ -39,9 +39,9 @@ public abstract class Obstacle extends Element {
      *            The {@link AccessPoint} creating the signal that projects the
      *            desired shadows.
      * @param panelWidth
-     *            TODO
+     *            The current width of the panel delimiting the areas.
      * @param panelHeight
-     *            TODO
+     *            The current height of the panel delimiting the areas.
      *
      * @return a non-null list of {@code Area}s.
      */
