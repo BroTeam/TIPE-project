@@ -15,7 +15,7 @@ public class Window extends JFrame {
     public Panel panel = new Panel();
 
     private final ButtonGroup btnGroupSignal = new ButtonGroup();
-    private JComboBox<Material> comboBox;
+    private JComboBox<Material> comboBoxMateriau;
     private JSlider slider;
 
     public Window() {
@@ -56,29 +56,23 @@ public class Window extends JFrame {
         });
         mnEdition.add(mntmToutEffacer);
 
-        JMenu mnSimulation = new JMenu("Simulation");
-        menuBar.add(mnSimulation);
-
-        JMenuItem mntmLancer = new JMenuItem("Activer un Point d'Accès");
-        mnSimulation.add(mntmLancer);
-
         JSplitPane splitPane = new JSplitPane();
         getContentPane().add(splitPane, BorderLayout.CENTER);
 
-        JTabbedPane toolBar = new JTabbedPane();
-        splitPane.setLeftComponent(toolBar);
+        JTabbedPane tabBar = new JTabbedPane();
+        splitPane.setLeftComponent(tabBar);
 
-        JPanel panel_4 = new JPanel();
-        toolBar.addTab("Signal", null, panel_4, null);
-        panel_4.setLayout(new BorderLayout(0, 0));
+        JPanel panel_signal = new JPanel();
+        tabBar.addTab("Signal", null, panel_signal, null);
+        panel_signal.setLayout(new BorderLayout(0, 0));
 
-        JPanel panel_1 = new JPanel();
-        panel_4.add(panel_1, BorderLayout.NORTH);
-        panel_1.setAlignmentX(Component.LEFT_ALIGNMENT);
-        panel_1.setLayout(new GridLayout(4, 1, 0, 0));
+        JPanel panel_signal_interieur = new JPanel();
+        panel_signal.add(panel_signal_interieur, BorderLayout.NORTH);
+        panel_signal_interieur.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panel_signal_interieur.setLayout(new GridLayout(4, 1, 0, 0));
 
         JToggleButton tglbtnAp = new JToggleButton("AP");
-        panel_1.add(tglbtnAp);
+        panel_signal_interieur.add(tglbtnAp);
         btnGroupSignal.add(tglbtnAp);
         tglbtnAp.addActionListener(new ActionListener() {
             @Override
@@ -92,8 +86,8 @@ public class Window extends JFrame {
          * panel_1.add(tglbtnRepeater); btnGroupSignal.add(tglbtnRepeater);
          */
 
-        JLabel lblNewLabel = new JLabel("Puissance (en mW):");
-        panel_1.add(lblNewLabel);
+        JLabel lblPower = new JLabel("Puissance (en mW):");
+        panel_signal_interieur.add(lblPower);
 
         // Pour les puissances voir ici http://en.wikipedia.org/wiki/DBm
         // http://assistance.orange.fr/le-wi-fi-et-la-sante-770.php#
@@ -103,17 +97,17 @@ public class Window extends JFrame {
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
         slider.setAlignmentX(Component.LEFT_ALIGNMENT);
-        panel_1.add(slider);
+        panel_signal_interieur.add(slider);
 
         ButtonGroup btnGroupObstacles = new ButtonGroup();
 
-        JPanel panel_3 = new JPanel();
-        toolBar.addTab("Obstacles", null, panel_3, null);
-        panel_3.setLayout(new BorderLayout(0, 0));
+        JPanel panel_obstacle = new JPanel();
+        tabBar.addTab("Obstacles", null, panel_obstacle, null);
+        panel_obstacle.setLayout(new BorderLayout(0, 0));
 
-        JPanel panel_2 = new JPanel();
-        panel_3.add(panel_2, BorderLayout.NORTH);
-        panel_2.setLayout(new GridLayout(5, 1, 0, 0));
+        JPanel panel_obstacle_interieur = new JPanel();
+        panel_obstacle.add(panel_obstacle_interieur, BorderLayout.NORTH);
+        panel_obstacle_interieur.setLayout(new GridLayout(5, 1, 0, 0));
 
         JToggleButton tglbtnWall = new JToggleButton("Mur/Cloison");
         tglbtnWall.addActionListener(new ActionListener() {
@@ -123,7 +117,7 @@ public class Window extends JFrame {
             }
         });
         btnGroupObstacles.add(tglbtnWall);
-        panel_2.add(tglbtnWall);
+        panel_obstacle_interieur.add(tglbtnWall);
 
         JToggleButton tglbtnRoom = new JToggleButton("Pièce");
         tglbtnRoom.addActionListener(new ActionListener() {
@@ -133,7 +127,7 @@ public class Window extends JFrame {
             }
         });
         btnGroupObstacles.add(tglbtnRoom);
-        panel_2.add(tglbtnRoom);
+        panel_obstacle_interieur.add(tglbtnRoom);
 
         /*
          * JToggleButton tglbtnDoor = new JToggleButton("Porte");
@@ -143,15 +137,36 @@ public class Window extends JFrame {
          * btnGroupObstacles.add(tglbtnDoor); panel_2.add(tglbtnDoor);
          */
 
-        JLabel lblNewLabel_1 = new JLabel("Matériau:");
-        panel_2.add(lblNewLabel_1);
+        JLabel lblMateriau = new JLabel("Matériau:");
+        panel_obstacle_interieur.add(lblMateriau);
 
-        comboBox = new JComboBox<Material>();
+        comboBoxMateriau = new JComboBox<Material>();
         // JComboBox<Material> comboBox = new JComboBox<>();
-        panel_2.add(comboBox);
-        comboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
-        comboBox.setModel(new DefaultComboBoxModel<Material>(Material.values()));
-        // comboBox.setModel(new DefaultComboBoxModel<>(Material.values()));
+        panel_obstacle_interieur.add(comboBoxMateriau);
+        comboBoxMateriau.setAlignmentX(Component.LEFT_ALIGNMENT);
+        comboBoxMateriau.setModel(new DefaultComboBoxModel<Material>(Material.values()));
+        
+        JPanel panel_simulation = new JPanel();
+        tabBar.addTab("Simulation", null, panel_simulation, null);
+        
+        JPanel panel_simulation_interieur = new JPanel();
+        panel_simulation.add(panel_simulation_interieur);
+        panel_simulation_interieur.setLayout(new BorderLayout(0, 0));
+        
+        JLabel lblSlectionnezUnPoint = new JLabel("Sélectionnez un Point d'Accès :");
+        panel_simulation_interieur.add(lblSlectionnezUnPoint, BorderLayout.NORTH);
+        
+        JComboBox comboBoxAP = new JComboBox();
+        panel_simulation_interieur.add(comboBoxAP, BorderLayout.CENTER);
+        
+        JButton btnSimulation = new JButton("Lancer la simulation !");
+        panel_simulation_interieur.add(btnSimulation, BorderLayout.SOUTH);
+        btnSimulation.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                panel.launchSimulation(panel.getApsList().getFirst());
+            }
+        });
 
         JScrollPane scrollPane = new JScrollPane(panel);
         splitPane.setRightComponent(scrollPane);
@@ -162,7 +177,7 @@ public class Window extends JFrame {
     }
 
     public Material getSelectedMaterial() {
-        return (Material) this.comboBox.getSelectedItem();
+        return (Material) this.comboBoxMateriau.getSelectedItem();
     }
 
     public int getSliderValue() {

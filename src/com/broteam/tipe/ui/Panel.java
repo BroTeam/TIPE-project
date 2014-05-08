@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JPanel;
 
@@ -11,10 +12,13 @@ import com.broteam.tipe.element.AccessPoint;
 import com.broteam.tipe.element.Element;
 import com.broteam.tipe.element.Obstacle;
 import com.broteam.tipe.signal.Material;
+import com.broteam.tipe.signal.SignalArea;
 
 public class Panel extends JPanel {
 
     private LinkedList<Element> elements;
+	private LinkedList<Obstacle> obstacles = new LinkedList<Obstacle>();
+	private LinkedList<AccessPoint> aps = new LinkedList<AccessPoint>();
 
     /**
      * Default constructor.
@@ -73,5 +77,38 @@ public class Panel extends JPanel {
             }
         }
     }
-
+    
+    private void splitElementList(LinkedList<Element> elements) {
+    	aps.clear();
+    	obstacles.clear();
+        for (Element e : elements) {
+            if (e != null) {
+                if (e.getClass().getName() == "com.broteam.tipe.element.AccessPoint") {
+                    aps.add((AccessPoint) e);
+                } else {
+                   obstacles.add((Obstacle) e);
+                }
+            }
+        }
+    }
+    
+    public LinkedList<AccessPoint> getApsList() {
+    	splitElementList(elements);
+    	return aps;
+    }
+    
+    public LinkedList<Obstacle> getObstaclesList() {
+    	splitElementList(elements);
+    	return obstacles;
+    }
+    
+    public void launchSimulation(AccessPoint ap) {
+        LinkedList<SignalArea> overlappingAreas = new LinkedList<>();
+        for (Element e : elements) {
+        	if (e != null && (e.getClass().getName() != "com.broteam.tipe.element.AccessPoint") ) {
+        		Obstacle o = (Obstacle) e;
+        		overlappingAreas.addAll(o.getAttenuatedAreas(ap, this.getWidth(), this.getHeight()));
+        	}
+        }
+    }
 }

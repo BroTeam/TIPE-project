@@ -77,6 +77,7 @@ public class ProjectionHelper {
 
         LineEquation eq = new LineEquation(wall);
         boolean clockwise = eq.getRelativePostion(source);
+        System.out.println(clockwise);
         Point2D p1 = clockwise ? wall.getP1() : wall.getP2();
         Point2D p2 = clockwise ? wall.getP2() : wall.getP1();
         Point2D p1proj = getProjectionOnEdge(source, p1, panelWidth, panelHeight);
@@ -94,6 +95,8 @@ public class ProjectionHelper {
         Side s = Side.get(p1proj, panelWidth, panelHeight);
         Side s2 = Side.get(p2proj, panelWidth, panelHeight);
         while (s != s2) {
+        	System.out.println("s"+s);
+        	System.out.println("s2"+s2);
             Point2D corner = s.getCorner(panelWidth, panelHeight);
             shadow.lineTo(corner.getX(), corner.getY());
             s = s.next();
