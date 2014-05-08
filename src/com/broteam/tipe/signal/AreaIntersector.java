@@ -3,35 +3,25 @@ package com.broteam.tipe.signal;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Provides the method {@link #createExclusiveAreas(List)} to prepare the
+ * {@link SignalArea}s for display.
+ */
 public class AreaIntersector {
 
-    public static class MutExIntersected {
-        IntersectionCase type;
-        SignalArea remaining1;
-        SignalArea remaining2;
-        SignalArea intersection;
-    }
-
-    public static MutExIntersected intersect(SignalArea area1, SignalArea area2) {
-        MutExIntersected mei = new MutExIntersected();
-        mei.intersection = new SignalArea(area1);
-        mei.remaining1 = new SignalArea(area1);
-        mei.remaining2 = new SignalArea(area2);
-        mei.intersection.intersect(area2);
-        mei.remaining1.subtract(mei.intersection);
-        mei.remaining2.subtract(mei.intersection);
-        if (mei.intersection.isEmpty()) {
-            mei.type = IntersectionCase.DISTINCT;
-        } else if (mei.remaining1.isEmpty()) {
-            mei.type = IntersectionCase.CONTAINED_OR_EQUAL;
-        } else if (mei.remaining2.isEmpty()) {
-            mei.type = IntersectionCase.CONTAINS;
-        } else {
-            mei.type = IntersectionCase.INTERSECTS;
-        }
-        return mei;
-    }
-
+    /**
+     * Intersects all areas in the {@code overlappingAres} list, and returns a list
+     * of corresponding mutually exclusive areas.
+     * <p>
+     * For instance, if {@code overlappingAres} contains only 2 areas A and B, the
+     * final list will contain 3 lists instead: the intersection of A and B, A minus
+     * the intersection, and B minus the intersection.
+     * </p>
+     * 
+     * @param overlappingAreas
+     *            A list of {@link SignalArea}s that may overlap.
+     * @return The list of the corresponding {@link SignalArea}s with no overlap.
+     */
     public static List<SignalArea> createExclusiveAreas(List<SignalArea> overlappingAreas) {
         List<SignalArea> mutExAreas = new LinkedList<>();
         while (!overlappingAreas.isEmpty()) {
@@ -41,44 +31,69 @@ public class AreaIntersector {
         return mutExAreas;
     }
 
-    public static void addAreaToExclusiveList(SignalArea areaToAdd, List<SignalArea> mutExAreas) {
+    /**
+     * Adds the specified {@code SignalArea} to the specified list of mutually
+     * exclusive areas. To do so, the specified area is intersected with all areas
+     * from the list, thus creating new areas, so that the areas in the final list
+     * still are mutually exclusive.
+     * 
+     * @param areaToAdd
+     *            The area to add.
+     * @param mutExAreas
+     *            A list of mutually exclusive areas.
+     */
+    private static void addAreaToExclusiveList(SignalArea areaToAdd, List<SignalArea> mutExAreas) {
         SignalArea current = areaToAdd;
-        // list of already treated mutEx areas, which are exclusive with current
-        List<SignalArea> currentMutEx = new LinkedList<>(); // CME
+        // list of already treated mutEx areas, which are mutually exclusive, and
+        // exclusive with current
+        List<SignalArea> currentMutEx = new LinkedList<>();
         while (!mutExAreas.isEmpty()) {
-            SignalArea ex = mutExAreas.remove(0);
-            MutExIntersected mei = intersect(current, ex);
-            // the intersection is always mutually exclusive with all other shapes, because it is part of E
-            switch (mei.type) {
-            case DISTINCT: // 'ex' not overlapping
-                // 'ex' already exclusive to 'current'
-                currentMutEx.add(ex);
-                break;
-            case CONTAINS: // 'current' contains 'ex'
-                // the intersection (same shape as 'ex') is necessarily exclusive with all other shapes
-                currentMutEx.add(mei.intersection);
-                // carry on with what's left of 'current'
-                current = mei.remaining1;
-                break;
-            case CONTAINED_OR_EQUAL: // 'ex' contains 'current'
-                // add what's left of 'ex' to CME
-                currentMutEx.add(mei.remaining2); 
-                // add the intersection (same shape as 'current')
-                currentMutEx.add(mei.intersection);
-                // end there, because nothing's left to intersect
-                mutExAreas.addAll(currentMutEx);
-                currentMutEx.clear();
-                return;
-            case INTERSECTS: // normal case
-                // add what's remaining of 'ex' to CME
-                currentMutEx.add(mei.remaining2); 
-                currentMutEx.add(mei.intersection); 
-                current = mei.remaining1;
-                break;
+            SignalArea mutExArea = mutExAreas.remove(0);
+            SignalArea intersection = intersect(current, mutExArea);
+
+            // the remaining part of 'mutExArea' is necessarily exclusive with
+            // all other shapes, because 'mutExArea' was.
+            if (!mutExArea.isEmpty()) {
+                currentMutEx.add(mutExArea);
             }
+
+            // the intersection is necessarily exclusive with all other shapes,
+            // because it is part of 'mutExArea', which was.
+            if (!intersection.isEmpty()) {
+                currentMutEx.add(intersection);
+            }
+
+            if (current.isEmpty()) {
+                // add the treated areas
+                mutExAreas.addAll(currentMutEx);
+                // end here, because nothing's left (of 'current') to intersect
+                return;
+            }
+
+            // the remaining part of 'current' needs to be intersected with the other
+            // shapes: carry on with what's left of 'current'
         }
+        // no more areas to intersect: add what's left of 'current'
         mutExAreas.add(current);
+        // add the treated areas
         mutExAreas.addAll(currentMutEx);
     }
 
+    /**
+     * Returns the intersection of {@code area1} and {@code area2}, and subtract it
+     * to the original areas.
+     * 
+     * @param area1
+     *            The first area to intersect.
+     * @param area2
+     *            The second area to intersect.
+     * @return THe intersection of the 2 specified areas.
+     */
+    private static SignalArea intersect(SignalArea area1, SignalArea area2) {
+        SignalArea intersection = new SignalArea(area1);
+        intersection.intersect(area2);
+        area1.subtract(intersection);
+        area2.subtract(intersection);
+        return intersection;
+    }
 }
