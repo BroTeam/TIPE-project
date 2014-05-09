@@ -56,7 +56,7 @@ public class LineEquation {
      *         otherwise.
      */
     public boolean getRelativePostion(Point2D point) {
-        return a * point.getX() + b * point.getY() + c > 0;
+        return a * point.getX() + b * point.getY() + c < 0;
     }
 
     @Override

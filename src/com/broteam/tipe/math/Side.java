@@ -29,27 +29,17 @@ public enum Side {
         public Point2D getCorner(double rectWidth, double rectHeight) {
             return new Point2D.Double(0, 0);
         }
-    },
-    OUT {
-        @Override
-        public Point2D getCorner(double rectWidth, double rectHeight) {
-            throw new RuntimeException("OUT is not a side, cannot call getCorner()");
-        }
     };
 
     private static final Side[] VALUES = values();
 
     /**
-     * Returns the next side, in clockwise order. This method must not be called on
-     * {@link Side#OUT}, it throws an exception.
+     * Returns the next side, in clockwise order.
      *
      * @return the next side, in clockwise order.
      */
-    public Side next() {
-        if (this == OUT) {
-            throw new RuntimeException("OUT is not a side, cannot call next()");
-        }
-        return VALUES[ordinal() + 1];
+    public Side next() {        
+        return VALUES[(ordinal() + 1) % VALUES.length];
     }
 
     /**
@@ -77,7 +67,7 @@ public enum Side {
      * @param rectHeight
      *            The height of the rectangle.
      * @return the {@link Side} of the rectangle where the specified point belongs,
-     *         or {@link Side#OUT} if the point is not on the rectangle boundaries.
+     *         or {@code null} if the point is not on the rectangle boundaries.
      */
     public static Side get(Point2D point, double rectWidth, double rectHeight) {
         double x = point.getX();
@@ -97,7 +87,7 @@ public enum Side {
      * @param rectHeight
      *            The height of the rectangle.
      * @return the {@link Side} of the rectangle where the specified point belongs,
-     *         or {@link Side#OUT} if the point is not on the rectangle boundaries.
+     *         or {@code null} if the point is not on the rectangle boundaries.
      */
     public static Side get(double x, double y, double rectWidth, double rectHeight) {
         if (x >= 0 && x <= rectWidth && y >= 0 && y <= rectHeight) {
@@ -111,6 +101,6 @@ public enum Side {
                 return Side.BOTTOM;
             }
         }
-        return Side.OUT;
+        return null;
     }
 }

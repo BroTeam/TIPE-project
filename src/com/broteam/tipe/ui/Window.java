@@ -145,26 +145,28 @@ public class Window extends JFrame {
         panel_obstacle_interieur.add(comboBoxMateriau);
         comboBoxMateriau.setAlignmentX(Component.LEFT_ALIGNMENT);
         comboBoxMateriau.setModel(new DefaultComboBoxModel<Material>(Material.values()));
-        
+
         JPanel panel_simulation = new JPanel();
         tabBar.addTab("Simulation", null, panel_simulation, null);
-        
+
         JPanel panel_simulation_interieur = new JPanel();
         panel_simulation.add(panel_simulation_interieur);
         panel_simulation_interieur.setLayout(new BorderLayout(0, 0));
-        
+
         JLabel lblSlectionnezUnPoint = new JLabel("Sélectionnez un Point d'Accès :");
         panel_simulation_interieur.add(lblSlectionnezUnPoint, BorderLayout.NORTH);
-        
+
         JComboBox comboBoxAP = new JComboBox();
         panel_simulation_interieur.add(comboBoxAP, BorderLayout.CENTER);
-        
+
         JButton btnSimulation = new JButton("Lancer la simulation !");
         panel_simulation_interieur.add(btnSimulation, BorderLayout.SOUTH);
         btnSimulation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                panel.launchSimulation(panel.getApsList().getFirst());
+                if (!panel.getApsList().isEmpty()) {
+                    panel.launchSimulation(panel.getApsList().getFirst());
+                }
             }
         });
 

@@ -16,7 +16,7 @@ public class SignalArea extends Area {
     }
 
     public SignalArea(SignalArea source) {
-        super((SignalArea) source.clone());
+        super((Area) source.clone());
         this.attenuationFactor = source.attenuationFactor;
     }
 
