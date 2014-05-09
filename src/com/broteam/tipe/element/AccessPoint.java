@@ -1,5 +1,6 @@
 package com.broteam.tipe.element;
 
+import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -34,5 +35,10 @@ public class AccessPoint extends Element {
     public int getPower() {
         return power;
     }
+
+	@Override
+	public void drawSelf(Graphics2D g2d) {
+        g2d.drawImage(img, (int) location.getX(), (int) location.getY(), null);
+	}
 
 }

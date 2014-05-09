@@ -40,4 +40,5 @@ public class Room extends Obstacle {
                 panelHeight)));
         return list;
     }
+    
 }

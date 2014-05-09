@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.JPanel;
 
@@ -23,6 +24,9 @@ public class Panel extends JPanel {
 	private LinkedList<AccessPoint> aps = new LinkedList<>();
 	
 	private List<SignalArea> areas = new LinkedList<>();
+	
+	 private static int MAX_INT_COLOR = 255 << 16 + 255 << 8 + 255;
+     private final Random randomGen = new Random();
 
     /**
      * Default constructor.
@@ -66,26 +70,15 @@ public class Panel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        // areas before elements, so that we can see the elements
+     // areas before elements, so that we can see the elements
         for (SignalArea sa : areas) {
-            int color = (int) sa.getAttenuationFactor() * 25;
-            color = Math.min(color, 255);
-            g2d.setColor(new Color(color,color,color));
+            g2d.setColor(new Color(randomGen.nextInt(MAX_INT_COLOR)));
             g2d.fill(sa);
         }
         // draw elements on top of areas
         for (Element e : elements) {
             if (e != null) {
-                if (e instanceof AccessPoint) {
-                    AccessPoint ap = (AccessPoint) e;
-                    g.drawImage(ap.getImage(), (int) ap.getLocation().getX(), (int) ap.getLocation().getY(), null);
-                } else {
-                    Obstacle o = (Obstacle) e;
-                    Material m = o.getMaterial();
-                    Color c = m.getColorMat();
-                    g2d.setColor(c);
-                    g2d.draw(o.getShape());
-                }
+            	e.drawSelf(g2d);
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.broteam.tipe.element;
 
+import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.util.List;
 
@@ -25,6 +26,12 @@ public abstract class Obstacle extends Element {
 
     public Material getMaterial() {
         return mat;
+    }
+    
+    @Override
+	public void drawSelf(Graphics2D g2d) {
+        g2d.setColor(mat.getColorMat());
+        g2d.draw(this.getShape());
     }
 
     /**

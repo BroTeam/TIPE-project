@@ -23,4 +23,5 @@ public class Wall extends Obstacle {
         list.add(new SignalArea(getMaterial().getAttenuationFactor(), shadow));
         return list;
     }
+    
 }

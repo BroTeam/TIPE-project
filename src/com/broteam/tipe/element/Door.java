@@ -1,5 +1,6 @@
 package com.broteam.tipe.element;
 
+import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.util.List;
@@ -18,4 +19,10 @@ public class Door extends Obstacle {
         // TODO Auto-generated method stub
         return null;
     }
+
+	@Override
+	public void drawSelf(Graphics2D g2d) {
+		// TODO Auto-generated method stub
+		
+	}
 }
