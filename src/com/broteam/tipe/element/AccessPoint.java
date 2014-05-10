@@ -10,22 +10,27 @@ import javax.imageio.ImageIO;
 
 public class AccessPoint extends Element {
 
-    private BufferedImage img;
-    private Point2D location;
-    private int power;
-
-    public AccessPoint(Point2D location, int power) {
-        super(null);
-        this.location = location;
-        this.power = power;
+    private static final BufferedImage AP_IMG;
+    static {
+        BufferedImage img = null;
         try {
             img = ImageIO.read(new File("images/ap.png"));
         } catch (IOException e) {
         }
+        AP_IMG = img;
+    }
+    
+    private Point2D location;
+    private int power;
+
+    public AccessPoint(Point2D location, int power) {
+        super();
+        this.location = location;
+        this.power = power;
     }
 
     public BufferedImage getImage() {
-        return img;
+        return AP_IMG;
     }
 
     public Point2D getLocation() {
@@ -43,7 +48,7 @@ public class AccessPoint extends Element {
 
 	@Override
 	public void drawSelf(Graphics2D g2d) {
-        g2d.drawImage(img, (int) location.getX(), (int) location.getY(), null);
+        g2d.drawImage(AP_IMG, (int) location.getX(), (int) location.getY(), null);
 	}
 
 }

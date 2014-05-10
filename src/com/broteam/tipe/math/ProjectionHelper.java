@@ -21,7 +21,7 @@ public class ProjectionHelper {
      *            The height of the panel (maximum Y).
      * @return The resulting point, which is on an edge of the window.
      */
-    public static Point2D getProjectionOnEdge(Point2D source, Point2D wayPoint, double panelWidth, double panelHeight) {
+    private static Point2D getProjectionOnEdge(Point2D source, Point2D wayPoint, double panelWidth, double panelHeight) {
         LineEquation eq = new LineEquation(source, wayPoint);
         double interX; // X coord of the intersection
         double interY; // Y coord of the intersection

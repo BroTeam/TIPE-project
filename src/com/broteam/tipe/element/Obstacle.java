@@ -9,10 +9,12 @@ import com.broteam.tipe.signal.SignalArea;
 
 public abstract class Obstacle extends Element {
 
+    Shape sha;
     Material mat;
 
     protected Obstacle(Shape s, Material m) {
-        super(s);
+        super();
+        sha = s;
         setMaterial(m);
     }
 
@@ -26,6 +28,10 @@ public abstract class Obstacle extends Element {
 
     public Material getMaterial() {
         return mat;
+    }
+
+    public Shape getShape() {
+        return sha;
     }
     
     @Override
