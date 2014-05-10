@@ -17,9 +17,9 @@ public class Window extends JFrame {
     public Panel panel = new Panel();
 
     private final ButtonGroup btnGroupSignal = new ButtonGroup();
-    private JComboBox<Material> comboBoxMateriau = new JComboBox<Material>();
+    private JComboBox<Material> comboBoxMateriau = new JComboBox<>();
     private JSlider slider;
-	private JComboBox<AccessPoint> comboBoxAp = new JComboBox<AccessPoint>();
+	private JComboBox<AccessPoint> comboBoxAp = new JComboBox<>();
 
     public Window() {
         super();
@@ -145,7 +145,7 @@ public class Window extends JFrame {
 
         panel_obstacle_interieur.add(comboBoxMateriau);
         comboBoxMateriau.setAlignmentX(Component.LEFT_ALIGNMENT);
-        comboBoxMateriau.setModel(new DefaultComboBoxModel<Material>(Material.values()));
+        comboBoxMateriau.setModel(new DefaultComboBoxModel<>(Material.values()));
 
         JPanel panel_simulation = new JPanel();
         tabBar.addTab("Simulation", null, panel_simulation, null);
@@ -196,7 +196,7 @@ public class Window extends JFrame {
         return (Material) this.comboBoxMateriau.getSelectedItem();
     }
 
-    public int getSliderValue() {
+    public int getPowerValue() {
         return this.slider.getValue();
     }
 
