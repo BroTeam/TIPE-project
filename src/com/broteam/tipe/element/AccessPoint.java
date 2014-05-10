@@ -35,6 +35,11 @@ public class AccessPoint extends Element {
     public int getPower() {
         return power;
     }
+    
+    @Override
+	public String toString() {
+    	return ("AP : ("+location.getX()+","+location.getY()+") : "+power);
+    }
 
 	@Override
 	public void drawSelf(Graphics2D g2d) {

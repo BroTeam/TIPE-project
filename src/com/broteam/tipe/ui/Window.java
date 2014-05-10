@@ -5,9 +5,11 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.swing.*;
 
+import com.broteam.tipe.element.AccessPoint;
 import com.broteam.tipe.signal.Material;
 
 public class Window extends JFrame {
@@ -15,8 +17,9 @@ public class Window extends JFrame {
     public Panel panel = new Panel();
 
     private final ButtonGroup btnGroupSignal = new ButtonGroup();
-    private JComboBox<Material> comboBoxMateriau;
+    private JComboBox<Material> comboBoxMateriau = new JComboBox<Material>();
     private JSlider slider;
+	private JComboBox<AccessPoint> comboBoxAp = new JComboBox<AccessPoint>();
 
     public Window() {
         super();
@@ -140,8 +143,6 @@ public class Window extends JFrame {
         JLabel lblMateriau = new JLabel("Matériau:");
         panel_obstacle_interieur.add(lblMateriau);
 
-        comboBoxMateriau = new JComboBox<Material>();
-        // JComboBox<Material> comboBox = new JComboBox<>();
         panel_obstacle_interieur.add(comboBoxMateriau);
         comboBoxMateriau.setAlignmentX(Component.LEFT_ALIGNMENT);
         comboBoxMateriau.setModel(new DefaultComboBoxModel<Material>(Material.values()));
@@ -156,16 +157,29 @@ public class Window extends JFrame {
         JLabel lblSlectionnezUnPoint = new JLabel("Sélectionnez un Point d'Accès :");
         panel_simulation_interieur.add(lblSlectionnezUnPoint, BorderLayout.NORTH);
 
-        JComboBox comboBoxAP = new JComboBox();
-        panel_simulation_interieur.add(comboBoxAP, BorderLayout.CENTER);
-
+        panel_simulation_interieur.add(comboBoxAp, BorderLayout.CENTER);
+        
+        JButton btnRafrachir = new JButton("Rafraîchir");
+        panel_simulation.add(btnRafrachir);
+        btnRafrachir.addActionListener(new ActionListener() {
+        	@Override
+			public void actionPerformed(ActionEvent e) {
+        		comboBoxAp.removeAllItems();
+        		LinkedList<AccessPoint> aps = panel.getApsList();
+        		for (AccessPoint ap : aps) {
+        			comboBoxAp.addItem(ap);
+        		}
+        	}
+        });
+        
         JButton btnSimulation = new JButton("Lancer la simulation !");
         panel_simulation_interieur.add(btnSimulation, BorderLayout.SOUTH);
+        
         btnSimulation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 if (!panel.getApsList().isEmpty()) {
-                    panel.launchSimulation(panel.getApsList().getFirst());
+                    panel.launchSimulation((AccessPoint) comboBoxAp.getSelectedItem());
                 }
             }
         });

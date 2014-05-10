@@ -22,7 +22,7 @@ public class Panel extends JPanel {
     private LinkedList<Element> elements;
 	private LinkedList<Obstacle> obstacles = new LinkedList<>();
 	private LinkedList<AccessPoint> aps = new LinkedList<>();
-	
+
 	private List<SignalArea> areas = new LinkedList<>();
 	
 	 private static int MAX_INT_COLOR = 255 << 16 + 255 << 8 + 255;
