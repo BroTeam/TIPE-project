@@ -44,6 +44,15 @@ public enum Material {
         return Math.pow(10, attenuationDb / 10);
     }
 
+    /**
+     * Returns the attenuation performed by this material, in decibels.
+     * 
+     * @return the attenuation of this material, in Db.
+     */
+    public Double getDbAttenuation() {
+        return attenuationDb;
+    }
+
     public Color getColorMat() {
         return colorMat;
     }

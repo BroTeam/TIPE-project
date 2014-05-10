@@ -12,9 +12,7 @@ import javax.swing.JPanel;
 import com.broteam.tipe.element.AccessPoint;
 import com.broteam.tipe.element.Element;
 import com.broteam.tipe.element.Obstacle;
-import com.broteam.tipe.math.ProjectionHelper;
 import com.broteam.tipe.signal.AreaIntersector;
-import com.broteam.tipe.signal.Material;
 import com.broteam.tipe.signal.SignalArea;
 
 public class Panel extends JPanel {
