@@ -3,7 +3,6 @@ package com.broteam.tipe.math;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.awt.Point;
 import java.awt.geom.Point2D;
 
 import org.junit.Test;
