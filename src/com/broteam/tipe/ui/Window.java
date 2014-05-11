@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.util.LinkedList;
 
 import javax.swing.*;
@@ -19,11 +20,58 @@ public class Window extends JFrame {
     private final ButtonGroup btnGroupSignal = new ButtonGroup();
     private JComboBox<Material> comboBoxMateriau = new JComboBox<>();
     private JSlider slider;
-	private JComboBox<AccessPoint> comboBoxAp = new JComboBox<>();
+    private JComboBox<AccessPoint> comboBoxAp = new JComboBox<>();
+
+    private Action newFile;
+    private Action openFile;
+    private Action saveFile;
+    private Action saveFileAs;
+    private Action clear;
+
+    private void createActions() {
+        newFile = new AbstractAction("Nouveau", new ImageIcon("images/icn_new_16.png")) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("New file");
+            }
+        };
+        newFile.putValue(Action.ACCELERATOR_KEY,
+                KeyStroke.getKeyStroke('N', InputEvent.CTRL_DOWN_MASK));
+        openFile = new AbstractAction("Ouvrir...", new ImageIcon("images/icn_open_18x14.png")) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Open file");
+            }
+        };
+        openFile.putValue(Action.ACCELERATOR_KEY,
+                KeyStroke.getKeyStroke('O', InputEvent.CTRL_DOWN_MASK));
+        saveFile = new AbstractAction("Enregistrer", new ImageIcon("images/icn_save_16.png")) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Save file");
+            }
+        };
+        saveFile.putValue(Action.ACCELERATOR_KEY,
+                KeyStroke.getKeyStroke('S', InputEvent.CTRL_DOWN_MASK));
+        saveFileAs = new AbstractAction("Enregistrer sous...", new ImageIcon(
+                "images/icn_save_16.png")) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Save file as");
+            }
+        };
+        clear = new AbstractAction("Tout effacer", new ImageIcon("images/icn_clear_16.png")) {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                panel.clear();
+            }
+        };
+    }
 
     public Window() {
         super();
         setTitle("Wi-Fi Access Point Broadcasting Simulator");
+        createActions();
 
         Brush brush = new Brush(this);
         panel.addMouseListener(brush);
@@ -35,29 +83,15 @@ public class Window extends JFrame {
         JMenu mnFichier = new JMenu("Fichier");
         menuBar.add(mnFichier);
 
-        JMenuItem mntmNouveau = new JMenuItem("Nouveau");
-        mnFichier.add(mntmNouveau);
-
-        JMenuItem mntmOuvrir = new JMenuItem("Ouvrir...");
-        mnFichier.add(mntmOuvrir);
-
-        JMenuItem mntmEnregistrer = new JMenuItem("Enregistrer");
-        mnFichier.add(mntmEnregistrer);
-
-        JMenuItem mntmEnregistrerSous = new JMenuItem("Enregistrer sous...");
-        mnFichier.add(mntmEnregistrerSous);
+        mnFichier.add(newFile);
+        mnFichier.add(openFile);
+        mnFichier.add(saveFile);
+        mnFichier.add(saveFileAs);
 
         JMenu mnEdition = new JMenu("Edition");
         menuBar.add(mnEdition);
 
-        JMenuItem mntmToutEffacer = new JMenuItem("Tout effacer");
-        mntmToutEffacer.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                panel.clear();
-            }
-        });
-        mnEdition.add(mntmToutEffacer);
+        mnEdition.add(clear);
 
         JSplitPane splitPane = new JSplitPane();
         getContentPane().add(splitPane, BorderLayout.CENTER);
@@ -84,10 +118,10 @@ public class Window extends JFrame {
             }
         });
 
-        /*
-         * JToggleButton tglbtnRepeater = new JToggleButton("Répéteur");
-         * panel_1.add(tglbtnRepeater); btnGroupSignal.add(tglbtnRepeater);
-         */
+        JToggleButton tglbtnRepeater = new JToggleButton("Répéteur");
+        tglbtnRepeater.setEnabled(false);
+        panel_signal_interieur.add(tglbtnRepeater);
+        btnGroupSignal.add(tglbtnRepeater);
 
         JLabel lblPower = new JLabel("Puissance (en mW):");
         panel_signal_interieur.add(lblPower);
@@ -132,13 +166,16 @@ public class Window extends JFrame {
         btnGroupObstacles.add(tglbtnRoom);
         panel_obstacle_interieur.add(tglbtnRoom);
 
-        /*
-         * JToggleButton tglbtnDoor = new JToggleButton("Porte");
-         * tglbtnDoor.addActionListener(new ActionListener() {
-         * @Override public void actionPerformed(ActionEvent arg0) {
-         * com.broteam.tipe.shape.Pinceau.setDoor(); } });
-         * btnGroupObstacles.add(tglbtnDoor); panel_2.add(tglbtnDoor);
-         */
+        JToggleButton tglbtnDoor = new JToggleButton("Porte");
+        tglbtnDoor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                Brush.setDoor();
+            }
+        });
+        tglbtnDoor.setEnabled(false);
+        btnGroupObstacles.add(tglbtnDoor);
+        panel_obstacle_interieur.add(tglbtnDoor);
 
         JLabel lblMateriau = new JLabel("Matériau:");
         panel_obstacle_interieur.add(lblMateriau);
@@ -158,23 +195,23 @@ public class Window extends JFrame {
         panel_simulation_interieur.add(lblSlectionnezUnPoint, BorderLayout.NORTH);
 
         panel_simulation_interieur.add(comboBoxAp, BorderLayout.CENTER);
-        
+
         JButton btnRafrachir = new JButton("Rafraîchir");
         panel_simulation.add(btnRafrachir);
         btnRafrachir.addActionListener(new ActionListener() {
-        	@Override
-			public void actionPerformed(ActionEvent e) {
-        		comboBoxAp.removeAllItems();
-        		LinkedList<AccessPoint> aps = panel.getApsList();
-        		for (AccessPoint ap : aps) {
-        			comboBoxAp.addItem(ap);
-        		}
-        	}
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                comboBoxAp.removeAllItems();
+                LinkedList<AccessPoint> aps = panel.getApsList();
+                for (AccessPoint ap : aps) {
+                    comboBoxAp.addItem(ap);
+                }
+            }
         });
-        
+
         JButton btnSimulation = new JButton("Lancer la simulation !");
         panel_simulation_interieur.add(btnSimulation, BorderLayout.SOUTH);
-        
+
         btnSimulation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
