@@ -1,4 +1,4 @@
-package com.broteam.tipe.element;
+package com.broteam.tipe.model.elements;
 
 import java.awt.Graphics2D;
 import java.awt.Shape;

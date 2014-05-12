@@ -4,11 +4,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
-import com.broteam.tipe.element.AccessPoint;
-import com.broteam.tipe.element.Door;
-import com.broteam.tipe.element.Element;
-import com.broteam.tipe.element.Room;
-import com.broteam.tipe.element.Wall;
+import com.broteam.tipe.model.elements.AccessPoint;
+import com.broteam.tipe.model.elements.Door;
+import com.broteam.tipe.model.elements.Element;
+import com.broteam.tipe.model.elements.Room;
+import com.broteam.tipe.model.elements.Wall;
 import com.broteam.tipe.signal.Material;
 
 public class Brush extends MouseAdapter {

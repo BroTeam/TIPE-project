@@ -1,4 +1,4 @@
-package com.broteam.tipe.element;
+package com.broteam.tipe.model.elements;
 
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;

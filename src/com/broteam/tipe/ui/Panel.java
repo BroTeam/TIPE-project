@@ -9,22 +9,22 @@ import java.util.Random;
 
 import javax.swing.JPanel;
 
-import com.broteam.tipe.element.AccessPoint;
-import com.broteam.tipe.element.Element;
-import com.broteam.tipe.element.Obstacle;
+import com.broteam.tipe.model.elements.AccessPoint;
+import com.broteam.tipe.model.elements.Element;
+import com.broteam.tipe.model.elements.Obstacle;
 import com.broteam.tipe.signal.AreaIntersector;
 import com.broteam.tipe.signal.SignalArea;
 
 public class Panel extends JPanel {
 
     private LinkedList<Element> elements;
-	private LinkedList<Obstacle> obstacles = new LinkedList<>();
-	private LinkedList<AccessPoint> aps = new LinkedList<>();
+    private LinkedList<Obstacle> obstacles = new LinkedList<>();
+    private LinkedList<AccessPoint> aps = new LinkedList<>();
 
-	private List<SignalArea> areas = new LinkedList<>();
-	
-	 private static int MAX_INT_COLOR = 255 << 16 + 255 << 8 + 255;
-     private final Random randomGen = new Random();
+    private List<SignalArea> areas = new LinkedList<>();
+
+    private static int MAX_INT_COLOR = 255 << 16 + 255 << 8 + 255;
+    private final Random randomGen = new Random();
 
     /**
      * Default constructor.
@@ -68,7 +68,7 @@ public class Panel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-     // areas before elements, so that we can see the elements
+        // areas before elements, so that we can see the elements
         for (SignalArea sa : areas) {
             g2d.setColor(new Color(randomGen.nextInt(MAX_INT_COLOR)));
             g2d.fill(sa);
@@ -76,41 +76,41 @@ public class Panel extends JPanel {
         // draw elements on top of areas
         for (Element e : elements) {
             if (e != null) {
-            	e.drawSelf(g2d);
+                e.drawSelf(g2d);
             }
         }
     }
-    
+
     private void splitElementList() {
-    	aps.clear();
-    	obstacles.clear();
+        aps.clear();
+        obstacles.clear();
         for (Element e : elements) {
             if (e != null) {
                 if (e instanceof AccessPoint) {
                     aps.add((AccessPoint) e);
                 } else {
-                   obstacles.add((Obstacle) e);
+                    obstacles.add((Obstacle) e);
                 }
             }
         }
     }
-    
+
     public LinkedList<AccessPoint> getApsList() {
-    	splitElementList();
-    	return aps;
+        splitElementList();
+        return aps;
     }
-    
+
     public LinkedList<Obstacle> getObstaclesList() {
-    	splitElementList();
-    	return obstacles;
+        splitElementList();
+        return obstacles;
     }
-    
+
     public void launchSimulation(AccessPoint ap) {
         LinkedList<SignalArea> overlappingAreas = new LinkedList<>();
         for (Obstacle o : getObstaclesList()) {
-        	if (o != null) {
-        		overlappingAreas.addAll(o.getAttenuatedAreas(ap, this.getWidth(), this.getHeight()));
-        	}
+            if (o != null) {
+                overlappingAreas.addAll(o.getAttenuatedAreas(ap, this.getWidth(), this.getHeight()));
+            }
         }
         areas = AreaIntersector.createExclusiveAreas(overlappingAreas);
         repaint();

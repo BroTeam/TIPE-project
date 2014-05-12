@@ -10,7 +10,7 @@ import java.util.LinkedList;
 
 import javax.swing.*;
 
-import com.broteam.tipe.element.AccessPoint;
+import com.broteam.tipe.model.elements.AccessPoint;
 import com.broteam.tipe.signal.Material;
 
 public class Window extends JFrame {
