@@ -3,6 +3,7 @@ package com.broteam.tipe.ui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.Point2D;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -53,6 +54,17 @@ public class Panel extends JPanel {
     public void replaceLast(Element e) {
         elements.removeLast();
         elements.add(e);
+        repaint();
+    }
+      
+    /**
+     * Removes the specified {@link Element} to this {@link Panel}.
+     *
+     * @param e
+     *            The {@link Element} to remove.
+     */
+    public void remove(Element e) {
+        elements.remove(e);
         repaint();
     }
 

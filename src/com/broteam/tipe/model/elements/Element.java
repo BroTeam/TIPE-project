@@ -14,5 +14,5 @@ public abstract class Element {
      *            The {@link Graphics2D} to use to draw.
      */
     public abstract void drawSelf(Graphics2D g2d);
-
+    
 }
