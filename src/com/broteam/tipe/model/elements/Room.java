@@ -19,26 +19,32 @@ public class Room extends Obstacle {
 
     @Override
     public List<SignalArea> getAttenuatedAreas(AccessPoint ap, double panelWidth, double panelHeight) {
-        LinkedList<SignalArea> list = new LinkedList<>();
+    	LinkedList<Wall> walls = new LinkedList<>(this.getWalls());
+    	LinkedList<SignalArea> list = new LinkedList<>();
+    	for (Wall w : walls) {
+    		 list.add(new SignalArea(w, ProjectionHelper.getWallShadow(ap.getLocation(), (Line2D) w.getShape(), panelWidth,
+    	                panelHeight)));
+    	}
+        return list;
+    }
+    
+    private LinkedList<Wall> getWalls() {
         Rectangle2D room = (Rectangle2D) getShape();
         Point2D cornerTL = new Point2D.Double(room.getMinX(), room.getMinY());
         Point2D cornerTR = new Point2D.Double(room.getMaxX(), room.getMinY());
         Point2D cornerBL = new Point2D.Double(room.getMinX(), room.getMaxY());
         Point2D cornerBR = new Point2D.Double(room.getMaxX(), room.getMaxY());
-        Line2D wallTop = new Line2D.Double(cornerTL, cornerTR);
-        Line2D wallRight = new Line2D.Double(cornerTR, cornerBR);
-        Line2D wallLeft = new Line2D.Double(cornerTL, cornerBL);
-        Line2D wallBottom = new Line2D.Double(cornerBL, cornerBR);
-        Double attenuation = getMaterial().getAttenuationFactor();
-        list.add(new SignalArea(attenuation, ProjectionHelper.getWallShadow(ap.getLocation(), wallTop, panelWidth,
-                panelHeight)));
-        list.add(new SignalArea(attenuation, ProjectionHelper.getWallShadow(ap.getLocation(), wallRight, panelWidth,
-                panelHeight)));
-        list.add(new SignalArea(attenuation, ProjectionHelper.getWallShadow(ap.getLocation(), wallLeft, panelWidth,
-                panelHeight)));
-        list.add(new SignalArea(attenuation, ProjectionHelper.getWallShadow(ap.getLocation(), wallBottom, panelWidth,
-                panelHeight)));
-        return list;
+        Material material = this.getMaterial();
+        Wall wallTop = new Wall(cornerTL, cornerTR, material);
+        Wall wallRight = new Wall(cornerTR, cornerBR, material);
+        Wall wallLeft = new Wall(cornerTL, cornerBL, material);
+        Wall wallBottom = new Wall(cornerBL, cornerBR, material);
+        LinkedList<Wall> walls = new LinkedList<>();
+        walls.add(wallTop);
+        walls.add(wallRight);
+        walls.add(wallLeft);
+        walls.add(wallBottom);
+		return walls;
     }
     
 }
