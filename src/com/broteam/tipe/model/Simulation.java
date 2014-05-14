@@ -26,4 +26,7 @@ public class Simulation {
         this.areas = AreaIntersector.createExclusiveAreas(overlappingAreas);
     }
     
+    public void clear() {
+        areas.clear();
+    }
 }

@@ -90,6 +90,7 @@ public class Window extends JFrame {
             public void actionPerformed(ActionEvent arg0) {
                 System.out.println("actionClear");
                 panel.getModel().clear();
+                panel.getSimulation().clear();
                 panel.repaint();
             }
         };
