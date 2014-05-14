@@ -81,16 +81,15 @@ public class Brush extends MouseAdapter {
     }
 
     public Element getNewElement(Point2D startPt, Point2D endPt) throws NoShapeChosenException {
-        Material mat = win.getSelectedMaterial();
-        int pow = win.getPowerValue();
         switch (shapeSelector) {
         case 1:
-            return new Room(startPt, endPt, mat);
+            return new Room(startPt, endPt, win.getSelectedMaterial());
         case 2:
-            return new Wall(startPt, endPt, mat);
+            return new Wall(startPt, endPt, win.getSelectedMaterial());
         case 3:
-            return new Door(startPt, endPt, mat);
+            return new Door(startPt, endPt, win.getSelectedMaterial());
         case 4:
+            int pow = win.getPowerValue();
             return new AccessPoint(endPt, pow);
         default:
             throw new NoShapeChosenException();
