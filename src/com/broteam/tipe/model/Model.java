@@ -9,7 +9,6 @@ import java.util.LinkedList;
 import com.broteam.tipe.model.elements.AccessPoint;
 import com.broteam.tipe.model.elements.Element;
 import com.broteam.tipe.model.elements.Obstacle;
-import com.broteam.tipe.ui.Panel;
 
 public class Model {
 
@@ -39,65 +38,47 @@ public class Model {
     }
     
     /**
-     * Replaces the last added {@link Obstacle} by the specified {@link Obstacle}.
+     * Replaces the last added {@link Element} by the specified {@link Element}.
      *
-     * @param obstacle
-     *            The {@link Obstacle} to place instead of the last one.
+     * @param element
+     *            The {@link Element} to place instead of the last one.
      */
-    public void replaceLast(Obstacle obstacle) {
-    	obstacles.removeLast();
+    public void replaceLast(Element element) {
     	elements.removeLast();
-    	obstacles.add(obstacle);
-    	elements.add(obstacle);
-        //repaint();
+        elements.add(element);
+        if (element instanceof Obstacle) {
+        	obstacles.removeLast();
+            obstacles.add((Obstacle) element);
+        }
+        if (element instanceof AccessPoint) {
+        	aps.removeLast();
+            aps.add((AccessPoint) element);
+        }
+    }
+       
+    /**
+     * Removes the specified {@link Element} to this {@link Model}.
+     *
+     * @param element
+     *            The {@link Element} to remove.
+     */
+    public void remove(Element element) {
+        elements.remove(element);
+        if (element instanceof Obstacle) {
+            obstacles.remove(element);
+        }
+        if (element instanceof AccessPoint) {
+            aps.remove(element);
+        }
     }
     
     /**
-     * Replaces the last added {@link AccessPoint} by the specified {@link AccessPoint}.
-     *
-     * @param ap
-     *            The {@link AccessPoint} to place instead of the last one.
-     */
-    public void replaceLast(AccessPoint ap) {
-    	aps.removeLast();
-    	elements.removeLast();
-    	aps.add(ap);
-    	elements.add(ap);
-        //repaint();
-    }
-    
-    /**
-     * Removes the specified {@link Obstacle} to this {@link Model}.
-     *
-     * @param obstacle
-     *            The {@link Obstacle} to remove.
-     */
-    public void remove(Obstacle obstacle) {
-    	obstacles.remove(obstacle);
-        elements.remove(obstacle);
-        //repaint();
-    }
-    
-    /**
-     * Removes the specified {@link AccessPoint} to this {@link Model}.
-     *
-     * @param ap
-     *            The {@link AccessPoint} to remove.
-     */
-    public void remove(AccessPoint ap) {
-    	aps.remove(ap);
-        elements.remove(ap);
-        //repaint();
-    }
-
-    /**
-     * Removes all {@link Obstacle}s from this {@link Panel}.
+     * Removes all {@link Element}s from this {@link Model}.
      */
     public void clear() {
         elements.clear();
         aps.clear();
         obstacles.clear();
-        //repaint();
     }
     
     public LinkedList<Element> getElements() {

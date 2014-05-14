@@ -24,7 +24,6 @@ public class Simulation {
             }
         }
         this.areas = AreaIntersector.createExclusiveAreas(overlappingAreas);
-        //repaint();
     }
     
 }

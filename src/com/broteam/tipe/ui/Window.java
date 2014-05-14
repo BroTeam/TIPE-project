@@ -218,6 +218,7 @@ public class Window extends JFrame {
             public void actionPerformed(ActionEvent arg0) {
                 if (!panel.getModel().getAccessPoints().isEmpty()) {
                     panel.getSimulation().launchSimulation((AccessPoint) comboBoxAp.getSelectedItem(), panel.getModel().getObstacles(), panel.getWidth(), panel.getHeight());
+                    panel.repaint();
                 }
             }
         });
