@@ -1,6 +1,7 @@
 package com.broteam.tipe.ui;
 
 import java.awt.BorderLayout;
+
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -63,7 +64,7 @@ public class Window extends JFrame {
         clear = new AbstractAction("Tout effacer", new ImageIcon("images/icn_clear_16.png")) {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                panel.clear();
+                panel.getModel().clear();
             }
         };
     }
@@ -202,7 +203,7 @@ public class Window extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 comboBoxAp.removeAllItems();
-                LinkedList<AccessPoint> aps = panel.getApsList();
+                LinkedList<AccessPoint> aps =panel.getModel().getAccessPoints();
                 for (AccessPoint ap : aps) {
                     comboBoxAp.addItem(ap);
                 }
@@ -215,8 +216,8 @@ public class Window extends JFrame {
         btnSimulation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                if (!panel.getApsList().isEmpty()) {
-                    panel.launchSimulation((AccessPoint) comboBoxAp.getSelectedItem());
+                if (!panel.getModel().getAccessPoints().isEmpty()) {
+                    panel.getSimulation().launchSimulation((AccessPoint) comboBoxAp.getSelectedItem(), panel.getModel().getObstacles(), panel.getWidth(), panel.getHeight());
                 }
             }
         });

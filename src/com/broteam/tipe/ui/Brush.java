@@ -46,7 +46,7 @@ public class Brush extends MouseAdapter {
         ptPress = e.getPoint();
         Panel screen = (Panel) e.getSource();
         try {
-            screen.add(getNewElement(ptPress, ptPress));
+            screen.getModel().add(getNewElement(ptPress, ptPress));
         } catch (NoShapeChosenException e1) {
             ptPress = null;
         }
@@ -75,7 +75,7 @@ public class Brush extends MouseAdapter {
         double y = e.getY();
         x = x > xMax ? xMax : x < 0 ? 0 : x;
         y = y > yMax ? yMax : y < 0 ? 0 : y;
-        screen.replaceLast(getNewElement(ptPress, new Point2D.Double(x, y)));
+        screen.getModel().replaceLast(getNewElement(ptPress, new Point2D.Double(x, y)));
     }
 
     public Element getNewElement(Point2D startPt, Point2D endPt) throws NoShapeChosenException {
