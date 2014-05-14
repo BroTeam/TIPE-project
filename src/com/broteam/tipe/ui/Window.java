@@ -154,6 +154,7 @@ public class Window extends JFrame {
 
         mnTools.add(toolAp);
         mnTools.add(toolRepeater);
+        mnTools.addSeparator();
         mnTools.add(toolWall);
         mnTools.add(toolRoom);
         mnTools.add(toolDoor);
