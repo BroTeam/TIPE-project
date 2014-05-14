@@ -96,7 +96,7 @@ public class Window extends JFrame {
         actionClear.putValue(AbstractAction.SHORT_DESCRIPTION, text);
 
         text = "Point d'accès";
-        toolAp = new AbstractAction("Point d'accès", new ImageIcon("images/icn_clear_16.png")) {
+        toolAp = new AbstractAction("Point d'accès", new ImageIcon("images/icn_ap_16.png")) {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 System.out.println("toolAp");
