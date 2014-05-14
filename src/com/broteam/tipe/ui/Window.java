@@ -115,7 +115,7 @@ public class Window extends JFrame {
         toolRepeater.putValue(AbstractAction.SHORT_DESCRIPTION, text);
 
         text = "Mur";
-        toolWall = new AbstractAction("Mur", new ImageIcon("images/icn_clear_16.png")) {
+        toolWall = new AbstractAction("Mur", new ImageIcon("images/icn_line1_16.png")) {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 System.out.println("toolWall");
@@ -125,7 +125,7 @@ public class Window extends JFrame {
         toolWall.putValue(AbstractAction.SHORT_DESCRIPTION, text);
 
         text = "Pièce";
-        toolRoom = new AbstractAction("Pièce", new ImageIcon("images/icn_clear_16.png")) {
+        toolRoom = new AbstractAction("Pièce", new ImageIcon("images/icn_rectangle_16.png")) {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 System.out.println("toolRoom");
