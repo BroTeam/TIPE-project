@@ -3,6 +3,7 @@ package com.broteam.tipe.ui;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
@@ -159,8 +160,25 @@ public class Window extends JFrame {
         mnTools.add(toolRoom);
         mnTools.add(toolDoor);
 
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        getContentPane().add(mainPanel, BorderLayout.CENTER);
+        
+        JToolBar toolBar = new JToolBar();
+        toolBar.add(fileNew);
+        toolBar.add(fileOpen);
+        toolBar.add(fileSave);
+        toolBar.add(fileSaveAs);
+        toolBar.addSeparator();
+        toolBar.add(toolAp);
+        toolBar.add(toolRepeater);
+        toolBar.addSeparator();
+        toolBar.add(toolWall);
+        toolBar.add(toolRoom);
+        toolBar.add(toolDoor);
+        mainPanel.add(toolBar, BorderLayout.NORTH);
+        
         JSplitPane splitPane = new JSplitPane();
-        getContentPane().add(splitPane, BorderLayout.CENTER);
+        mainPanel.add(splitPane, BorderLayout.CENTER);
 
         JTabbedPane tabBar = new JTabbedPane();
         splitPane.setLeftComponent(tabBar);
