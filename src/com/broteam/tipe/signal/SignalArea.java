@@ -1,35 +1,37 @@
 package com.broteam.tipe.signal;
 
 import java.awt.Shape;
+
 import java.awt.geom.Area;
+import java.util.LinkedList;
+
+import com.broteam.tipe.model.elements.Obstacle;
+import com.broteam.tipe.model.elements.Wall;
 
 /**
  * Created by Titouan on 15/04/14.
  */
 public class SignalArea extends Area {
 
-    private double attenuationFactor;
+	private LinkedList<Obstacle> obstacles;
 
-    public SignalArea(double attenuationFactor, Shape s) {
+    public SignalArea(Wall w, Shape s) {
         super(s);
-        this.attenuationFactor = attenuationFactor;
+        this.obstacles = new LinkedList<>();
+        this.obstacles.add(w); 
     }
 
     public SignalArea(SignalArea source) {
         super((Area) source.clone());
-        this.attenuationFactor = source.attenuationFactor;
+        this.obstacles = new LinkedList<>(source.obstacles);
     }
 
-    public double getAttenuationFactor() {
-        return attenuationFactor;
-    }
-
-    public void setAttenuationFactor(double attenuationFactor) {
-        this.attenuationFactor = attenuationFactor;
+    public LinkedList<Obstacle> getObstacles() {
+        return obstacles;
     }
     
     public void intersect(SignalArea other) {
         super.intersect(other);
-        attenuationFactor *= other.attenuationFactor;
+        this.obstacles.addAll(other.getObstacles());
     }
 }

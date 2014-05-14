@@ -20,7 +20,7 @@ public class Wall extends Obstacle {
     public List<SignalArea> getAttenuatedAreas(AccessPoint ap, double panelWidth, double panelHeight) {
         LinkedList<SignalArea> list = new LinkedList<>();
         Shape shadow = ProjectionHelper.getWallShadow(ap.getLocation(), (Line2D) getShape(), panelWidth, panelHeight);
-        list.add(new SignalArea(getMaterial().getAttenuationFactor(), shadow));
+        list.add(new SignalArea(this, shadow));
         return list;
     }
     
