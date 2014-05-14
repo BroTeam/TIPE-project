@@ -1,7 +1,6 @@
 package com.broteam.tipe.ui;
 
 import java.awt.BorderLayout;
-
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -11,68 +10,124 @@ import java.util.LinkedList;
 
 import javax.swing.*;
 
+import com.broteam.tipe.model.Model;
 import com.broteam.tipe.model.elements.AccessPoint;
 import com.broteam.tipe.signal.Material;
 
 public class Window extends JFrame {
 
-    public Panel panel = new Panel();
+    public final Panel panel;
 
-    private final ButtonGroup btnGroupSignal = new ButtonGroup();
-    private JComboBox<Material> comboBoxMateriau = new JComboBox<>();
-    private JSlider slider;
-    private JComboBox<AccessPoint> comboBoxAp = new JComboBox<>();
+    private final ButtonGroup btnGroup = new ButtonGroup();
+    private final JComboBox<Material> comboBoxMateriau = new JComboBox<>();
+    private final JSlider slider;
+    private final JComboBox<AccessPoint> comboBoxAp = new JComboBox<>();
 
-    private Action newFile;
-    private Action openFile;
-    private Action saveFile;
-    private Action saveFileAs;
-    private Action clear;
+    private final Action fileNew;
+    private final Action fileOpen;
+    private final Action fileSave;
+    private final Action fileSaveAs;
+    private final Action actionClear;
+    
+    private final Action toolAp;
+    private final Action toolRepeater;
+    private final Action toolWall;
+    private final Action toolDoor;
+    private final Action toolRoom;
 
-    private void createActions() {
-        newFile = new AbstractAction("Nouveau", new ImageIcon("images/icn_new_16.png")) {
+    {
+        panel = new Panel(this);
+        
+        fileNew = new AbstractAction("Nouveau", new ImageIcon("images/icn_new_16.png")) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("New file");
+                System.out.println("fileNew");
+                panel.setModel(new Model());
             }
         };
-        newFile.putValue(Action.ACCELERATOR_KEY,
+        fileNew.putValue(Action.ACCELERATOR_KEY,
                 KeyStroke.getKeyStroke('N', InputEvent.CTRL_DOWN_MASK));
-        openFile = new AbstractAction("Ouvrir...", new ImageIcon("images/icn_open_18x14.png")) {
+        fileOpen = new AbstractAction("Ouvrir...", new ImageIcon("images/icn_open_18x14.png")) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Open file");
+                System.out.println("fileOpen");
             }
         };
-        openFile.putValue(Action.ACCELERATOR_KEY,
+        fileOpen.putValue(Action.ACCELERATOR_KEY,
                 KeyStroke.getKeyStroke('O', InputEvent.CTRL_DOWN_MASK));
-        saveFile = new AbstractAction("Enregistrer", new ImageIcon("images/icn_save_16.png")) {
+        fileSave = new AbstractAction("Enregistrer", new ImageIcon("images/icn_save_16.png")) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Save file");
+                System.out.println("fileSave");
             }
         };
-        saveFile.putValue(Action.ACCELERATOR_KEY,
+        fileSave.putValue(Action.ACCELERATOR_KEY,
                 KeyStroke.getKeyStroke('S', InputEvent.CTRL_DOWN_MASK));
-        saveFileAs = new AbstractAction("Enregistrer sous...", new ImageIcon(
+        fileSaveAs = new AbstractAction("Enregistrer sous...", new ImageIcon(
                 "images/icn_save_16.png")) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Save file as");
+                System.out.println("fileSaveAs");
             }
         };
-        clear = new AbstractAction("Tout effacer", new ImageIcon("images/icn_clear_16.png")) {
+        actionClear = new AbstractAction("Tout effacer", new ImageIcon("images/icn_clear_16.png")) {
             @Override
             public void actionPerformed(ActionEvent arg0) {
+                System.out.println("actionClear");
                 panel.getModel().clear();
             }
         };
+        toolAp = new AbstractAction("Point d'accès", new ImageIcon("images/icn_clear_16.png")) {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                System.out.println("toolAp");
+                Brush.setAp();
+            }
+        };
+        toolRepeater = new AbstractAction("Répéteur", new ImageIcon("images/icn_clear_16.png")) {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                System.out.println("toolRepeater");
+            }
+        };
+        toolWall = new AbstractAction("Mur", new ImageIcon("images/icn_clear_16.png")) {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                System.out.println("toolWall");
+                Brush.setWall();
+            }
+        };
+        toolRoom = new AbstractAction("Pièce", new ImageIcon("images/icn_clear_16.png")) {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                System.out.println("toolRoom");
+                Brush.setRoom();
+            }
+        };
+        toolDoor = new AbstractAction("Porte", new ImageIcon("images/icn_clear_16.png")) {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                System.out.println("toolDoor");
+                Brush.setDoor();
+            }
+        };
+    }
+    
+    public void onModelChanged(Model m) {
+        boolean enable = m != null;
+        fileSave.setEnabled(enable);
+        fileSaveAs.setEnabled(enable);
+        actionClear.setEnabled(enable);
+        toolAp.setEnabled(enable);
+        toolRepeater.setEnabled(false);
+        toolWall.setEnabled(enable);
+        toolRoom.setEnabled(enable);
+        toolDoor.setEnabled(false);
     }
 
     public Window() {
         super();
         setTitle("Wi-Fi Access Point Broadcasting Simulator");
-        createActions();
 
         Brush brush = new Brush(this);
         panel.addMouseListener(brush);
@@ -84,15 +139,15 @@ public class Window extends JFrame {
         JMenu mnFichier = new JMenu("Fichier");
         menuBar.add(mnFichier);
 
-        mnFichier.add(newFile);
-        mnFichier.add(openFile);
-        mnFichier.add(saveFile);
-        mnFichier.add(saveFileAs);
+        mnFichier.add(fileNew);
+        mnFichier.add(fileOpen);
+        mnFichier.add(fileSave);
+        mnFichier.add(fileSaveAs);
 
         JMenu mnEdition = new JMenu("Edition");
         menuBar.add(mnEdition);
 
-        mnEdition.add(clear);
+        mnEdition.add(actionClear);
 
         JSplitPane splitPane = new JSplitPane();
         getContentPane().add(splitPane, BorderLayout.CENTER);
@@ -109,20 +164,12 @@ public class Window extends JFrame {
         panel_signal_interieur.setAlignmentX(Component.LEFT_ALIGNMENT);
         panel_signal_interieur.setLayout(new GridLayout(4, 1, 0, 0));
 
-        JToggleButton tglbtnAp = new JToggleButton("AP");
+        JToggleButton tglbtnAp = new JToggleButton(toolAp);
+        JToggleButton tglbtnRepeater = new JToggleButton(toolRepeater);
+        btnGroup.add(tglbtnAp);
+        btnGroup.add(tglbtnRepeater);
         panel_signal_interieur.add(tglbtnAp);
-        btnGroupSignal.add(tglbtnAp);
-        tglbtnAp.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                com.broteam.tipe.ui.Brush.setAP();
-            }
-        });
-
-        JToggleButton tglbtnRepeater = new JToggleButton("Répéteur");
-        tglbtnRepeater.setEnabled(false);
         panel_signal_interieur.add(tglbtnRepeater);
-        btnGroupSignal.add(tglbtnRepeater);
 
         JLabel lblPower = new JLabel("Puissance (en mW):");
         panel_signal_interieur.add(lblPower);
@@ -147,35 +194,14 @@ public class Window extends JFrame {
         panel_obstacle.add(panel_obstacle_interieur, BorderLayout.NORTH);
         panel_obstacle_interieur.setLayout(new GridLayout(5, 1, 0, 0));
 
-        JToggleButton tglbtnWall = new JToggleButton("Mur/Cloison");
-        tglbtnWall.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                com.broteam.tipe.ui.Brush.setWall();
-            }
-        });
+        JToggleButton tglbtnWall = new JToggleButton(toolWall);
+        JToggleButton tglbtnRoom = new JToggleButton(toolRoom);
+        JToggleButton tglbtnDoor = new JToggleButton(toolDoor);
         btnGroupObstacles.add(tglbtnWall);
-        panel_obstacle_interieur.add(tglbtnWall);
-
-        JToggleButton tglbtnRoom = new JToggleButton("Pièce");
-        tglbtnRoom.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                com.broteam.tipe.ui.Brush.setRoom();
-            }
-        });
         btnGroupObstacles.add(tglbtnRoom);
-        panel_obstacle_interieur.add(tglbtnRoom);
-
-        JToggleButton tglbtnDoor = new JToggleButton("Porte");
-        tglbtnDoor.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                Brush.setDoor();
-            }
-        });
-        tglbtnDoor.setEnabled(false);
         btnGroupObstacles.add(tglbtnDoor);
+        panel_obstacle_interieur.add(tglbtnWall);
+        panel_obstacle_interieur.add(tglbtnRoom);
         panel_obstacle_interieur.add(tglbtnDoor);
 
         JLabel lblMateriau = new JLabel("Matériau:");
@@ -228,7 +254,7 @@ public class Window extends JFrame {
         splitPane.setDividerLocation(0.20);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
+        panel.setModel(null);
     }
 
     public Material getSelectedMaterial() {

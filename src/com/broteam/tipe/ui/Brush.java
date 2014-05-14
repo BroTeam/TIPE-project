@@ -9,7 +9,6 @@ import com.broteam.tipe.model.elements.Door;
 import com.broteam.tipe.model.elements.Element;
 import com.broteam.tipe.model.elements.Room;
 import com.broteam.tipe.model.elements.Wall;
-import com.broteam.tipe.signal.Material;
 
 public class Brush extends MouseAdapter {
 
@@ -33,7 +32,7 @@ public class Brush extends MouseAdapter {
         shapeSelector = 3;
     }
 
-    public static void setAP() {
+    public static void setAp() {
         shapeSelector = 4;
     }
 

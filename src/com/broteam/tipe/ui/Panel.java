@@ -16,26 +16,32 @@ public class Panel extends JPanel {
 
     private static int MAX_INT_COLOR = 255 << 16 + 255 << 8 + 255;
     private final Random randomGen = new Random();
-    
+
+    private Window window;
     private Model model;
     private Simulation simulation;
 
     /**
      * Default constructor.
      */
-    Panel() {
-    	model = new Model();
-    	simulation = new Simulation();
+    Panel(Window window) {
+        this.window = window;
+        simulation = new Simulation();
     }
-    
+
     public Model getModel() {
-    	return model;
+        return model;
     }
-    
+
+    public void setModel(Model model) {
+        this.model = model;
+        window.onModelChanged(model);
+    }
+
     public Simulation getSimulation() {
-    	return simulation;
+        return simulation;
     }
-  
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -46,35 +52,12 @@ public class Panel extends JPanel {
             g2d.fill(sa);
         }
         // draw elements on top of areas
-        for (Element e : model.getElements()) {
-            if (e != null) {
-                e.drawSelf(g2d);
-            }
-        }
-    }
-
-  /*  private void splitElementList() {
-        aps.clear();
-        obstacles.clear();
-        for (Element e : elements) {
-            if (e != null) {
-                if (e instanceof AccessPoint) {
-                    aps.add((AccessPoint) e);
-                } else {
-                    obstacles.add((Obstacle) e);
+        if (model != null) {
+            for (Element e : model.getElements()) {
+                if (e != null) {
+                    e.drawSelf(g2d);
                 }
             }
         }
     }
-
-    public LinkedList<AccessPoint> getApsList() {
-        splitElementList();
-        return aps;
-    }
-
-    public LinkedList<Obstacle> getObstaclesList() {
-        splitElementList();
-        return obstacles;
-    } */
-
 }
