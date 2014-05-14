@@ -107,7 +107,7 @@ public class Window extends JFrame {
         toolAp.putValue(AbstractAction.SHORT_DESCRIPTION, text);
 
         text = "Répéteur";
-        toolRepeater = new AbstractAction("Répéteur", new ImageIcon("images/icn_clear_16.png")) {
+        toolRepeater = new AbstractAction("Répéteur", new ImageIcon("images/icn_repeater_16.png")) {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 System.out.println("toolRepeater");
@@ -125,6 +125,16 @@ public class Window extends JFrame {
         };
         toolWall.putValue(AbstractAction.SHORT_DESCRIPTION, text);
 
+        text = "Porte";
+        toolDoor = new AbstractAction("Porte", new ImageIcon("images/icn_door_16.png")) {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                System.out.println("toolDoor");
+                Brush.setDoor();
+            }
+        };
+        toolDoor.putValue(AbstractAction.SHORT_DESCRIPTION, text);
+
         text = "Pièce";
         toolRoom = new AbstractAction("Pièce", new ImageIcon("images/icn_rectangle_16.png")) {
             @Override
@@ -134,16 +144,6 @@ public class Window extends JFrame {
             }
         };
         toolRoom.putValue(AbstractAction.SHORT_DESCRIPTION, text);
-
-        text = "Porte";
-        toolDoor = new AbstractAction("Porte", new ImageIcon("images/icn_clear_16.png")) {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                System.out.println("toolDoor");
-                Brush.setDoor();
-            }
-        };
-        toolDoor.putValue(AbstractAction.SHORT_DESCRIPTION, text);
     }
     
     public void onModelChanged(Model m) {
@@ -189,8 +189,8 @@ public class Window extends JFrame {
         mnTools.add(toolRepeater);
         mnTools.addSeparator();
         mnTools.add(toolWall);
-        mnTools.add(toolRoom);
         mnTools.add(toolDoor);
+        mnTools.add(toolRoom);
 
         JPanel mainPanel = new JPanel(new BorderLayout());
         getContentPane().add(mainPanel, BorderLayout.CENTER);
@@ -205,8 +205,8 @@ public class Window extends JFrame {
         toolBar.add(toolRepeater);
         toolBar.addSeparator();
         toolBar.add(toolWall);
-        toolBar.add(toolRoom);
         toolBar.add(toolDoor);
+        toolBar.add(toolRoom);
         toolBar.addSeparator();
         toolBar.add(actionClear);
         mainPanel.add(toolBar, BorderLayout.NORTH);
