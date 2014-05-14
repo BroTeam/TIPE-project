@@ -6,29 +6,29 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
-import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.*;
-
 import com.broteam.tipe.model.Model;
+import com.broteam.tipe.model.ModelListener;
 import com.broteam.tipe.model.elements.AccessPoint;
 import com.broteam.tipe.signal.Material;
 
-public class Window extends JFrame {
+public class Window extends JFrame implements ModelListener {
 
     public final Panel panel;
+    private Model model;
 
-    private final ButtonGroup btnGroup = new ButtonGroup();
     private final JComboBox<Material> comboBoxMateriau = new JComboBox<>();
-    private final JSlider slider;
     private final JComboBox<AccessPoint> comboBoxAp = new JComboBox<>();
+    private JSlider slider;
 
     private final Action fileNew;
     private final Action fileOpen;
     private final Action fileSave;
     private final Action fileSaveAs;
     private final Action actionClear;
-    
+
     private final Action toolAp;
     private final Action toolRepeater;
     private final Action toolWall;
@@ -37,20 +37,19 @@ public class Window extends JFrame {
 
     {
         panel = new Panel(this);
-        
+
         String text;
-        
+
         text = "Nouveau";
         fileNew = new AbstractAction(text, new ImageIcon("images/icn_new_16.png")) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("fileNew");
-                panel.setModel(new Model());
+                setModel(new Model());
             }
         };
         fileNew.putValue(AbstractAction.SHORT_DESCRIPTION, text);
-        fileNew.putValue(Action.ACCELERATOR_KEY,
-                KeyStroke.getKeyStroke('N', InputEvent.CTRL_DOWN_MASK));
+        fileNew.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke('N', InputEvent.CTRL_DOWN_MASK));
 
         text = "Ouvrir...";
         fileOpen = new AbstractAction(text, new ImageIcon("images/icn_open_18x14.png")) {
@@ -60,8 +59,7 @@ public class Window extends JFrame {
             }
         };
         fileOpen.putValue(AbstractAction.SHORT_DESCRIPTION, text);
-        fileOpen.putValue(Action.ACCELERATOR_KEY,
-                KeyStroke.getKeyStroke('O', InputEvent.CTRL_DOWN_MASK));
+        fileOpen.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke('O', InputEvent.CTRL_DOWN_MASK));
 
         text = "Enregistrer";
         fileSave = new AbstractAction("Enregistrer", new ImageIcon("images/icn_save_16.png")) {
@@ -71,12 +69,10 @@ public class Window extends JFrame {
             }
         };
         fileSave.putValue(AbstractAction.SHORT_DESCRIPTION, text);
-        fileSave.putValue(Action.ACCELERATOR_KEY,
-                KeyStroke.getKeyStroke('S', InputEvent.CTRL_DOWN_MASK));
+        fileSave.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke('S', InputEvent.CTRL_DOWN_MASK));
 
         text = "Enregistrer sous...";
-        fileSaveAs = new AbstractAction("Enregistrer sous...", new ImageIcon(
-                "images/icn_save_16.png")) {
+        fileSaveAs = new AbstractAction("Enregistrer sous...", new ImageIcon("images/icn_save_16.png")) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("fileSaveAs");
@@ -89,7 +85,7 @@ public class Window extends JFrame {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 System.out.println("actionClear");
-                panel.getModel().clear();
+                model.clear();
                 panel.getSimulation().clear();
                 panel.repaint();
             }
@@ -145,56 +141,72 @@ public class Window extends JFrame {
         };
         toolRoom.putValue(AbstractAction.SHORT_DESCRIPTION, text);
     }
-    
-    public void onModelChanged(Model m) {
-        boolean enable = m != null;
-        fileSave.setEnabled(enable);
-        fileSaveAs.setEnabled(enable);
-        actionClear.setEnabled(enable);
-        toolAp.setEnabled(enable);
-        toolRepeater.setEnabled(false);
-        toolWall.setEnabled(enable);
-        toolRoom.setEnabled(enable);
-        toolDoor.setEnabled(false);
+
+    public Model getModel() {
+        return model;
     }
 
-    public Window() {
-        super();
-        setTitle("Wi-Fi Access Point Broadcasting Simulator");
+    public void setModel(Model model) {
+        if (this.model != null) {
+            this.model.unregisterListener(this);
+        }
+        this.model = model;
+        boolean isModelPresent = model != null;
+        fileSave.setEnabled(isModelPresent);
+        fileSaveAs.setEnabled(isModelPresent);
+        actionClear.setEnabled(isModelPresent);
+        toolAp.setEnabled(isModelPresent);
+        toolRepeater.setEnabled(false);
+        toolWall.setEnabled(isModelPresent);
+        toolRoom.setEnabled(isModelPresent);
+        toolDoor.setEnabled(false);
+        if (!isModelPresent) {
+            return;
+        }
+        List<AccessPoint> aps = model.getAccessPoints();
+        comboBoxAp.setModel(new DefaultComboBoxModel<>(aps.toArray(new AccessPoint[aps.size()])));
+        model.registerListener(this);
+    }
 
-        Brush brush = new Brush(this);
-        panel.addMouseListener(brush);
-        panel.addMouseMotionListener(brush);
+    @Override
+    public void onAccessPointAdded(AccessPoint ap) {
+        System.out.println("access point added");
+        comboBoxAp.addItem(ap);
+    }
 
+    @Override
+    public void onAccessPointRemoved(AccessPoint ap) {
+        System.out.println("access point removed");
+        comboBoxAp.removeItem(ap);
+    }
+
+    private JMenuBar createMenuBar() {
         JMenuBar menuBar = new JMenuBar();
-        getContentPane().add(menuBar, BorderLayout.NORTH);
 
         JMenu mnFichier = new JMenu("Fichier");
-        menuBar.add(mnFichier);
-
         mnFichier.add(fileNew);
         mnFichier.add(fileOpen);
         mnFichier.add(fileSave);
         mnFichier.add(fileSaveAs);
+        menuBar.add(mnFichier);
 
         JMenu mnEdition = new JMenu("Edition");
+        mnEdition.add(actionClear);
         menuBar.add(mnEdition);
 
-        mnEdition.add(actionClear);
-        
         JMenu mnTools = new JMenu("Outils");
-        menuBar.add(mnTools);
-
         mnTools.add(toolAp);
         mnTools.add(toolRepeater);
         mnTools.addSeparator();
         mnTools.add(toolWall);
         mnTools.add(toolDoor);
         mnTools.add(toolRoom);
+        menuBar.add(mnTools);
 
-        JPanel mainPanel = new JPanel(new BorderLayout());
-        getContentPane().add(mainPanel, BorderLayout.CENTER);
-        
+        return menuBar;
+    }
+
+    private JToolBar createToolBar() {
         JToolBar toolBar = new JToolBar();
         toolBar.add(fileNew);
         toolBar.add(fileOpen);
@@ -209,32 +221,16 @@ public class Window extends JFrame {
         toolBar.add(toolRoom);
         toolBar.addSeparator();
         toolBar.add(actionClear);
-        mainPanel.add(toolBar, BorderLayout.NORTH);
-        
-        JSplitPane splitPane = new JSplitPane();
-        mainPanel.add(splitPane, BorderLayout.CENTER);
+        return toolBar;
+    }
 
-        JTabbedPane tabBar = new JTabbedPane();
-        splitPane.setLeftComponent(tabBar);
-
-        JPanel panel_signal = new JPanel();
-        tabBar.addTab("Signal", null, panel_signal, null);
-        panel_signal.setLayout(new BorderLayout(0, 0));
-
-        JPanel panel_signal_interieur = new JPanel();
-        panel_signal.add(panel_signal_interieur, BorderLayout.NORTH);
-        panel_signal_interieur.setAlignmentX(Component.LEFT_ALIGNMENT);
-        panel_signal_interieur.setLayout(new GridLayout(4, 1, 0, 0));
-
-        JToggleButton tglbtnAp = new JToggleButton(toolAp);
-        JToggleButton tglbtnRepeater = new JToggleButton(toolRepeater);
-        btnGroup.add(tglbtnAp);
-        btnGroup.add(tglbtnRepeater);
-        panel_signal_interieur.add(tglbtnAp);
-        panel_signal_interieur.add(tglbtnRepeater);
+    private JPanel createOptionsPanel() {
+        JPanel optionsPanel = new JPanel();
+        optionsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        optionsPanel.setLayout(new GridLayout(5, 1, 0, 0));
 
         JLabel lblPower = new JLabel("Puissance (en mW):");
-        panel_signal_interieur.add(lblPower);
+        optionsPanel.add(lblPower);
 
         // Pour les puissances voir ici http://en.wikipedia.org/wiki/DBm
         // http://assistance.orange.fr/le-wi-fi-et-la-sante-770.php#
@@ -244,79 +240,89 @@ public class Window extends JFrame {
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
         slider.setAlignmentX(Component.LEFT_ALIGNMENT);
-        panel_signal_interieur.add(slider);
+        optionsPanel.add(slider);
 
-        ButtonGroup btnGroupObstacles = new ButtonGroup();
+        JLabel lblMateriau = new JLabel("Matériau des obstacles:");
+        optionsPanel.add(lblMateriau);
 
-        JPanel panel_obstacle = new JPanel();
-        tabBar.addTab("Obstacles", null, panel_obstacle, null);
-        panel_obstacle.setLayout(new BorderLayout(0, 0));
-
-        JPanel panel_obstacle_interieur = new JPanel();
-        panel_obstacle.add(panel_obstacle_interieur, BorderLayout.NORTH);
-        panel_obstacle_interieur.setLayout(new GridLayout(5, 1, 0, 0));
-
-        JToggleButton tglbtnWall = new JToggleButton(toolWall);
-        JToggleButton tglbtnRoom = new JToggleButton(toolRoom);
-        JToggleButton tglbtnDoor = new JToggleButton(toolDoor);
-        btnGroupObstacles.add(tglbtnWall);
-        btnGroupObstacles.add(tglbtnRoom);
-        btnGroupObstacles.add(tglbtnDoor);
-        panel_obstacle_interieur.add(tglbtnWall);
-        panel_obstacle_interieur.add(tglbtnRoom);
-        panel_obstacle_interieur.add(tglbtnDoor);
-
-        JLabel lblMateriau = new JLabel("Matériau:");
-        panel_obstacle_interieur.add(lblMateriau);
-
-        panel_obstacle_interieur.add(comboBoxMateriau);
+        optionsPanel.add(comboBoxMateriau);
         comboBoxMateriau.setAlignmentX(Component.LEFT_ALIGNMENT);
         comboBoxMateriau.setModel(new DefaultComboBoxModel<>(Material.values()));
+        return optionsPanel;
+    }
 
-        JPanel panel_simulation = new JPanel();
-        tabBar.addTab("Simulation", null, panel_simulation, null);
-
-        JPanel panel_simulation_interieur = new JPanel();
-        panel_simulation.add(panel_simulation_interieur);
-        panel_simulation_interieur.setLayout(new BorderLayout(0, 0));
+    private JPanel createSimulationPanel() {
+        JPanel simulationPanel = new JPanel();
+        simulationPanel.setLayout(new BorderLayout(0, 0));
 
         JLabel lblSlectionnezUnPoint = new JLabel("Sélectionnez un Point d'Accès :");
-        panel_simulation_interieur.add(lblSlectionnezUnPoint, BorderLayout.NORTH);
-
-        panel_simulation_interieur.add(comboBoxAp, BorderLayout.CENTER);
-
-        JButton btnRafrachir = new JButton("Rafraîchir");
-        panel_simulation.add(btnRafrachir);
-        btnRafrachir.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                comboBoxAp.removeAllItems();
-                LinkedList<AccessPoint> aps =panel.getModel().getAccessPoints();
-                for (AccessPoint ap : aps) {
-                    comboBoxAp.addItem(ap);
-                }
-            }
-        });
+        simulationPanel.add(lblSlectionnezUnPoint, BorderLayout.NORTH);
+        simulationPanel.add(comboBoxAp, BorderLayout.CENTER);
 
         JButton btnSimulation = new JButton("Lancer la simulation !");
-        panel_simulation_interieur.add(btnSimulation, BorderLayout.SOUTH);
+        simulationPanel.add(btnSimulation, BorderLayout.SOUTH);
 
         btnSimulation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                if (!panel.getModel().getAccessPoints().isEmpty()) {
-                    panel.getSimulation().launchSimulation((AccessPoint) comboBoxAp.getSelectedItem(), panel.getModel().getObstacles(), panel.getWidth(), panel.getHeight());
+                if (!model.getAccessPoints().isEmpty()) {
+                    panel.getSimulation().launchSimulation((AccessPoint) comboBoxAp.getSelectedItem(),
+                            model.getObstacles(), panel.getWidth(), panel.getHeight());
                     panel.repaint();
                 }
             }
         });
+        return simulationPanel;
+    }
+
+    public Window() {
+        super();
+        setTitle("Wi-Fi Access Point Broadcasting Simulator");
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        Brush brush = new Brush(this);
+        panel.addMouseListener(brush);
+        panel.addMouseMotionListener(brush);
+
+        // add menu bar
+        getContentPane().add(createMenuBar(), BorderLayout.NORTH);
+
+        // create main panel
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        getContentPane().add(mainPanel, BorderLayout.CENTER);
+
+        // add tool bar
+        mainPanel.add(createToolBar(), BorderLayout.NORTH);
+
+        // create split pane
+        JSplitPane splitPane = new JSplitPane();
+        mainPanel.add(splitPane, BorderLayout.CENTER);
+
+        /*
+         * Populate right side
+         */
 
         JScrollPane scrollPane = new JScrollPane(panel);
         splitPane.setRightComponent(scrollPane);
         splitPane.setDividerLocation(0.20);
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        panel.setModel(null);
+        /*
+         * Populate left side
+         */
+
+        JTabbedPane tabBar = new JTabbedPane();
+        splitPane.setLeftComponent(tabBar);
+
+        JPanel optionsTab = new JPanel();
+        optionsTab.setLayout(new BorderLayout(0, 0));
+        optionsTab.add(createOptionsPanel(), BorderLayout.NORTH);
+        tabBar.addTab("Options", null, optionsTab, null);
+
+        JPanel simulationTab = new JPanel();
+        simulationTab.add(createSimulationPanel());
+        tabBar.addTab("Simulation", null, simulationTab, null);
+
+        setModel(null);
     }
 
     public Material getSelectedMaterial() {

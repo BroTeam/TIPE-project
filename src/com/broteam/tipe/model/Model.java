@@ -19,7 +19,7 @@ public class Model {
     private LinkedList<Obstacle> obstacles = new LinkedList<>();
     private LinkedList<AccessPoint> aps = new LinkedList<>();
 
-    // TODO complete model
+    private LinkedList<ModelListener> listeners = new LinkedList<>();
 
     /**
      * Adds the specified {@link Element} to this {@link Model}.
@@ -28,34 +28,21 @@ public class Model {
      *            The {@link Element} to add.
      */
     public void add(Element element) {
+        System.out.println("element added");
         elements.add(element);
+        fireElementAdded(element);
         if (element instanceof Obstacle) {
+            System.out.println("obstacle added");
             obstacles.add((Obstacle) element);
+            fireObstacleAdded((Obstacle) element);
         }
         if (element instanceof AccessPoint) {
+            System.out.println("ap added");
             aps.add((AccessPoint) element);
+            fireAccessPointAdded((AccessPoint) element);
         }
     }
-    
-    /**
-     * Replaces the last added {@link Element} by the specified {@link Element}.
-     *
-     * @param element
-     *            The {@link Element} to place instead of the last one.
-     */
-    public void replaceLast(Element element) {
-    	elements.removeLast();
-        elements.add(element);
-        if (element instanceof Obstacle) {
-        	obstacles.removeLast();
-            obstacles.add((Obstacle) element);
-        }
-        if (element instanceof AccessPoint) {
-        	aps.removeLast();
-            aps.add((AccessPoint) element);
-        }
-    }
-       
+
     /**
      * Removes the specified {@link Element} to this {@link Model}.
      *
@@ -64,14 +51,44 @@ public class Model {
      */
     public void remove(Element element) {
         elements.remove(element);
+        fireElementRemoved(element);
         if (element instanceof Obstacle) {
             obstacles.remove(element);
+            fireObstacleRemoved((Obstacle) element);
         }
         if (element instanceof AccessPoint) {
             aps.remove(element);
+            fireAccessPointRemoved((AccessPoint) element);
         }
     }
-    
+
+    /**
+     * Replaces the last added {@link Element} by the specified {@link Element}.
+     *
+     * @param element
+     *            The {@link Element} to place instead of the last one.
+     */
+    public void replaceLast(Element element) {
+        {
+            Element removed = elements.removeLast();
+            fireElementRemoved(removed);
+            elements.add(element);
+            fireElementAdded(element);
+        }
+        if (element instanceof Obstacle) {
+            Obstacle removed = obstacles.removeLast();
+            fireObstacleRemoved(removed);
+            obstacles.add((Obstacle) element);
+            fireObstacleAdded((Obstacle) element);
+        }
+        if (element instanceof AccessPoint) {
+            AccessPoint removed = aps.removeLast();
+            fireAccessPointRemoved(removed);
+            aps.add((AccessPoint) element);
+            fireAccessPointAdded((AccessPoint) element);
+        }
+    }
+
     /**
      * Removes all {@link Element}s from this {@link Model}.
      */
@@ -79,8 +96,11 @@ public class Model {
         elements.clear();
         aps.clear();
         obstacles.clear();
+        for (ModelListener l : listeners) {
+            l.onCleared();
+        }
     }
-    
+
     public LinkedList<Element> getElements() {
         return elements;
     }
@@ -142,4 +162,51 @@ public class Model {
         return model;
     }
 
+    public void registerListener(ModelListener listener) {
+        System.out.println("Listener registered: " + listener.getClass().getSimpleName());
+        listeners.add(listener);
+    }
+
+    public void unregisterListener(ModelListener listener) {
+        System.out.println("Listener unregistered: " + listener.getClass().getSimpleName());
+        listeners.remove(listener);
+    }
+
+    private void fireElementAdded(Element e) {
+        for (ModelListener l : listeners) {
+            System.out.println("fire element added on listener " + l.getClass().getSimpleName());
+            l.onElementAdded(e);
+        }
+    }
+
+    private void fireObstacleAdded(Obstacle o) {
+        for (ModelListener l : listeners) {
+            l.onObstacleAdded(o);
+        }
+    }
+
+    private void fireAccessPointAdded(AccessPoint ap) {
+        for (ModelListener l : listeners) {
+            System.out.println("fire access point added on listener " + l.getClass().getSimpleName());
+            l.onAccessPointAdded(ap);
+        }
+    }
+
+    private void fireElementRemoved(Element e) {
+        for (ModelListener l : listeners) {
+            l.onElementRemoved(e);
+        }
+    }
+
+    private void fireObstacleRemoved(Obstacle o) {
+        for (ModelListener l : listeners) {
+            l.onObstacleRemoved(o);
+        }
+    }
+
+    private void fireAccessPointRemoved(AccessPoint ap) {
+        for (ModelListener l : listeners) {
+            l.onAccessPointRemoved(ap);
+        }
+    }
 }

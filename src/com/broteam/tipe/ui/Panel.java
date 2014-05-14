@@ -18,7 +18,6 @@ public class Panel extends JPanel {
     private final Random randomGen = new Random();
 
     private Window window;
-    private Model model;
     private Simulation simulation;
 
     /**
@@ -27,15 +26,6 @@ public class Panel extends JPanel {
     Panel(Window window) {
         this.window = window;
         simulation = new Simulation();
-    }
-
-    public Model getModel() {
-        return model;
-    }
-
-    public void setModel(Model model) {
-        this.model = model;
-        window.onModelChanged(model);
     }
 
     public Simulation getSimulation() {
@@ -52,8 +42,9 @@ public class Panel extends JPanel {
             g2d.fill(sa);
         }
         // draw elements on top of areas
-        if (model != null) {
-            for (Element e : model.getElements()) {
+        Model m = window.getModel();
+        if (m != null) {
+            for (Element e : m.getElements()) {
                 if (e != null) {
                     e.drawSelf(g2d);
                 }
