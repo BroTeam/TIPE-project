@@ -148,6 +148,15 @@ public class Window extends JFrame {
         menuBar.add(mnEdition);
 
         mnEdition.add(actionClear);
+        
+        JMenu mnTools = new JMenu("Outils");
+        menuBar.add(mnTools);
+
+        mnTools.add(toolAp);
+        mnTools.add(toolRepeater);
+        mnTools.add(toolWall);
+        mnTools.add(toolRoom);
+        mnTools.add(toolDoor);
 
         JSplitPane splitPane = new JSplitPane();
         getContentPane().add(splitPane, BorderLayout.CENTER);
