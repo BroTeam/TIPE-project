@@ -23,6 +23,16 @@ public class Model {
     // TODO complete model
 
     /**
+     * Adds the specified {@link Element} to this {@link Model}.
+     *
+     * @param element
+     *            The {@link Element} to add.
+     */
+    public void add(Element element) {
+        elements.add(element);
+    }
+    
+    /**
      * Adds the specified {@link Obstacle} to this {@link Model}.
      *
      * @param obstacle
