@@ -30,28 +30,12 @@ public class Model {
      */
     public void add(Element element) {
         elements.add(element);
-    }
-    
-    /**
-     * Adds the specified {@link Obstacle} to this {@link Model}.
-     *
-     * @param obstacle
-     *            The {@link Obstacle} to add.
-     */
-    public void add(Obstacle obstacle) {
-        elements.add(obstacle);
-        obstacles.add(obstacle);
-    }
-
-    /**
-     * Adds the specified {@link AccessPoint} to this {@link Model}.
-     *
-     * @param ap
-     *            The {@link AccessPoint} to add.
-     */
-    public void add(AccessPoint ap) {
-        elements.add(ap);
-        aps.add(ap);
+        if (element instanceof Obstacle) {
+            obstacles.add((Obstacle) element);
+        }
+        if (element instanceof AccessPoint) {
+            aps.add((AccessPoint) element);
+        }
     }
     
     /**
