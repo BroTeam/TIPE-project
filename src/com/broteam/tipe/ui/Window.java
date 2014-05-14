@@ -39,31 +39,43 @@ public class Window extends JFrame {
     {
         panel = new Panel(this);
         
-        fileNew = new AbstractAction("Nouveau", new ImageIcon("images/icn_new_16.png")) {
+        String text;
+        
+        text = "Nouveau";
+        fileNew = new AbstractAction(text, new ImageIcon("images/icn_new_16.png")) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("fileNew");
                 panel.setModel(new Model());
             }
         };
+        fileNew.putValue(AbstractAction.SHORT_DESCRIPTION, text);
         fileNew.putValue(Action.ACCELERATOR_KEY,
                 KeyStroke.getKeyStroke('N', InputEvent.CTRL_DOWN_MASK));
-        fileOpen = new AbstractAction("Ouvrir...", new ImageIcon("images/icn_open_18x14.png")) {
+
+        text = "Ouvrir...";
+        fileOpen = new AbstractAction(text, new ImageIcon("images/icn_open_18x14.png")) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("fileOpen");
             }
         };
+        fileOpen.putValue(AbstractAction.SHORT_DESCRIPTION, text);
         fileOpen.putValue(Action.ACCELERATOR_KEY,
                 KeyStroke.getKeyStroke('O', InputEvent.CTRL_DOWN_MASK));
+
+        text = "Enregistrer";
         fileSave = new AbstractAction("Enregistrer", new ImageIcon("images/icn_save_16.png")) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("fileSave");
             }
         };
+        fileSave.putValue(AbstractAction.SHORT_DESCRIPTION, text);
         fileSave.putValue(Action.ACCELERATOR_KEY,
                 KeyStroke.getKeyStroke('S', InputEvent.CTRL_DOWN_MASK));
+
+        text = "Enregistrer sous...";
         fileSaveAs = new AbstractAction("Enregistrer sous...", new ImageIcon(
                 "images/icn_save_16.png")) {
             @Override
@@ -71,6 +83,9 @@ public class Window extends JFrame {
                 System.out.println("fileSaveAs");
             }
         };
+        fileSaveAs.putValue(AbstractAction.SHORT_DESCRIPTION, text);
+
+        text = "Tout effacer";
         actionClear = new AbstractAction("Tout effacer", new ImageIcon("images/icn_clear_16.png")) {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -78,6 +93,9 @@ public class Window extends JFrame {
                 panel.getModel().clear();
             }
         };
+        actionClear.putValue(AbstractAction.SHORT_DESCRIPTION, text);
+
+        text = "Point d'accès";
         toolAp = new AbstractAction("Point d'accès", new ImageIcon("images/icn_clear_16.png")) {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -85,12 +103,18 @@ public class Window extends JFrame {
                 Brush.setAp();
             }
         };
+        toolAp.putValue(AbstractAction.SHORT_DESCRIPTION, text);
+
+        text = "Répéteur";
         toolRepeater = new AbstractAction("Répéteur", new ImageIcon("images/icn_clear_16.png")) {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 System.out.println("toolRepeater");
             }
         };
+        toolRepeater.putValue(AbstractAction.SHORT_DESCRIPTION, text);
+
+        text = "Mur";
         toolWall = new AbstractAction("Mur", new ImageIcon("images/icn_clear_16.png")) {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -98,6 +122,9 @@ public class Window extends JFrame {
                 Brush.setWall();
             }
         };
+        toolWall.putValue(AbstractAction.SHORT_DESCRIPTION, text);
+
+        text = "Pièce";
         toolRoom = new AbstractAction("Pièce", new ImageIcon("images/icn_clear_16.png")) {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -105,6 +132,9 @@ public class Window extends JFrame {
                 Brush.setRoom();
             }
         };
+        toolRoom.putValue(AbstractAction.SHORT_DESCRIPTION, text);
+
+        text = "Porte";
         toolDoor = new AbstractAction("Porte", new ImageIcon("images/icn_clear_16.png")) {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -112,6 +142,7 @@ public class Window extends JFrame {
                 Brush.setDoor();
             }
         };
+        toolDoor.putValue(AbstractAction.SHORT_DESCRIPTION, text);
     }
     
     public void onModelChanged(Model m) {
@@ -175,6 +206,8 @@ public class Window extends JFrame {
         toolBar.add(toolWall);
         toolBar.add(toolRoom);
         toolBar.add(toolDoor);
+        toolBar.addSeparator();
+        toolBar.add(actionClear);
         mainPanel.add(toolBar, BorderLayout.NORTH);
         
         JSplitPane splitPane = new JSplitPane();
