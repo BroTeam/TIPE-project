@@ -9,22 +9,28 @@ import java.awt.event.InputEvent;
 import java.util.List;
 
 import javax.swing.*;
+
 import com.broteam.tipe.model.Model;
 import com.broteam.tipe.model.ModelListener;
 import com.broteam.tipe.model.elements.AccessPoint;
 import com.broteam.tipe.signal.Material;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Font;
 
 public class Window extends JFrame implements ModelListener {
-
+    
     public final Panel panel;
     private Model model;
 
     private final JComboBox<Material> comboBoxMateriau = new JComboBox<>();
     private final JComboBox<AccessPoint> comboBoxAp = new JComboBox<>();
     private JSlider slider;
+    private JPanel signalPanel;
+    private JPanel obstaclePanel;
+    private JPanel simulationPanel;
 
     private final Action fileNew;
     private final Action fileOpen;
@@ -302,9 +308,43 @@ public class Window extends JFrame implements ModelListener {
         JPanel optionsPanel = new JPanel();
         optionsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         optionsPanel.setLayout(new BoxLayout(optionsPanel, BoxLayout.Y_AXIS));
+        
+        optionsPanel.add(Box.createVerticalStrut(5));
+        
+        JLabel lblTools = new JLabel("Option des outils");
+        lblTools.setFont(new Font("Tahoma", Font.BOLD, 11));
+        optionsPanel.add(lblTools);
+        
+        optionsPanel.add(Box.createVerticalStrut(10));
+        
+        initSignalPanel();
+        signalPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        optionsPanel.add(signalPanel);
+        optionsPanel.add(Box.createVerticalStrut(10));
 
+        initObstaclePanel();
+        obstaclePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        optionsPanel.add(obstaclePanel);        
+        optionsPanel.add(Box.createVerticalStrut(15));        
+        optionsPanel.add(new JSeparator());        
+        optionsPanel.add(Box.createVerticalStrut(10));
+
+        initSimulationPanel();
+        simulationPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        optionsPanel.add(simulationPanel);   
+        optionsPanel.add(Box.createVerticalStrut(5));
+
+        return optionsPanel;
+    }
+    
+    private void initSignalPanel() {
+        signalPanel = new JPanel();
+        signalPanel.setLayout(new BoxLayout(signalPanel, BoxLayout.Y_AXIS));
+        
         JLabel lblPower = new JLabel("Puissance (en mW):");
-        optionsPanel.add(lblPower);
+        signalPanel.add(lblPower);
+        
+        signalPanel.add(Box.createVerticalStrut(5));
 
         // Pour les puissances voir ici http://en.wikipedia.org/wiki/DBm
         // http://assistance.orange.fr/le-wi-fi-et-la-sante-770.php#
@@ -314,22 +354,46 @@ public class Window extends JFrame implements ModelListener {
         slider.setMajorTickSpacing(300);
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
-        optionsPanel.add(slider);
+        signalPanel.add(slider);
+    }
+    
+    private void initObstaclePanel() {
+        obstaclePanel = new JPanel();
+        obstaclePanel.setLayout(new BoxLayout(obstaclePanel, BoxLayout.Y_AXIS));
 
         JLabel lblMateriau = new JLabel("Matériau des obstacles:");
-        optionsPanel.add(lblMateriau);
+        obstaclePanel.add(lblMateriau);
+        
+        obstaclePanel.add(Box.createVerticalStrut(5));
         
         comboBoxMateriau.setModel(new DefaultComboBoxModel<>(Material.values()));       
         comboBoxMateriau.setAlignmentX(Component.LEFT_ALIGNMENT);
-        optionsPanel.add(comboBoxMateriau);
+        obstaclePanel.add(comboBoxMateriau);
+    }
+    
+    private void initSimulationPanel() {
+        simulationPanel = new JPanel();
+        simulationPanel.setLayout(new BoxLayout(simulationPanel, BoxLayout.Y_AXIS));
+        
+        JLabel lblSimulation = new JLabel("Simulation");
+        lblSimulation.setFont(new Font("Tahoma", Font.BOLD, 11));
+        simulationPanel.add(lblSimulation);
+        
+        simulationPanel.add(Box.createVerticalStrut(10));
 
         JLabel lblSlectionnezUnPoint = new JLabel("Sélectionnez un Point d'Accès :");
-        optionsPanel.add(lblSlectionnezUnPoint);
-
+        simulationPanel.add(lblSlectionnezUnPoint);
+        
+        Box hBox = Box.createHorizontalBox();
+        hBox.setAlignmentX(Component.LEFT_ALIGNMENT);
+        simulationPanel.add(hBox);
+        
         comboBoxAp.setAlignmentX(Component.LEFT_ALIGNMENT);
-        optionsPanel.add(comboBoxAp);
-
-        return optionsPanel;
+        hBox.add(comboBoxAp);
+        
+        JButton btnLaunch = new JButton(actionLaunchSimulation);
+        btnLaunch.setHideActionText(true);
+        hBox.add(btnLaunch);
     }
 
 }
