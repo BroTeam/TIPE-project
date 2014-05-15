@@ -2,9 +2,7 @@ package com.broteam.tipe.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.util.List;
 
@@ -15,9 +13,6 @@ import com.broteam.tipe.model.ModelListener;
 import com.broteam.tipe.model.elements.AccessPoint;
 import com.broteam.tipe.signal.Material;
 
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.Font;
 
 public class Window extends JFrame implements ModelListener {
@@ -383,6 +378,8 @@ public class Window extends JFrame implements ModelListener {
 
         JLabel lblSlectionnezUnPoint = new JLabel("Sélectionnez un Point d'Accès :");
         simulationPanel.add(lblSlectionnezUnPoint);
+
+        simulationPanel.add(Box.createVerticalStrut(5));
         
         Box hBox = Box.createHorizontalBox();
         hBox.setAlignmentX(Component.LEFT_ALIGNMENT);
