@@ -2,9 +2,7 @@ package com.broteam.tipe.test;
 
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.TreeMap;
 
