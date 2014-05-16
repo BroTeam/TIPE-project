@@ -18,17 +18,7 @@ public class Room extends Obstacle {
     }
 
     @Override
-    public List<SignalArea> getAttenuatedAreas(AccessPoint ap, double panelWidth, double panelHeight) {
-    	LinkedList<Wall> walls = new LinkedList<>(this.getWalls());
-    	LinkedList<SignalArea> list = new LinkedList<>();
-    	for (Wall w : walls) {
-    		 list.add(new SignalArea(w, ProjectionHelper.getWallShadow(ap.getLocation(), (Line2D) w.getShape(), panelWidth,
-    	                panelHeight)));
-    	}
-        return list;
-    }
-    
-    private LinkedList<Wall> getWalls() {
+	public LinkedList<Wall> getWalls() {
         Rectangle2D room = (Rectangle2D) getShape();
         Point2D cornerTL = new Point2D.Double(room.getMinX(), room.getMinY());
         Point2D cornerTR = new Point2D.Double(room.getMaxX(), room.getMinY());
@@ -45,6 +35,17 @@ public class Room extends Obstacle {
         walls.add(wallLeft);
         walls.add(wallBottom);
 		return walls;
+    }
+        
+    @Override
+    public List<SignalArea> getAttenuatedAreas(AccessPoint ap, double panelWidth, double panelHeight) {
+    	LinkedList<Wall> walls = new LinkedList<>(this.getWalls());
+    	LinkedList<SignalArea> list = new LinkedList<>();
+    	for (Wall w : walls) {
+    		 list.add(new SignalArea(w, ProjectionHelper.getWallShadow(ap.getLocation(), (Line2D) w.getShape(), panelWidth,
+    	                panelHeight)));
+    	}
+        return list;
     }
     
 }

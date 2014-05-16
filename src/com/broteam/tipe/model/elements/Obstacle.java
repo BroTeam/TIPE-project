@@ -59,4 +59,6 @@ public abstract class Obstacle extends Element {
      * @return a non-null list of {@code Area}s.
      */
     public abstract List<SignalArea> getAttenuatedAreas(AccessPoint ap, double panelWidth, double panelHeight);
+    
+    public abstract List<Wall> getWalls();
 }

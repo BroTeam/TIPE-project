@@ -25,4 +25,10 @@ public class Door extends Obstacle {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public List<Wall> getWalls() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

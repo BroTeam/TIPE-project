@@ -23,5 +23,12 @@ public class Wall extends Obstacle {
         list.add(new SignalArea(this, shadow));
         return list;
     }
+
+	@Override
+	public List<Wall> getWalls() {
+		LinkedList<Wall> walls = new LinkedList<>();
+		walls.add(this);
+		return walls;
+	}
     
 }
