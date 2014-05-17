@@ -6,7 +6,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.broteam.tipe.math.ProjectionHelper;
+import com.broteam.tipe.math.Geometry;
 import com.broteam.tipe.signal.Material;
 import com.broteam.tipe.signal.SignalArea;
 
@@ -42,7 +42,7 @@ public class Room extends Obstacle {
     	LinkedList<Wall> walls = new LinkedList<>(this.getWalls());
     	LinkedList<SignalArea> list = new LinkedList<>();
     	for (Wall w : walls) {
-    		 list.add(new SignalArea(w, ProjectionHelper.getWallShadow(ap.getLocation(), (Line2D) w.getShape(), panelWidth,
+    		 list.add(new SignalArea(w, Geometry.getWallShadow(ap.getLocation(), (Line2D) w.getShape(), panelWidth,
     	                panelHeight)));
     	}
         return list;

@@ -13,7 +13,7 @@ public class ProjectionHelperTest {
     @Test
     public void testProjectionOnEdge() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
         
-        Method getProjectionOnEdge = ProjectionHelper.class.getDeclaredMethod("getProjectionOnEdge", Point2D.class, Point2D.class, double.class, double.class);
+        Method getProjectionOnEdge = Geometry.class.getDeclaredMethod("getProjectionOnEdge", Point2D.class, Point2D.class, double.class, double.class);
         getProjectionOnEdge.setAccessible(true);
 
         double width = 20;

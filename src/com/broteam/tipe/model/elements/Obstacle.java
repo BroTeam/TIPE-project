@@ -2,7 +2,9 @@ package com.broteam.tipe.model.elements;
 
 import java.awt.Graphics2D;
 import java.awt.Shape;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.broteam.tipe.signal.Material;
 import com.broteam.tipe.signal.SignalArea;
@@ -61,4 +63,8 @@ public abstract class Obstacle extends Element {
     public abstract List<SignalArea> getAttenuatedAreas(AccessPoint ap, double panelWidth, double panelHeight);
     
     public abstract List<Wall> getWalls();
+
+    public static List<Wall> obstaclesToWalls(LinkedList<Obstacle> obstacles) {
+        return obstacles.stream().flatMap(o -> o.getWalls().stream()).collect(Collectors.toList());
+    }
 }

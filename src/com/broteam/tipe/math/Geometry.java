@@ -5,7 +5,24 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
 
-public class ProjectionHelper {
+public class Geometry {
+
+    // copié collé méthode SO.
+    public static Point2D getIntersection(final Line2D.Double line1, final Line2D.Double line2) {
+        final double x1 = line1.x1;
+        final double y1 = line1.y1;
+        final double x2 = line1.x2;
+        final double y2 = line1.y2;
+        final double x3 = line2.x1;
+        final double y3 = line2.y1;
+        final double x4 = line2.x2;
+        final double y4 = line2.y2;
+        final double x = ((x2 - x1) * (x3 * y4 - x4 * y3) - (x4 - x3) * (x1 * y2 - x2 * y1))
+                / ((x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4));
+        final double y = ((y3 - y4) * (x1 * y2 - x2 * y1) - (y1 - y2) * (x3 * y4 - x4 * y3))
+                / ((x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4));
+        return new Point2D.Double(x, y);
+    }
 
     /**
      * Returns the point that is the projection of the {@code source} to the edge of
