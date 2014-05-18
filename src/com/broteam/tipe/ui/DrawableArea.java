@@ -56,8 +56,7 @@ public class DrawableArea {
         int green = scaledPower % 256;
         int red = 255 - green;
         int argb = (OPACITY << 24) + (red << 16) + (green << 8);
-        System.out.println("power = " + power + "  R = " + red + "  G = " + green + "  argb = 0x"
-                + Integer.toHexString(argb));
+        //System.out.println("power = " + power + "  R = " + red + "  G = " + green + "  argb = 0x" + Integer.toHexString(argb));
         return argb;
     }
 

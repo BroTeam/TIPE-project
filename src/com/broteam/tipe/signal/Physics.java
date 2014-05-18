@@ -28,8 +28,8 @@ public class Physics {
         double ln = 20 * Math.log(distance * frequency);
         double log = ln / LOG_10;
         double result = log + GHZ_TO_HZ_SQ_DB + FSPL_CONSTANT_SQ_DB;
-        System.out.println("dist=" + distance + "   \tdist*freq=" + distFreq + "   \tln=" + ln + "   \tlog=" + log
-                + "   \tresult=" + result);
+//        System.out.println("dist=" + distance + "   \tdist*freq=" + distFreq + "   \tln=" + ln + "   \tlog=" + log
+//                + "   \tresult=" + result);
         return -result;
     }
 
@@ -46,7 +46,7 @@ public class Physics {
     public static double freeSpacePathLoss(double distance, double frequency) {
         double inner = distance * frequency * GHZ_TO_HZ * FSPL_CONSTANT;
         double result = inner * inner;
-        System.out.println("dist=" + distance + "   \t(dist*freq*4pi/c)=" + inner + "   \tresult=" + result);
+//        System.out.println("dist=" + distance + "   \t(dist*freq*4pi/c)=" + inner + "   \tresult=" + result);
         return -result;
     }
 
