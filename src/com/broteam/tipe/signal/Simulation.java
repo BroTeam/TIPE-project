@@ -8,7 +8,7 @@ import com.broteam.tipe.model.elements.AccessPoint;
 import com.broteam.tipe.model.elements.Obstacle;
 
 public class Simulation {
-    
+
     private static final double ANTENNA_GAIN = 10; // dB
 
     private AccessPoint ap;
@@ -41,7 +41,7 @@ public class Simulation {
             this.areas.addAllExclusive(o.getAttenuatedAreas(ap, rightLimit, bottomLimit));
         }
     }
-    
+
     public double getMaxPower() {
         return Physics.applyDBGain(apPower, ANTENNA_GAIN);
     }
@@ -59,8 +59,8 @@ public class Simulation {
      */
     public double getPower(int x, int y, SignalArea area) {
         double distance = apLoc.distance(x, y) / Physics.PIXELS_PER_METER;
-        double fspl = Physics.freeSpacePathLossDB(distance, apFreq);        
-        double attenuation = fspl/20 + area.getObstaclesAttenuation();
+        double fspl = Physics.freeSpacePathLossDB(distance, apFreq);
+        double attenuation = fspl / 20 + area.getObstaclesAttenuation();
         return Physics.applyDBGain(apPower, ANTENNA_GAIN + attenuation);
     }
 }
