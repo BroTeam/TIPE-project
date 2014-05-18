@@ -1,7 +1,6 @@
 package com.broteam.tipe.ui;
 
 import java.awt.BorderLayout;
-
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
@@ -16,6 +15,7 @@ import com.broteam.tipe.signal.Material;
 import com.broteam.tipe.signal.Simulation;
 
 import java.awt.Font;
+import java.io.FileNotFoundException;
 
 public class Window extends JFrame implements ModelListener {
 
@@ -78,6 +78,14 @@ public class Window extends JFrame implements ModelListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("fileSave");
+                if (model == null) {
+                    throw new IllegalStateException("No model created, action fileSave should be disabled.");
+                }
+                try {
+                    model.save();
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                }
             }
         };
         fileSave.putValue(AbstractAction.SHORT_DESCRIPTION, text);
@@ -250,11 +258,11 @@ public class Window extends JFrame implements ModelListener {
     }
 
     public double getSelectedFrequency() {
-    	if (rdbtn24ghz.isSelected()) {
-    		return 2.4;
-    	} else {
-    		return 5;
-    	}
+        if (rdbtn24ghz.isSelected()) {
+            return 2.4;
+        } else {
+            return 5;
+        }
     }
 
     private AccessPoint getSelectedAccessPoint() {
@@ -343,15 +351,15 @@ public class Window extends JFrame implements ModelListener {
         initSignalPanel();
         signalPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         optionsPanel.add(signalPanel);
-        
+
         Component verticalStrut_1 = Box.createVerticalStrut(5);
         signalPanel.add(verticalStrut_1);
-        
+
         JLabel lblFrquence = new JLabel("Fréquence :");
         signalPanel.add(lblFrquence);
-        
+
         ButtonGroup freqGroup = new ButtonGroup();
-        
+
         rdbtn24ghz.setSelected(true);
         signalPanel.add(rdbtn24ghz);
         freqGroup.add(rdbtn24ghz);
