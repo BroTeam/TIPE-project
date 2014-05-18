@@ -21,7 +21,6 @@ public class MutuallyExclusiveAreas extends LinkedList<SignalArea> {
      * 
      * @param areaToAdd
      *            The area to add.
-     * @return {@code true}, as specified by L
      */
     public void addExclusive(SignalArea areaToAdd) {
         SignalArea current = areaToAdd;
