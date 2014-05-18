@@ -1,6 +1,7 @@
 package com.broteam.tipe.ui;
 
 import java.awt.BorderLayout;
+
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
@@ -24,6 +25,8 @@ public class Window extends JFrame implements ModelListener {
 
     private final JComboBox<Material> comboBoxMateriau = new JComboBox<>();
     final JComboBox<AccessPoint> comboBoxAp = new JComboBox<>();
+    private JRadioButton rdbtn24ghz = new JRadioButton("2,4 GHz");
+    private JRadioButton rdbtn5ghz = new JRadioButton("5 GHz");
     private JSlider slider;
     private JPanel signalPanel;
     private JPanel obstaclePanel;
@@ -246,7 +249,11 @@ public class Window extends JFrame implements ModelListener {
     }
 
     public double getSelectedFrequency() {
-        return 5; // FIXME return true selected freq in MHz
+    	if (rdbtn24ghz.isSelected()) {
+    		return 2.4;
+    	} else {
+    		return 5;
+    	}
     }
 
     private AccessPoint getSelectedAccessPoint() {
@@ -329,7 +336,22 @@ public class Window extends JFrame implements ModelListener {
         initSignalPanel();
         signalPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         optionsPanel.add(signalPanel);
+        
+        Component verticalStrut_1 = Box.createVerticalStrut(5);
+        signalPanel.add(verticalStrut_1);
+        
+        JLabel lblFrquence = new JLabel("Fréquence :");
+        signalPanel.add(lblFrquence);
+        
+        ButtonGroup freqGroup = new ButtonGroup();
+        
+        rdbtn24ghz.setSelected(true);
+        signalPanel.add(rdbtn24ghz);
+        freqGroup.add(rdbtn24ghz);
+
+        signalPanel.add(rdbtn5ghz);
         optionsPanel.add(Box.createVerticalStrut(10));
+        freqGroup.add(rdbtn5ghz);
 
         initObstaclePanel();
         obstaclePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
