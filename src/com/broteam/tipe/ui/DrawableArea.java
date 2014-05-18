@@ -51,7 +51,7 @@ public class DrawableArea {
     }
 
     private int getColor(int x, int y) {
-        double power = simulation.getPower(x, y, area);
+        double power = simulation.getPower(x + xPosition, y + yPosition, area);
         int scaledPower = (int) (power * 255d / MAX_POWER);
         int green = scaledPower % 256;
         int red = 255 - green;
