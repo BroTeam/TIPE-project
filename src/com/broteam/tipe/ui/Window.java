@@ -249,7 +249,11 @@ public class Window extends JFrame implements ModelListener {
     }
 
     public double getSelectedFrequency() {
-        return 5; // FIXME return true selected freq in MHz
+    	if (rdbtn24ghz.isSelected()) {
+    		return 2.4;
+    	} else {
+    		return 5;
+    	}
     }
 
     private AccessPoint getSelectedAccessPoint() {
@@ -423,14 +427,6 @@ public class Window extends JFrame implements ModelListener {
         JButton btnLaunch = new JButton(actionLaunchSimulation);
         btnLaunch.setHideActionText(true);
         hBox.add(btnLaunch);
-    }
-    
-    private double getFrequency() {
-    	if (rdbtn24ghz.isSelected()) {
-    		return 2.4;
-    	} else {
-    		return 5;
-    	}
     }
 
 }
