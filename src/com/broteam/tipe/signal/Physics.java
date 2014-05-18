@@ -25,7 +25,7 @@ public class Physics {
      */
     public static double freeSpacePathLossDB(double distance, double frequency) {
         double distFreq = distance * frequency;
-        double ln = 20 * Math.log(distance * frequency);
+        double ln = 20 * Math.log(distFreq);
         double log = ln / LOG_10;
         double result = log + GHZ_TO_HZ_SQ_DB + FSPL_CONSTANT_SQ_DB;
 //        System.out.println("dist=" + distance + "   \tdist*freq=" + distFreq + "   \tln=" + ln + "   \tlog=" + log

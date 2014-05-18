@@ -275,6 +275,12 @@ public class Window extends JFrame implements ModelListener {
         actionLaunchSimulation.setEnabled(!model.getAccessPoints().isEmpty());
     }
 
+    @Override
+    public void onCleared() {
+        comboBoxAp.removeAllItems();
+        actionLaunchSimulation.setEnabled(false);
+    }
+
     private JMenuBar createMenuBar() {
         JMenuBar menuBar = new JMenuBar();
 

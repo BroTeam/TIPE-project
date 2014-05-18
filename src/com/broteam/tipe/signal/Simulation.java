@@ -59,7 +59,8 @@ public class Simulation {
      */
     public double getPower(int x, int y, SignalArea area) {
         double distance = apLoc.distance(x, y) / Physics.PIXELS_PER_METER;
-        double attenuation = Physics.freeSpacePathLossDB(distance, apFreq) + area.getObstaclesAttenuation();
-        return Physics.applyDBGain(apPower, ANTENNA_GAIN * 5 + attenuation);
+        double fspl = Physics.freeSpacePathLossDB(distance, apFreq);        
+        double attenuation = fspl/20 + area.getObstaclesAttenuation();
+        return Physics.applyDBGain(apPower, ANTENNA_GAIN + attenuation);
     }
 }
