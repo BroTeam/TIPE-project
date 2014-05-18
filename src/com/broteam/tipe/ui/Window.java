@@ -9,8 +9,6 @@ import java.awt.event.ItemListener;
 import java.util.List;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import com.broteam.tipe.model.Model;
 import com.broteam.tipe.model.ModelListener;
