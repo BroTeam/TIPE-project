@@ -1,12 +1,9 @@
 package com.broteam.tipe.signal;
 
 public class Physics {
-    // FIXME
-    public static final double DEFAULT_FREQUENCY_MHZ = 5;
 
     private static final double LIGHTSPEED = 299792458;
-    private static final double FSPL_CONSTANT = 20 * Math.log(4 * Math.PI / LIGHTSPEED);
-    private static final double FSPL_CONSTANT_METERS_AND_MHZ = -27.55;
+    private static final double FSPL_CONSTANT_METERS_AND_MHZ = 20 * Math.log(4 * Math.PI * 1000000 / LIGHTSPEED);
 
     /**
      * Returns the free space loss in dB for a signal of the specified frequency when
@@ -22,7 +19,16 @@ public class Physics {
         return 20 * Math.log(distance) + 20 * Math.log(frequency) + FSPL_CONSTANT_METERS_AND_MHZ;
     }
 
-    public static double attenuate(double initPower, double dBattenuation) {
-        return initPower * Math.pow(10, dBattenuation / 10);
+    /**
+     * Calculates the attenuated value of the specified power.
+     * 
+     * @param power
+     *            The initial power before attenuation
+     * @param dBattenuation
+     *            The attenuation in dB (negative)
+     * @return the attenuated value of the specified power.
+     */
+    public static double attenuate(double power, double dBattenuation) {
+        return power * Math.pow(10, dBattenuation / 10);
     }
 }

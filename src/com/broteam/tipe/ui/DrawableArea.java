@@ -3,7 +3,6 @@ package com.broteam.tipe.ui;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
 
 import com.broteam.tipe.signal.SignalArea;
 import com.broteam.tipe.signal.Simulation;
