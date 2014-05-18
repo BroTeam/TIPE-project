@@ -120,7 +120,7 @@ public class Simulation {
      */
     // TODO simplifier la fonction car l'algorithme ne mérite pas une fonction si
     // complexe ? (Ou on laisse pour l'évolutivité)
-    public static double getAttenuation(Point2D pixel, AccessPoint ap, LinkedList<Wall> walls) {
+    public static double getAttenuation(Point2D pixel, AccessPoint ap, List<Wall> walls) {
         Line2D.Double line = new Line2D.Double(pixel, ap.getLocation());
         TreeMap<Point2D, Double> attenuationMap = new TreeMap<>(Comparator.comparingDouble(p -> p.distance(ap
                 .getLocation())));
