@@ -1,8 +1,10 @@
 package com.broteam.tipe.ui;
 
 import java.awt.Color;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.geom.Point2D;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,7 +17,6 @@ import com.broteam.tipe.model.Simulation;
 import com.broteam.tipe.model.elements.AccessPoint;
 import com.broteam.tipe.model.elements.Element;
 import com.broteam.tipe.model.elements.Obstacle;
-import com.broteam.tipe.model.elements.Pixel;
 import com.broteam.tipe.model.elements.Wall;
 import com.broteam.tipe.signal.SignalArea;
 
@@ -26,7 +27,6 @@ public class Panel extends JPanel {
 
 	private Window window;
 	private Simulation simulation;
-	private List<Pixel> pixels;
 
 	/**
 	 * Default constructor.
@@ -46,15 +46,18 @@ public class Panel extends JPanel {
 		Graphics2D g2d = (Graphics2D) g;
 		// areas before elements, so that we can see the elements
 		System.out.println("It's gonna explode !");
-		this.setPixels();
-		// Transformation des Obstacle en Wall
 		LinkedList<Wall> walls = new LinkedList<>();
 		for (Obstacle o : window.getModel().getObstacles()) {
 			walls.addAll(o.getWalls());
 		}
-		for (Pixel p : pixels) {
-			p.drawSelf(g2d, (AccessPoint) window.comboBoxAp.getSelectedItem(), walls);
-		}
+		for (int i = 0; i < this.getHeight(); i++) {
+			for (int j = 0; j < this.getWidth(); j++) {
+				System.out.println(i+":"+j);
+				double attenuation = Simulation.getAttenuation(new Point2D.Double(i,j), (AccessPoint) window.comboBoxAp.getSelectedItem(), walls);
+				g2d.setColor(new Color( (int) attenuation, (int) attenuation, (int) attenuation));
+				g2d.draw((Shape) new Point2D.Double(i,j));
+				}
+			}
 		/*
 		 * for (SignalArea sa : simulation.getSignalAreas()) { g2d.setColor(new
 		 * Color(randomGen.nextInt(MAX_INT_COLOR))); g2d.fill(sa); }
@@ -70,11 +73,4 @@ public class Panel extends JPanel {
 		}
 	}
 
-	public void setPixels() {
-		for (int i = 0; i < this.getHeight(); i++) {
-			for (int j = 0; j < this.getWidth(); j++) {
-				pixels.add((Pixel) new Point2D.Double(i, j));
-			}
-		}
-	}
 }
