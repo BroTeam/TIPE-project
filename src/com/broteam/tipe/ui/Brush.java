@@ -88,8 +88,9 @@ public class Brush extends MouseAdapter {
         case 3:
             return new Door(startPt, endPt, win.getSelectedMaterial());
         case 4:
-            int pow = win.getSelectedPower();
-            return new AccessPoint(endPt, pow);
+            double pow = win.getSelectedPower();
+            double freq = win.getSelectedFrequency();
+            return new AccessPoint(endPt, pow, freq);
         default:
             throw new NoShapeChosenException();
         }

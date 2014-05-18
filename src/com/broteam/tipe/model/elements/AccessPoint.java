@@ -19,14 +19,16 @@ public class AccessPoint extends Element {
         }
         AP_IMG = img;
     }
-    
-    private Point2D location;
-    private int power;
 
-    public AccessPoint(Point2D location, int power) {
+    private Point2D location;
+    private double power;
+    private double frequency;
+
+    public AccessPoint(Point2D location, double power, double frequency) {
         super();
         this.location = location;
         this.power = power;
+        this.frequency = frequency;
     }
 
     public BufferedImage getImage() {
@@ -37,18 +39,22 @@ public class AccessPoint extends Element {
         return location;
     }
 
-    public int getPower() {
+    public double getPower() {
         return power;
     }
-    
-    @Override
-	public String toString() {
-    	return ("AP : ("+location.getX()+","+location.getY()+") : "+power);
+
+    public double getFrequency() {
+        return frequency;
     }
 
-	@Override
-	public void drawSelf(Graphics2D g2d) {
+    @Override
+    public String toString() {
+        return ("AP : (" + location.getX() + "," + location.getY() + ") : " + power);
+    }
+
+    @Override
+    public void drawSelf(Graphics2D g2d) {
         g2d.drawImage(AP_IMG, (int) location.getX(), (int) location.getY(), null);
-	}
+    }
 
 }

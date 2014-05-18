@@ -29,6 +29,18 @@ public class SignalArea extends Area {
     private double attenuation;
 
     /**
+     * Creates a signal area with 0 attenuation.
+     * 
+     * @param s
+     *            The shape of this area.
+     */
+    public SignalArea(Shape s) {
+        super(s);
+        this.obstacles = new LinkedList<>();
+        this.attenuation = 0;
+    }
+
+    /**
      * Creates a signal area representing the shadow of the specified wall.
      * 
      * @param w
@@ -59,6 +71,10 @@ public class SignalArea extends Area {
         return obstacles;
     }
 
+    public double getObstaclesAttenuation() {
+        return attenuation;
+    }
+
     /**
      * Reduces this {@link SignalArea} to its intersection with the specified area.
      * 
@@ -79,7 +95,7 @@ public class SignalArea extends Area {
      *            The first area to intersect.
      * @param area2
      *            The second area to intersect.
-     * @return THe intersection of the 2 specified areas.
+     * @return The intersection of the 2 specified areas.
      */
     public static SignalArea intersect(SignalArea area1, SignalArea area2) {
         SignalArea intersection = new SignalArea(area1);
