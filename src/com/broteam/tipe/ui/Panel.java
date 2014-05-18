@@ -8,9 +8,9 @@ import java.util.Random;
 import javax.swing.JPanel;
 
 import com.broteam.tipe.model.Model;
-import com.broteam.tipe.model.Simulation;
 import com.broteam.tipe.model.elements.Element;
 import com.broteam.tipe.signal.SignalArea;
+import com.broteam.tipe.signal.Simulation;
 
 public class Panel extends JPanel {
 

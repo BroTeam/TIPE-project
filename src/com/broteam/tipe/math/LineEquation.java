@@ -6,7 +6,7 @@ import java.awt.geom.Point2D;
 /**
  * Represents a straight line by its Cartesian equation {@code ax + by + c = 0}.
  */
-public class LineEquation {
+class LineEquation {
 
     /** Coefficient {@code a} in the Cartesian equation. */
     public double a;

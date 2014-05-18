@@ -1,13 +1,39 @@
 package com.broteam.tipe.signal;
 
+import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TreeMap;
 
-/**
- * Provides the method {@link #createExclusiveAreas(List)} to prepare the
- * {@link SignalArea}s for display.
- */
-public class AreaIntersector {
+import com.broteam.tipe.math.Geometry;
+import com.broteam.tipe.model.elements.AccessPoint;
+import com.broteam.tipe.model.elements.Obstacle;
+import com.broteam.tipe.model.elements.Wall;
+import com.broteam.tipe.ui.Panel;
+
+public class Simulation {
+
+    private List<SignalArea> areas = new LinkedList<>();
+    
+    public List<SignalArea> getSignalAreas() {
+    	return areas;
+    }
+    
+    public void clear() {
+        areas.clear();
+    }
+
+    public void launchSimulation(AccessPoint ap, LinkedList<Obstacle> obstacles, double panelWidth, double panelHeight) {
+        LinkedList<SignalArea> overlappingAreas = new LinkedList<>();
+        for (Obstacle o : obstacles) {
+            if (o != null) {
+                overlappingAreas.addAll(o.getAttenuatedAreas(ap, panelWidth, panelHeight));
+            }
+        }
+        this.areas = createExclusiveAreas(overlappingAreas);
+    }
 
     /**
      * Intersects all areas in the {@code overlappingAres} list, and returns a list
@@ -22,7 +48,7 @@ public class AreaIntersector {
      *            A list of {@link SignalArea}s that may overlap.
      * @return The list of the corresponding {@link SignalArea}s with no overlap.
      */
-    public static List<SignalArea> createExclusiveAreas(List<SignalArea> overlappingAreas) {
+    private static List<SignalArea> createExclusiveAreas(List<SignalArea> overlappingAreas) {
         List<SignalArea> mutExAreas = new LinkedList<>();
         while (!overlappingAreas.isEmpty()) {
             SignalArea current = overlappingAreas.remove(0);
@@ -49,7 +75,7 @@ public class AreaIntersector {
         List<SignalArea> currentMutEx = new LinkedList<>();
         while (!mutExAreas.isEmpty()) {
             SignalArea mutExArea = mutExAreas.remove(0);
-            SignalArea intersection = intersect(current, mutExArea);
+            SignalArea intersection = SignalArea.intersect(current, mutExArea);
 
             // the remaining part of 'mutExArea' is necessarily exclusive with
             // all other shapes, because 'mutExArea' was.
@@ -80,20 +106,37 @@ public class AreaIntersector {
     }
 
     /**
-     * Returns the intersection of {@code area1} and {@code area2}, and subtract it
-     * to the original areas.
+     * Returns the total attenuation at the specified {@link Point2D} by calculating
+     * which {@link Wall}(s) the signal had intersected.
      * 
-     * @param area1
-     *            The first area to intersect.
-     * @param area2
-     *            The second area to intersect.
-     * @return THe intersection of the 2 specified areas.
+     * @param pixel
+     *            The {@link Point2D} where we want the total attenuation.
+     * @param ap
+     *            The source of the signal.
+     * @param walls
+     *            The {@link LinkedList} of all the {@link Wall}s in the
+     *            {@link Panel}.
+     * @return The total attenuation at the specified {@link Point2D}.
      */
-    private static SignalArea intersect(SignalArea area1, SignalArea area2) {
-        SignalArea intersection = new SignalArea(area1);
-        intersection.intersect(area2);
-        area1.subtract(intersection);
-        area2.subtract(intersection);
-        return intersection;
+    public static double getAttenuation(Point2D pixel, AccessPoint ap, LinkedList<Wall> walls) {
+        Line2D.Double line = new Line2D.Double(pixel, ap.getLocation());
+        TreeMap<Point2D, Double> attenuationMap = new TreeMap<>(Comparator.comparingDouble(p -> p.distance(ap
+                .getLocation())));
+        for (Wall w : walls) {
+            if (line.intersectsLine((Line2D) w.getShape())) {
+                attenuationMap.put(Geometry.getIntersection(line, (Line2D.Double) w.getShape()), w.getMaterial()
+                        .getAttenuationFactor());
+            }
+        }
+        // Calcul de l'atténuation totale au pixel.
+        double currentAttenuation = 0;
+        for (int i = 0; i < attenuationMap.size(); i++) {
+            // ALORS JE NE SAIS PAS SI CA MARCHE CA
+            Point2D intersectionPt = (Point2D) attenuationMap.navigableKeySet().toArray()[i];
+            double fspl = Physics.FSPL(intersectionPt.distance(ap.getLocation()));
+            currentAttenuation += (fspl + attenuationMap.get(intersectionPt));
+        }
+        return currentAttenuation;
+
     }
 }

@@ -5,7 +5,7 @@ import java.awt.geom.Point2D;
 /**
  * Describes the possible sides of a rectangle.
  */
-public enum Side {
+enum Side {
     TOP {
         @Override
         public Point2D getCorner(double rectWidth, double rectHeight) {

@@ -11,43 +11,38 @@ import com.broteam.tipe.signal.SignalArea;
 
 public abstract class Obstacle extends Element {
 
-    Shape sha;
-    Material mat;
+    private Shape shape;
+    private Material material;
 
     protected Obstacle(Shape s, Material m) {
         super();
-        sha = s;
-        setMaterial(m);
-    }
-
-    public void setMaterial(Material m) {
-        if (m != null) {
-            mat = m;
-        } else {
+        if (m == null) {
             throw new IllegalArgumentException();
         }
+        shape = s;
+        material = m;
     }
 
     public Material getMaterial() {
-        return mat;
+        return material;
     }
 
     public Shape getShape() {
-        return sha;
+        return shape;
     }
-    
+
     @Override
-	public void drawSelf(Graphics2D g2d) {
-        g2d.setColor(mat.getColorMat());
+    public void drawSelf(Graphics2D g2d) {
+        g2d.setColor(material.getColorMat());
         g2d.draw(this.getShape());
     }
 
     /**
-     * Returns the areas attenuated by each part of this obstacle with respect to the
-     * specified AP.
+     * Returns the {@link SignalArea}s attenuated by each part of this obstacle with
+     * respect to the specified {@link AccessPoint}.
      * <p>
-     * There should be one area per wall of this obstacle. These {@code Area}s may
-     * overlap, intersections should not be dealt with by this method.
+     * There should be one area per wall of this obstacle. These {@link SignalArea}s
+     * may overlap, intersections should not be dealt with by this method.
      * </p>
      *
      * @param ap
@@ -61,7 +56,7 @@ public abstract class Obstacle extends Element {
      * @return a non-null list of {@code Area}s.
      */
     public abstract List<SignalArea> getAttenuatedAreas(AccessPoint ap, double panelWidth, double panelHeight);
-    
+
     public abstract List<Wall> getWalls();
 
     public static List<Wall> obstaclesToWalls(LinkedList<Obstacle> obstacles) {

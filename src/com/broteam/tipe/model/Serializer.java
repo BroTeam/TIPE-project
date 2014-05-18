@@ -3,7 +3,7 @@ package com.broteam.tipe.model;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class Serializer {
+class Serializer {
 
     public static void serialize(Model model, OutputStream out) {
         // TODO Joffrey-generated method stub
