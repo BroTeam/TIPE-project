@@ -48,12 +48,7 @@ public class Panel extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         // areas before elements, so that we can see the elements
         System.out.println("It's gonna explode !");
-        LinkedList<Wall> walls = new LinkedList<>();
-        if (!(m.getObstacles() == null)) {
-            for (Obstacle o : m.getObstacles()) {
-                walls.addAll(o.getWalls());
-            }
-        }
+        LinkedList<Wall> walls = (LinkedList<Wall>) Obstacle.obstaclesToWalls(m.getObstacles());
         for (int i = 0; i < this.getHeight(); i++) {
             for (int j = 0; j < this.getWidth(); j++) {
                 System.out.println(i + ":" + j);
