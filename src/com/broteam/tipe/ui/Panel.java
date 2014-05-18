@@ -16,16 +16,19 @@ import com.broteam.tipe.signal.Simulation;
 
 public class Panel extends JPanel {
 
-    private static final boolean DRAW_AREA_BOUNDARIES = false;
-
     private Window window;
     private List<DrawableArea> simulationAreas = new LinkedList<>();
+    private boolean drawAreaBoundaries = false;
 
     /**
      * Default constructor.
      */
     Panel(Window window) {
         this.window = window;
+    }
+    
+    public void setDrawAreaBoundaries(boolean enabled) {
+        drawAreaBoundaries = enabled;
     }
 
     public void updateSimulationDisplay(Simulation simulation) {
@@ -64,7 +67,7 @@ public class Panel extends JPanel {
     }
 
     private void paintAreasBoundaries(Graphics2D g2d) {
-        if (DRAW_AREA_BOUNDARIES) {
+        if (drawAreaBoundaries) {
             g2d.setColor(Color.GRAY);
             final float dash1[] = { 4.0f };
             final BasicStroke dashed = new BasicStroke(1f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 5.0f,
