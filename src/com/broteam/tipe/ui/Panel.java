@@ -41,12 +41,18 @@ public class Panel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        Model m = window.getModel();
+        if (m == null) {
+        	return;
+        }
         Graphics2D g2d = (Graphics2D) g;
         // areas before elements, so that we can see the elements
         System.out.println("It's gonna explode !");
         LinkedList<Wall> walls = new LinkedList<>();
-        for (Obstacle o : window.getModel().getObstacles()) {
-            walls.addAll(o.getWalls());
+        if (!(m.getObstacles() == null)) {
+            for (Obstacle o : m.getObstacles()) {
+                walls.addAll(o.getWalls());
+            }
         }
         for (int i = 0; i < this.getHeight(); i++) {
             for (int j = 0; j < this.getWidth(); j++) {
@@ -62,7 +68,6 @@ public class Panel extends JPanel {
          * Color(randomGen.nextInt(MAX_INT_COLOR))); g2d.fill(sa); }
          */
         // draw elements on top of areas
-        Model m = window.getModel();
         if (m != null) {
             for (Element e : m.getElements()) {
                 if (e != null) {
