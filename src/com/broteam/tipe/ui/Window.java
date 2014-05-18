@@ -2,24 +2,21 @@ package com.broteam.tipe.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import com.broteam.tipe.model.Model;
 import com.broteam.tipe.model.ModelListener;
 import com.broteam.tipe.model.elements.AccessPoint;
 import com.broteam.tipe.signal.Material;
 import com.broteam.tipe.signal.Simulation;
-
-import java.awt.Font;
-import java.io.FileNotFoundException;
 
 public class Window extends JFrame implements ModelListener {
 
@@ -235,7 +232,7 @@ public class Window extends JFrame implements ModelListener {
         }
         this.model = model;
         boolean isModelPresent = model != null;
-        fileSave.setEnabled(isModelPresent);
+        fileSave.setEnabled(isModelPresent && model.hasBackingFile());
         fileSaveAs.setEnabled(isModelPresent);
         actionClear.setEnabled(isModelPresent);
         actionLaunchSimulation.setEnabled(isModelPresent && !model.getAccessPoints().isEmpty());

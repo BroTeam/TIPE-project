@@ -112,6 +112,10 @@ public class Model {
     public LinkedList<AccessPoint> getAccessPoints() {
         return aps;
     }
+    
+    public boolean hasBackingFile() {
+        return backingFile != null;
+    }
 
     /**
      * Saves this {@link Model} to the last file used for a save.
