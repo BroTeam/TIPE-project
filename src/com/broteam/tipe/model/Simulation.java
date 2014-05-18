@@ -39,7 +39,7 @@ public class Simulation {
     }
 
     /**
-     * Returns the total attenuation at the specified {@link Point2D} by calculating
+     * Returns the total attenuation (in dB) at the specified {@link Point2D} by calculating
      * which {@link Wall}(s) the signal had intersected.
      * 
      * @param pixel
@@ -49,7 +49,7 @@ public class Simulation {
      * @param walls
      *            The {@link LinkedList} of all the {@link Wall}s in the
      *            {@link Panel}.
-     * @return The total attenuation at the specified {@link Point2D}.
+     * @return The total attenuation (in dB) at the specified {@link Point2D}.
      */
     public static double getAttenuation(Point2D pixel, AccessPoint ap, LinkedList<Wall> walls) {
         Line2D.Double line = new Line2D.Double(pixel, ap.getLocation());
@@ -62,14 +62,10 @@ public class Simulation {
             }
         }
         // Calcul de l'atténuation totale au pixel.
-        double currentAttenuation = 0;
-        for (int i = 0; i < attenuationMap.size(); i++) {
-            // ALORS JE NE SAIS PAS SI CA MARCHE CA
-            Point2D intersectionPt = (Point2D) attenuationMap.navigableKeySet().toArray()[i];
-            double fspl = Physics.FSPL(intersectionPt.distance(ap.getLocation()));
-            currentAttenuation += (fspl + attenuationMap.get(intersectionPt));
+        double currentAttenuation = Physics.FSPL(pixel.distance(ap.getLocation()));
+        for (Point2D intersectionPt : attenuationMap.navigableKeySet() ) {
+            currentAttenuation += attenuationMap.get(intersectionPt);
         }
         return currentAttenuation;
-
     }
 }
