@@ -25,11 +25,11 @@ public class Simulation {
         areas.clear();
     }
 
-    public void launchSimulation(AccessPoint ap, LinkedList<Obstacle> obstacles, double panelWidth, double panelHeight) {
+    public void launchSimulation(AccessPoint ap, LinkedList<Obstacle> obstacles, double rightLimit, double bottomLimit) {
         LinkedList<SignalArea> overlappingAreas = new LinkedList<>();
         for (Obstacle o : obstacles) {
             if (o != null) {
-                overlappingAreas.addAll(o.getAttenuatedAreas(ap, panelWidth, panelHeight));
+                overlappingAreas.addAll(o.getAttenuatedAreas(ap, rightLimit, bottomLimit));
             }
         }
         this.areas = createExclusiveAreas(overlappingAreas);
@@ -106,8 +106,8 @@ public class Simulation {
     }
 
     /**
-     * Returns the total attenuation (in dB) at the specified {@link Point2D} by calculating
-     * which {@link Wall}(s) the signal had intersected.
+     * Returns the total attenuation (in dB) at the specified {@link Point2D} by
+     * calculating which {@link Wall}(s) the signal had intersected.
      * 
      * @param pixel
      *            The {@link Point2D} where we want the total attenuation.
@@ -118,6 +118,8 @@ public class Simulation {
      *            {@link Panel}.
      * @return The total attenuation (in dB) at the specified {@link Point2D}.
      */
+    // TODO simplifier la fonction car l'algorithme ne mérite pas une fonction si
+    // complexe ? (Ou on laisse pour l'évolutivité)
     public static double getAttenuation(Point2D pixel, AccessPoint ap, LinkedList<Wall> walls) {
         Line2D.Double line = new Line2D.Double(pixel, ap.getLocation());
         TreeMap<Point2D, Double> attenuationMap = new TreeMap<>(Comparator.comparingDouble(p -> p.distance(ap
@@ -130,7 +132,7 @@ public class Simulation {
         }
         // Calcul de l'atténuation totale au pixel.
         double currentAttenuation = Physics.FSPL(pixel.distance(ap.getLocation()));
-        for (Point2D intersectionPt : attenuationMap.navigableKeySet() ) {
+        for (Point2D intersectionPt : attenuationMap.navigableKeySet()) {
             currentAttenuation += attenuationMap.get(intersectionPt);
         }
         return currentAttenuation;

@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.broteam.tipe.model.elements.AccessPoint;
 import com.broteam.tipe.model.elements.Obstacle;
+
 import com.broteam.tipe.model.elements.Wall;
 
 /**
