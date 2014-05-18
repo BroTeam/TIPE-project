@@ -19,9 +19,12 @@ public class DrawableArea {
     private int xPosition;
     private int yPosition;
 
+    private final double MAX_POWER;
+
     public DrawableArea(SignalArea area, Simulation simulation) {
         this.area = area;
         this.simulation = simulation;
+        this.MAX_POWER = simulation.getMaxPower();
         Rectangle bounds = area.getBounds();
         xPosition = bounds.x;
         yPosition = bounds.y;
@@ -49,9 +52,9 @@ public class DrawableArea {
 
     private int getColor(int x, int y) {
         double power = simulation.getPower(x, y, area);
-        int scaledPower = (int) (power * 255d / 100d);
-        int red = 255 - scaledPower;
-        int green = scaledPower;
+        int scaledPower = (int) (power * 255d / MAX_POWER);
+        int green = scaledPower % 256;
+        int red = 255 - green;
         int argb = (OPACITY << 24) + (red << 16) + (green << 8);
         System.out.println("power = " + power + "  R = " + red + "  G = " + green + "  argb = 0x"
                 + Integer.toHexString(argb));

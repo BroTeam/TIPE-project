@@ -8,10 +8,12 @@ import com.broteam.tipe.model.elements.AccessPoint;
 import com.broteam.tipe.model.elements.Obstacle;
 
 public class Simulation {
+    
+    private static final double ANTENNA_GAIN = 5; // dB
 
     private AccessPoint ap;
     private MutuallyExclusiveAreas areas = new MutuallyExclusiveAreas();
-    
+
     /* Buffer */
     private double apPower;
     private double apFreq;
@@ -40,6 +42,10 @@ public class Simulation {
         }
     }
     
+    public double getMaxPower() {
+        return Physics.applyDBGain(apPower, ANTENNA_GAIN); // antenna gain of 5dB
+    }
+
     /**
      * Returns the power of the signal at the specified point.
      * 
@@ -52,8 +58,8 @@ public class Simulation {
      * @return The total attenuation (in dB) at the specified point.
      */
     public double getPower(int x, int y, SignalArea area) {
-        double attenuation = Physics.FSPL(apLoc.distance(x, y)/30d, apFreq) + area.getObstaclesAttenuation();
-        double initPower = apPower;
-        return Physics.attenuate(initPower, attenuation);   
+        double distance = apLoc.distance(x, y) / Physics.PIXELS_PER_METER;
+        double attenuation = /*Physics.freeSpacePathLossDB(distance, apFreq) +*/ area.getObstaclesAttenuation();
+        return Physics.applyDBGain(apPower, ANTENNA_GAIN + attenuation);
     }
 }
