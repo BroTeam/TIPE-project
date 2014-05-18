@@ -54,7 +54,11 @@ public class AccessPoint extends Element {
 
     @Override
     public void drawSelf(Graphics2D g2d) {
-        g2d.drawImage(AP_IMG, (int) location.getX(), (int) location.getY(), null);
+        int xPos = (int) location.getX();
+        int yPos = (int) location.getY();
+        int halfWidth = AP_IMG.getWidth() / 2;
+        int halfHeight = AP_IMG.getHeight() / 2;
+        g2d.drawImage(AP_IMG, xPos - halfWidth, yPos - halfHeight, null);
     }
 
 }
