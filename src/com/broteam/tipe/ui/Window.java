@@ -4,9 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.List;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import com.broteam.tipe.model.Model;
 import com.broteam.tipe.model.ModelListener;
@@ -379,7 +383,16 @@ public class Window extends JFrame implements ModelListener {
         simulationPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         optionsPanel.add(simulationPanel);
         optionsPanel.add(Box.createVerticalStrut(5));
-
+        
+        JCheckBox chckbxAreaBoundaries = new JCheckBox("Afficher les zones exclusives");
+        optionsPanel.add(chckbxAreaBoundaries);
+        chckbxAreaBoundaries.addItemListener(new ItemListener() {
+            @Override
+			public void itemStateChanged(ItemEvent e) {
+                panel.setDrawAreaBoundaries(chckbxAreaBoundaries.isSelected());
+                panel.repaint();
+            }
+        });
         return optionsPanel;
     }
 
