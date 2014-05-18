@@ -57,6 +57,7 @@ public class Window extends JFrame implements ModelListener {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("fileNew");
                 setModel(new Model());
+                panel.repaint();
             }
         };
         fileNew.putValue(AbstractAction.SHORT_DESCRIPTION, text);

@@ -2,8 +2,9 @@ package com.broteam.tipe.signal;
 
 public class Physics {
 
-    private static final double LIGHTSPEED = 299792458;
-    private static final double FSPL_CONSTANT_METERS_AND_MHZ = 20 * Math.log(4 * Math.PI * 1000000 / LIGHTSPEED);
+    private static final double LOG_10 = Math.log(10);
+    private static final double LIGHTSPEED = 299792458d;
+    private static final double FSPL_CONSTANT_METERS_AND_GHZ = 20 * Math.log(4d * Math.PI * 1000000000d / LIGHTSPEED);
 
     /**
      * Returns the free space loss in dB for a signal of the specified frequency when
@@ -12,11 +13,11 @@ public class Physics {
      * @param distance
      *            The distance traveled in meters.
      * @param frequency
-     *            The frequency of the signal in MHz.
+     *            The frequency of the signal in GHz.
      * @return The free space loss value.s
      */
     public static double FSPL(double distance, double frequency) {
-        return 20 * Math.log(distance) + 20 * Math.log(frequency) + FSPL_CONSTANT_METERS_AND_MHZ;
+        return -(20 * Math.log(distance * frequency) / LOG_10 + FSPL_CONSTANT_METERS_AND_GHZ);
     }
 
     /**

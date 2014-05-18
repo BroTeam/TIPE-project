@@ -52,7 +52,7 @@ public class Simulation {
      * @return The total attenuation (in dB) at the specified point.
      */
     public double getPower(int x, int y, SignalArea area) {
-        double attenuation = Physics.FSPL(apLoc.distance(x, y)/10d, apFreq) + area.getObstaclesAttenuation();
+        double attenuation = Physics.FSPL(apLoc.distance(x, y)/30d, apFreq) + area.getObstaclesAttenuation();
         double initPower = apPower;
         return Physics.attenuate(initPower, attenuation);   
     }

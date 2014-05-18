@@ -46,11 +46,13 @@ public class DrawableArea {
 
     private int getColor(int x, int y) {
         double power = simulation.getPower(x, y, area);
-        System.out.println("power = " + power);
-        int r = (int) power;
-        int g = (int) power;
-        int b = (int) power;
-        return r << 16 + g << 8 + b;
+        int scaledPower = (int) (power * 255d / 100d);
+        int alpha = 180; // opaque
+        int red = 255 - scaledPower;
+        int green = scaledPower;
+        int argb = (alpha << 24) + (red << 16) + (green << 8);
+        System.out.println("power = " + power + "  R = " + red + "  G = " + green + "  argb = 0x" + Integer.toHexString(argb));
+        return argb;
     }
 
     public int getX() {
