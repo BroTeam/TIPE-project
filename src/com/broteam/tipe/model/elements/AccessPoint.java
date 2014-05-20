@@ -49,7 +49,7 @@ public class AccessPoint extends Element {
 
     @Override
     public String toString() {
-        return ("AP : (" + location.getX() + "," + location.getY() + ") : " + power);
+        return ("AP (" + location.getX() + "," + location.getY() + ") : " + frequency +" GHz");
     }
 
     @Override
