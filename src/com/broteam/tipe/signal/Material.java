@@ -59,6 +59,6 @@ public enum Material {
 
     @Override
     public String toString() {
-        return displayName;
+        return displayName+ " : " + attenuationDb + " (dB)";
     }
 }
