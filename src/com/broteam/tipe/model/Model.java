@@ -13,13 +13,13 @@ import com.broteam.tipe.model.elements.Obstacle;
 public class Model {
 
     /** Name of the file used for the last save */
-    private String backingFile;
+    private transient String backingFile;
 
     private LinkedList<Element> elements = new LinkedList<>();
     private LinkedList<Obstacle> obstacles = new LinkedList<>();
     private LinkedList<AccessPoint> aps = new LinkedList<>();
 
-    private LinkedList<ModelListener> listeners = new LinkedList<>();
+    private transient LinkedList<ModelListener> listeners = new LinkedList<>();
 
     /**
      * Adds the specified {@link Element} to this {@link Model}.
