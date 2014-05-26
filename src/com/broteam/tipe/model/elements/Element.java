@@ -2,10 +2,12 @@ package com.broteam.tipe.model.elements;
 
 import java.awt.Graphics2D;
 
+import java.io.Serializable;
+
 /**
  * Represents any element that can be drawn.
  */
-public abstract class Element {
+public abstract class Element implements Serializable {
 
     /**
      * Draws this element using the specified {@link Graphics2D}.

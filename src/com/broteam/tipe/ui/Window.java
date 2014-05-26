@@ -9,6 +9,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.io.File;
 
 import javax.swing.*;
 
@@ -69,6 +70,21 @@ public class Window extends JFrame implements ModelListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("fileOpen");
+
+                JFileChooser fc = new JFileChooser();
+                int returnVal = fc.showOpenDialog(Window.this);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File file = fc.getSelectedFile();
+                    System.out.println("Opening: " + file.getName() + ".");
+                    try {
+                    	setModel(Model.loadFrom(file.getAbsolutePath()));
+                    }
+                    catch (FileNotFoundException ex) {
+                    	ex.printStackTrace();
+                    }
+                } else {
+                	System.out.println("Open command cancelled by user.");
+                }
             }
         };
         fileOpen.putValue(AbstractAction.SHORT_DESCRIPTION, text);
@@ -81,6 +97,9 @@ public class Window extends JFrame implements ModelListener {
                 System.out.println("fileSave");
                 if (model == null) {
                     throw new IllegalStateException("No model created, action fileSave should be disabled.");
+                }
+                else if (!model.hasBackingFile()) {
+                	throw new IllegalStateException("No backing file, action fileSave should be disabled.");
                 }
                 try {
                     model.save();
@@ -97,6 +116,24 @@ public class Window extends JFrame implements ModelListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("fileSaveAs");
+                if (model == null) {
+                    throw new IllegalStateException("No model created, action fileSave should be disabled.");
+                }
+
+                JFileChooser fc = new JFileChooser();
+                int returnVal = fc.showSaveDialog(Window.this);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File file = fc.getSelectedFile();
+                    System.out.println("Saving to file: " + file.getName() + ".");
+                    try {
+                    	model.saveTo(file.getAbsolutePath());
+                    }
+                    catch (FileNotFoundException ex) {
+                    	ex.printStackTrace();
+                    }
+                } else {
+                	System.out.println("Save to command cancelled by user.");
+                }
             }
         };
         fileSaveAs.putValue(AbstractAction.SHORT_DESCRIPTION, text);
