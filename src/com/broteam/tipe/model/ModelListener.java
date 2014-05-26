@@ -4,6 +4,7 @@ import com.broteam.tipe.model.elements.AccessPoint;
 import com.broteam.tipe.model.elements.Element;
 import com.broteam.tipe.model.elements.Obstacle;
 
+@SuppressWarnings("unused")
 public interface ModelListener {
 
     default void onElementAdded(Element e) {};

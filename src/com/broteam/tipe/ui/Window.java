@@ -77,7 +77,13 @@ public class Window extends JFrame implements ModelListener {
                     File file = fc.getSelectedFile();
                     System.out.println("Opening: " + file.getName() + ".");
                     try {
-                    	setModel(Model.loadFrom(file.getAbsolutePath()));
+                    	if (model != null)
+                    		model.clear();
+                        simulation.clear();
+                        panel.updateSimulationDisplay(simulation);
+                        panel.repaint();
+
+                        setModel(Model.loadFrom(file.getAbsolutePath()));
                     }
                     catch (FileNotFoundException ex) {
                     	ex.printStackTrace();

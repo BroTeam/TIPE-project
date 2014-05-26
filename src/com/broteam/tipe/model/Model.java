@@ -120,6 +120,11 @@ public class Model implements Serializable {
         return backingFile != null;
     }
 
+    public void setBackingFile(String backingFile)
+    {
+    	this.backingFile = backingFile;
+    }
+
     /**
      * Saves this {@link Model} to the last file used for a save.
      * 
@@ -165,18 +170,21 @@ public class Model implements Serializable {
     public static Model loadFrom(String filename) throws FileNotFoundException {
         Model model = Serializer.deserialize(new FileInputStream(filename));
         // everything went well, remember the original file
-        model.backingFile = filename;
+        model.setBackingFile(filename);
         return model;
     }
 
     public void registerListener(ModelListener listener) {
         System.out.println("Listener registered: " + listener.getClass().getSimpleName());
+        if (listeners == null)
+        	listeners = new LinkedList<>();
         listeners.add(listener);
     }
 
     public void unregisterListener(ModelListener listener) {
         System.out.println("Listener unregistered: " + listener.getClass().getSimpleName());
-        listeners.remove(listener);
+        if (listeners != null)
+        	listeners.remove(listener);
     }
 
     private void fireElementAdded(Element e) {

@@ -26,23 +26,14 @@ class Serializer {
      */
     public static void serialize(Model model, FileOutputStream os) {
         ObjectOutputStream oos = null;
-
         try {
             oos = new ObjectOutputStream(os);
             oos.writeObject(model);
             oos.flush();
+            oos.close();
         }
         catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
-            try {
-                if (oos != null)
-                    oos.close();
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 
@@ -55,22 +46,13 @@ class Serializer {
     public static Model deserialize(FileInputStream is) {
         Model model = null;
         ObjectInputStream ois = null;
-
         try {
             ois = new ObjectInputStream(is);
             model = (Model)ois.readObject();
+            ois.close();
         }
         catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
-        }
-        finally {
-            try {
-                if (ois != null)
-                    ois.close();
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
         }
         return model;
     }
