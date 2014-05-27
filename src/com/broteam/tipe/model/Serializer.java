@@ -1,23 +1,16 @@
 package com.broteam.tipe.model;
 
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
-import com.broteam.tipe.model.elements.AccessPoint;
-import com.broteam.tipe.model.elements.Element;
-import com.broteam.tipe.model.elements.Obstacle;
-
 class Serializer {
 
     /**
-     * Saves a Model object to the specified output stream.
+     * Saves a {@link Model} object to the specified output stream.
      * 
      * @param model
      *            The Model object to save
@@ -25,36 +18,28 @@ class Serializer {
      *            The output stream
      */
     public static void serialize(Model model, FileOutputStream os) {
-        ObjectOutputStream oos = null;
-        try {
-            oos = new ObjectOutputStream(os);
+        try (ObjectOutputStream oos = new ObjectOutputStream(os)) {
             oos.writeObject(model);
             oos.flush();
-            oos.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * Loads a Model object from the specified input stream.
+     * Loads a {@link Model} object from the specified {@link InputStream}.
      * 
      * @param is
      *            The input stream
+     * @return the {@link Model} created from the input stream.
      */
     public static Model deserialize(FileInputStream is) {
-        Model model = null;
-        ObjectInputStream ois = null;
-        try {
-            ois = new ObjectInputStream(is);
-            model = (Model)ois.readObject();
-            ois.close();
-        }
-        catch (IOException | ClassNotFoundException e) {
+        try (ObjectInputStream ois = new ObjectInputStream(is)) {
+            return (Model) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return model;
+        return null;
     }
     
 }
