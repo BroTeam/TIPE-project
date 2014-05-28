@@ -2,11 +2,11 @@ package com.broteam.tipe.model;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-
 import java.io.FileNotFoundException;
-
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
-
 import java.util.LinkedList;
 
 import com.broteam.tipe.model.elements.AccessPoint;
@@ -127,12 +127,9 @@ public class Model implements Serializable {
 
     /**
      * Saves this {@link Model} to the last file used for a save.
-     * 
-     * @throws FileNotFoundException
-     *             if the file used to load or save this model cannot be accessed
-     *             anymore
+     * @throws IOException 
      */
-    public void save() throws FileNotFoundException {
+    public void save() throws IOException {
         if (backingFile == null) {
             throw new IllegalStateException("This model was never saved.");
         }
@@ -144,16 +141,18 @@ public class Model implements Serializable {
      * 
      * @param filename
      *            The file to save this model to.
-     * @throws FileNotFoundException
-     *             if the file exists but is a directory rather than a regular file,
-     *             does not exist but cannot be created, or cannot be opened for any
-     *             other reason
+     * @throws IOException 
      * @throws SecurityException
      *             if a security manager exists and its checkWrite method denies
      *             write access to the file
      */
-    public void saveTo(String filename) throws FileNotFoundException {
-        Serializer.serialize(this, new FileOutputStream(filename));
+    public void saveTo(String filename) throws IOException {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+		    oos.writeObject(this);
+		    oos.flush();
+		} catch (IOException e) {
+		    throw new IOException("Unexpected error while saving to file '" + filename + "'.", e);
+		}
         // everything went well, remember the saved file
         this.backingFile = filename;
     }
@@ -164,14 +163,19 @@ public class Model implements Serializable {
      * @param filename
      *            The file to load the model from.
      * @return a new {@code Model} representing the file's data.
-     * @throws FileNotFoundException
-     *             If the specified file was not found.
+     * @throws IOException 
      */
-    public static Model loadFrom(String filename) throws FileNotFoundException {
-        Model model = Serializer.deserialize(new FileInputStream(filename));
-        // everything went well, remember the original file
-        model.setBackingFile(filename);
-        return model;
+    public static Model loadFrom(String filename) throws IOException {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
+        	Model model = (Model) ois.readObject();
+            // everything went well, remember the original file
+            model.setBackingFile(filename);
+            return model;
+        } catch (FileNotFoundException e) {
+            throw e;
+        } catch (IOException | ClassNotFoundException e) {
+            throw new IOException("I/O error while loading model from file '" + filename + "'", e);
+        }
     }
 
     public void registerListener(ModelListener listener) {

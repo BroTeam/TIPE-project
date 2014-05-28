@@ -20,6 +20,10 @@ public class Brush extends MouseAdapter {
         win = w;
     }
 
+    public static void setNoTool() {
+        shapeSelector = 0;
+    }
+
     public static void setRoom() {
         shapeSelector = 1;
     }
