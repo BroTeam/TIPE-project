@@ -12,12 +12,12 @@ public class DrawableArea {
     /** Opacity of the {@link DrawableArea}s. */
     private static final int OPACITY = 180;
 
-    private Simulation simulation;
-    private SignalArea area;
-    private BufferedImage image;
+    private final Simulation simulation;
+    private final SignalArea area;
+    private final BufferedImage image;
 
-    private int xPosition;
-    private int yPosition;
+    private final int xPosition;
+    private final int yPosition;
 
     private final double MAX_POWER;
 
@@ -25,7 +25,7 @@ public class DrawableArea {
         this.area = area;
         this.simulation = simulation;
         this.MAX_POWER = simulation.getMaxPower();
-        Rectangle bounds = area.getBounds();
+        final Rectangle bounds = area.getBounds();
         xPosition = bounds.x;
         yPosition = bounds.y;
         this.image = new BufferedImage(bounds.width, bounds.height, BufferedImage.TYPE_INT_ARGB);
@@ -41,8 +41,8 @@ public class DrawableArea {
     }
 
     private void paintIntoImage() {
-        int w = image.getWidth();
-        int h = image.getHeight();
+        final int w = image.getWidth();
+        final int h = image.getHeight();
         for (int y = 0; y < h; y++) {
             for (int x = 0; x < w; x++) {
                 image.setRGB(x, y, getColor(x, y));
@@ -51,12 +51,13 @@ public class DrawableArea {
     }
 
     private int getColor(int x, int y) {
-        double power = simulation.getPower(x + xPosition, y + yPosition, area);
-        int scaledPower = (int) (power * 255d / MAX_POWER);
-        int green = scaledPower % 256;
-        int red = 255 - green;
-        int argb = (OPACITY << 24) + (red << 16) + (green << 8);
-        //System.out.println("power = " + power + "  R = " + red + "  G = " + green + "  argb = 0x" + Integer.toHexString(argb));
+        final double power = simulation.getPower(x + xPosition, y + yPosition, area);
+        final int scaledPower = (int) (power * 255d / MAX_POWER);
+        final int green = scaledPower % 256;
+        final int red = 255 - green;
+        final int argb = (OPACITY << 24) + (red << 16) + (green << 8);
+        // System.out.println("power = " + power + "  R = " + red + "  G = " + green
+        // + "  argb = 0x" + Integer.toHexString(argb));
         return argb;
     }
 

@@ -39,7 +39,7 @@ public class Geometry {
      * @return The resulting point, which is on an edge of the window.
      */
     private static Point2D getProjectionOnEdge(Point2D source, Point2D wayPoint, double panelWidth, double panelHeight) {
-        LineEquation eq = new LineEquation(source, wayPoint);
+        final LineEquation eq = new LineEquation(source, wayPoint);
         double interX; // X coord of the intersection
         double interY; // Y coord of the intersection
 
@@ -90,14 +90,14 @@ public class Geometry {
      *         lines projected from the source and the wall's extremities.
      */
     public static Shape getWallShadow(Point2D source, Line2D wall, double panelWidth, double panelHeight) {
-        Path2D shadow = new Path2D.Double();
+        final Path2D shadow = new Path2D.Double();
 
-        LineEquation eq = new LineEquation(wall);
-        boolean clockwise = eq.getRelativePostion(source);
-        Point2D p1 = clockwise ? wall.getP1() : wall.getP2();
-        Point2D p2 = clockwise ? wall.getP2() : wall.getP1();
-        Point2D p1proj = getProjectionOnEdge(source, p1, panelWidth, panelHeight);
-        Point2D p2proj = getProjectionOnEdge(source, p2, panelWidth, panelHeight);
+        final LineEquation eq = new LineEquation(wall);
+        final boolean clockwise = eq.getRelativePostion(source);
+        final Point2D p1 = clockwise ? wall.getP1() : wall.getP2();
+        final Point2D p2 = clockwise ? wall.getP2() : wall.getP1();
+        final Point2D p1proj = getProjectionOnEdge(source, p1, panelWidth, panelHeight);
+        final Point2D p2proj = getProjectionOnEdge(source, p2, panelWidth, panelHeight);
 
         // WARNING the points below are added in a specific order to avoid
         // hourglass-like polygons
@@ -109,9 +109,9 @@ public class Geometry {
         shadow.lineTo((int) p1proj.getX(), (int) p1proj.getY());
         // add possible corners between the 2 projections
         Side s = Side.get(p1proj, panelWidth, panelHeight);
-        Side s2 = Side.get(p2proj, panelWidth, panelHeight);
+        final Side s2 = Side.get(p2proj, panelWidth, panelHeight);
         while (s != s2) {
-            Point2D corner = s.getCorner(panelWidth, panelHeight);
+            final Point2D corner = s.getCorner(panelWidth, panelHeight);
             shadow.lineTo(corner.getX(), corner.getY());
             s = s.next();
         }

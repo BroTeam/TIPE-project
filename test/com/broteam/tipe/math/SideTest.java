@@ -19,26 +19,26 @@ public class SideTest {
 
     @Test
     public void testGetCorner() {
-        double height = 10;
-        double width = 8;
+        final double height = 10;
+        final double width = 8;
 
-        Point2D corner = new Point2D.Double(width, 0);
+        final Point2D corner = new Point2D.Double(width, 0);
         assertEquals(Side.TOP.getCorner(width, height), corner);
 
         corner.setLocation(0, 0);
         assertEquals(Side.LEFT.getCorner(width, height), corner);
-        
+
         corner.setLocation(0, height);
         assertEquals(Side.BOTTOM.getCorner(width, height), corner);
-        
+
         corner.setLocation(width, height);
         assertEquals(Side.RIGHT.getCorner(width, height), corner);
     }
 
     @Test
     public void testGet() {
-        double height = 10;
-        double width = 8;
+        final double height = 10;
+        final double width = 8;
 
         assertEquals("Side should be LEFT", Side.get(0, 2, width, height), Side.LEFT);
         assertEquals("Side should be LEFT", Side.get(0, 2.5, width, height), Side.LEFT);

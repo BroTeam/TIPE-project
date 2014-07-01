@@ -18,34 +18,34 @@ public class Room extends Obstacle {
     }
 
     @Override
-	public LinkedList<Wall> getWalls() {
-        Rectangle2D room = (Rectangle2D) getShape();
-        Point2D cornerTL = new Point2D.Double(room.getMinX(), room.getMinY());
-        Point2D cornerTR = new Point2D.Double(room.getMaxX(), room.getMinY());
-        Point2D cornerBL = new Point2D.Double(room.getMinX(), room.getMaxY());
-        Point2D cornerBR = new Point2D.Double(room.getMaxX(), room.getMaxY());
-        Material material = this.getMaterial();
-        Wall wallTop = new Wall(cornerTL, cornerTR, material);
-        Wall wallRight = new Wall(cornerTR, cornerBR, material);
-        Wall wallLeft = new Wall(cornerTL, cornerBL, material);
-        Wall wallBottom = new Wall(cornerBL, cornerBR, material);
-        LinkedList<Wall> walls = new LinkedList<>();
+    public LinkedList<Wall> getWalls() {
+        final Rectangle2D room = (Rectangle2D) getShape();
+        final Point2D cornerTL = new Point2D.Double(room.getMinX(), room.getMinY());
+        final Point2D cornerTR = new Point2D.Double(room.getMaxX(), room.getMinY());
+        final Point2D cornerBL = new Point2D.Double(room.getMinX(), room.getMaxY());
+        final Point2D cornerBR = new Point2D.Double(room.getMaxX(), room.getMaxY());
+        final Material material = getMaterial();
+        final Wall wallTop = new Wall(cornerTL, cornerTR, material);
+        final Wall wallRight = new Wall(cornerTR, cornerBR, material);
+        final Wall wallLeft = new Wall(cornerTL, cornerBL, material);
+        final Wall wallBottom = new Wall(cornerBL, cornerBR, material);
+        final LinkedList<Wall> walls = new LinkedList<>();
         walls.add(wallTop);
         walls.add(wallRight);
         walls.add(wallLeft);
         walls.add(wallBottom);
-		return walls;
+        return walls;
     }
-        
+
     @Override
     public List<SignalArea> getAttenuatedAreas(AccessPoint ap, double panelWidth, double panelHeight) {
-    	LinkedList<Wall> walls = new LinkedList<>(this.getWalls());
-    	LinkedList<SignalArea> list = new LinkedList<>();
-    	for (Wall w : walls) {
-    		 list.add(new SignalArea(w, Geometry.getWallShadow(ap.getLocation(), (Line2D) w.getShape(), panelWidth,
-    	                panelHeight)));
-    	}
+        final LinkedList<Wall> walls = new LinkedList<>(getWalls());
+        final LinkedList<SignalArea> list = new LinkedList<>();
+        for (final Wall w : walls) {
+            list.add(new SignalArea(w, Geometry.getWallShadow(ap.getLocation(), (Line2D) w.getShape(), panelWidth,
+                    panelHeight)));
+        }
         return list;
     }
-    
+
 }

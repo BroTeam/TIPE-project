@@ -14,7 +14,7 @@ public class Brush extends MouseAdapter {
 
     private Point2D ptPress;
     private static int shapeSelector = 0;
-    private Window win;
+    private final Window win;
 
     public Brush(Window w) {
         win = w;
@@ -47,11 +47,11 @@ public class Brush extends MouseAdapter {
             return;
         }
         ptPress = e.getPoint();
-        Panel screen = (Panel) e.getSource();
+        final Panel screen = (Panel) e.getSource();
         try {
             win.getModel().add(getNewElement(ptPress, ptPress));
             screen.repaint();
-        } catch (NoShapeChosenException e1) {
+        } catch (final NoShapeChosenException e1) {
             ptPress = null;
         }
     }
@@ -72,9 +72,9 @@ public class Brush extends MouseAdapter {
     }
 
     private void replaceElement(MouseEvent e) {
-        Panel screen = (Panel) e.getSource();
-        double xMax = screen.getWidth() - 1;
-        double yMax = screen.getHeight() - 1;
+        final Panel screen = (Panel) e.getSource();
+        final double xMax = screen.getWidth() - 1;
+        final double yMax = screen.getHeight() - 1;
         double x = e.getX();
         double y = e.getY();
         x = x > xMax ? xMax : x < 0 ? 0 : x;
@@ -92,8 +92,8 @@ public class Brush extends MouseAdapter {
         case 3:
             return new Door(startPt, endPt, win.getSelectedMaterial());
         case 4:
-            double pow = win.getSelectedPower();
-            double freq = win.getSelectedFrequency();
+            final double pow = win.getSelectedPower();
+            final double freq = win.getSelectedFrequency();
             return new AccessPoint(endPt, pow, freq);
         default:
             throw new NoShapeChosenException();

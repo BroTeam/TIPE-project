@@ -37,7 +37,7 @@ public enum Material {
      * <li>p<sub>1</sub> is the signal power before passing through this material</li>
      * <li>p<sub>2</sub> is the signal power after passing through this material</li>
      * </ul>
-     * 
+     *
      * @return the multiplicative attenuation factor of this material.
      */
     public Double getAttenuationFactor() {
@@ -46,7 +46,7 @@ public enum Material {
 
     /**
      * Returns the attenuation performed by this material, in decibels.
-     * 
+     *
      * @return the attenuation of this material, in Db.
      */
     public Double getDbAttenuation() {
@@ -59,6 +59,6 @@ public enum Material {
 
     @Override
     public String toString() {
-        return displayName+ " : " + attenuationDb + " (dB)";
+        return displayName + " : " + attenuationDb + " (dB)";
     }
 }

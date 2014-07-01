@@ -20,15 +20,15 @@ public class Door extends Obstacle {
         return null;
     }
 
-	@Override
-	public void drawSelf(Graphics2D g2d) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void drawSelf(Graphics2D g2d) {
+        // TODO Auto-generated method stub
 
-	@Override
-	public List<Wall> getWalls() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    }
+
+    @Override
+    public List<Wall> getWalls() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

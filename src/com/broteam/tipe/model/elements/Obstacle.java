@@ -11,8 +11,8 @@ import com.broteam.tipe.signal.SignalArea;
 
 public abstract class Obstacle extends Element {
 
-    private Shape shape;
-    private Material material;
+    private final Shape shape;
+    private final Material material;
 
     protected Obstacle(Shape s, Material m) {
         super();
@@ -34,7 +34,7 @@ public abstract class Obstacle extends Element {
     @Override
     public void drawSelf(Graphics2D g2d) {
         g2d.setColor(material.getColorMat());
-        g2d.draw(this.getShape());
+        g2d.draw(getShape());
     }
 
     /**

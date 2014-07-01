@@ -18,18 +18,18 @@ public class MutuallyExclusiveAreas extends LinkedList<SignalArea> {
      * <b>WARNING: this method is destructive.</b> The specified {@link SignalArea}
      * will be modified.</b>
      * </p>
-     * 
+     *
      * @param areaToAdd
      *            The area to add.
      */
     public void addExclusive(SignalArea areaToAdd) {
-        SignalArea current = areaToAdd;
+        final SignalArea current = areaToAdd;
         // list of already treated mutEx areas, which are mutually exclusive, and
         // exclusive with the 'current' area
-        List<SignalArea> currentMutEx = new LinkedList<>();
+        final List<SignalArea> currentMutEx = new LinkedList<>();
         while (!isEmpty()) {
-            SignalArea mutExArea = remove(0);
-            SignalArea intersection = SignalArea.intersect(current, mutExArea);
+            final SignalArea mutExArea = remove(0);
+            final SignalArea intersection = SignalArea.intersect(current, mutExArea);
 
             // the remaining part of 'mutExArea' is necessarily exclusive with
             // all other shapes of this list, because 'mutExArea' was in this list
@@ -69,13 +69,13 @@ public class MutuallyExclusiveAreas extends LinkedList<SignalArea> {
      * be empty after the execution of this method, and the areas inside it may
      * change too.
      * </p>
-     * 
+     *
      * @param overlappingAreas
      *            A list of {@link SignalArea}s that may overlap.
      */
     public void addAllExclusive(List<SignalArea> overlappingAreas) {
         while (!overlappingAreas.isEmpty()) {
-            SignalArea current = overlappingAreas.remove(0);
+            final SignalArea current = overlappingAreas.remove(0);
             addExclusive(current);
         }
     }

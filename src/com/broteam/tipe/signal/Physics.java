@@ -16,7 +16,7 @@ public class Physics {
     /**
      * Returns the free space loss in dB for a signal of the specified frequency when
      * it travels the specified distance.
-     * 
+     *
      * @param distance
      *            The distance traveled in meters.
      * @param frequency
@@ -24,19 +24,20 @@ public class Physics {
      * @return The free space path loss in dB.
      */
     public static double freeSpacePathLossDB(double distance, double frequency) {
-        double distFreq = distance * frequency;
-        double ln = 20 * Math.log(distFreq);
-        double log = ln / LOG_10;
-        double result = log + GHZ_TO_HZ_SQ_DB + FSPL_CONSTANT_SQ_DB;
-//        System.out.println("dist=" + distance + "   \tdist*freq=" + distFreq + "   \tln=" + ln + "   \tlog=" + log
-//                + "   \tresult=" + result);
+        final double distFreq = distance * frequency;
+        final double ln = 20 * Math.log(distFreq);
+        final double log = ln / LOG_10;
+        final double result = log + GHZ_TO_HZ_SQ_DB + FSPL_CONSTANT_SQ_DB;
+        // System.out.println("dist=" + distance + "   \tdist*freq=" + distFreq +
+        // "   \tln=" + ln + "   \tlog=" + log
+        // + "   \tresult=" + result);
         return -result;
     }
 
     /**
      * Returns the free space loss factor for a signal of the specified frequency
      * when it travels the specified distance.
-     * 
+     *
      * @param distance
      *            The distance traveled in meters.
      * @param frequency
@@ -44,15 +45,16 @@ public class Physics {
      * @return The free space path loss factor.
      */
     public static double freeSpacePathLoss(double distance, double frequency) {
-        double inner = distance * frequency * GHZ_TO_HZ * FSPL_CONSTANT;
-        double result = inner * inner;
-//        System.out.println("dist=" + distance + "   \t(dist*freq*4pi/c)=" + inner + "   \tresult=" + result);
+        final double inner = distance * frequency * GHZ_TO_HZ * FSPL_CONSTANT;
+        final double result = inner * inner;
+        // System.out.println("dist=" + distance + "   \t(dist*freq*4pi/c)=" + inner
+        // + "   \tresult=" + result);
         return -result;
     }
 
     /**
      * Calculates the value of the specified power after applying the specified gain.
-     * 
+     *
      * @param power
      *            The initial power before attenuation
      * @param dBGain

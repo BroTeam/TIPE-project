@@ -16,24 +16,27 @@ import com.broteam.tipe.signal.Simulation;
 
 public class Panel extends JPanel {
 
-    private Window window;
-    private List<DrawableArea> simulationAreas = new LinkedList<>();
+    private final Window window;
+    private final List<DrawableArea> simulationAreas = new LinkedList<>();
     private boolean drawAreaBoundaries = false;
 
     /**
      * Default constructor.
+     *
+     * @param window
+     *            the {@link Window} containing this {@link Panel}
      */
     Panel(Window window) {
         this.window = window;
     }
-    
+
     public void setDrawAreaBoundaries(boolean enabled) {
         drawAreaBoundaries = enabled;
     }
 
     public void updateSimulationDisplay(Simulation simulation) {
         simulationAreas.clear();
-        for (SignalArea area : simulation.getAreas()) {
+        for (final SignalArea area : simulation.getAreas()) {
             simulationAreas.add(new DrawableArea(area, simulation));
         }
     }
@@ -42,8 +45,8 @@ public class Panel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         System.out.println("Repainting!");
-        Graphics2D g2d = (Graphics2D) g;
-        Model m = window.getModel();
+        final Graphics2D g2d = (Graphics2D) g;
+        final Model m = window.getModel();
         if (m == null) {
             paintBackground(g2d, Color.GRAY);
             return; // nothing to draw
@@ -59,7 +62,7 @@ public class Panel extends JPanel {
     }
 
     private void paintAreas(Graphics2D g2d) {
-        for (DrawableArea area : simulationAreas) {
+        for (final DrawableArea area : simulationAreas) {
             g2d.setClip(area.getClip());
             g2d.drawImage(area.getImage(), area.getX(), area.getY(), null);
         }
@@ -70,11 +73,11 @@ public class Panel extends JPanel {
         if (drawAreaBoundaries) {
             g2d.setColor(Color.GRAY);
             final float dash1[] = { 4.0f };
-            final BasicStroke dashed = new BasicStroke(1f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 5.0f,
-                    dash1, 0.0f);
+            final BasicStroke dashed = new BasicStroke(1f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 5.0f, dash1,
+                    0.0f);
             g2d.setStroke(dashed);
             // draw the boundaries of the areas
-            for (DrawableArea area : simulationAreas) {
+            for (final DrawableArea area : simulationAreas) {
                 g2d.draw(area.getClip());
             }
             g2d.setStroke(new BasicStroke());
@@ -82,7 +85,7 @@ public class Panel extends JPanel {
     }
 
     private static void paintElements(Graphics2D g2d, Model m) {
-        for (Element e : m.getElements()) {
+        for (final Element e : m.getElements()) {
             if (e != null) {
                 e.drawSelf(g2d);
             }

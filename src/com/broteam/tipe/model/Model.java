@@ -1,8 +1,8 @@
 package com.broteam.tipe.model;
 
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -18,9 +18,9 @@ public class Model implements Serializable {
     /** Name of the file used for the last save */
     private transient String backingFile;
 
-    private LinkedList<Element> elements = new LinkedList<>();
-    private LinkedList<Obstacle> obstacles = new LinkedList<>();
-    private LinkedList<AccessPoint> aps = new LinkedList<>();
+    private final LinkedList<Element> elements = new LinkedList<>();
+    private final LinkedList<Obstacle> obstacles = new LinkedList<>();
+    private final LinkedList<AccessPoint> aps = new LinkedList<>();
 
     private transient LinkedList<ModelListener> listeners = new LinkedList<>();
 
@@ -73,19 +73,19 @@ public class Model implements Serializable {
      */
     public void replaceLast(Element element) {
         {
-            Element removed = elements.removeLast();
+            final Element removed = elements.removeLast();
             fireElementRemoved(removed);
             elements.add(element);
             fireElementAdded(element);
         }
         if (element instanceof Obstacle) {
-            Obstacle removed = obstacles.removeLast();
+            final Obstacle removed = obstacles.removeLast();
             fireObstacleRemoved(removed);
             obstacles.add((Obstacle) element);
             fireObstacleAdded((Obstacle) element);
         }
         if (element instanceof AccessPoint) {
-            AccessPoint removed = aps.removeLast();
+            final AccessPoint removed = aps.removeLast();
             fireAccessPointRemoved(removed);
             aps.add((AccessPoint) element);
             fireAccessPointAdded((AccessPoint) element);
@@ -99,7 +99,7 @@ public class Model implements Serializable {
         elements.clear();
         aps.clear();
         obstacles.clear();
-        for (ModelListener l : listeners) {
+        for (final ModelListener l : listeners) {
             l.onCleared();
         }
     }
@@ -115,19 +115,20 @@ public class Model implements Serializable {
     public LinkedList<AccessPoint> getAccessPoints() {
         return aps;
     }
-    
+
     public boolean hasBackingFile() {
         return backingFile != null;
     }
 
-    public void setBackingFile(String backingFile)
-    {
-    	this.backingFile = backingFile;
+    public void setBackingFile(String backingFile) {
+        this.backingFile = backingFile;
     }
 
     /**
      * Saves this {@link Model} to the last file used for a save.
-     * @throws IOException 
+     *
+     * @throws IOException
+     *             if an I/O error occurs
      */
     public void save() throws IOException {
         if (backingFile == null) {
@@ -138,40 +139,42 @@ public class Model implements Serializable {
 
     /**
      * Saves this {@link Model} to the specified file.
-     * 
+     *
      * @param filename
      *            The file to save this model to.
-     * @throws IOException 
+     * @throws IOException
+     *             if an I/O error occurs
      * @throws SecurityException
      *             if a security manager exists and its checkWrite method denies
      *             write access to the file
      */
     public void saveTo(String filename) throws IOException {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
-		    oos.writeObject(this);
-		    oos.flush();
-		} catch (IOException e) {
-		    throw new IOException("Unexpected error while saving to file '" + filename + "'.", e);
-		}
+            oos.writeObject(this);
+            oos.flush();
+        } catch (final IOException e) {
+            throw new IOException("Unexpected error while saving to file '" + filename + "'.", e);
+        }
         // everything went well, remember the saved file
         this.backingFile = filename;
     }
 
     /**
      * Loads a {@link Model} from the specified file.
-     * 
+     *
      * @param filename
      *            The file to load the model from.
      * @return a new {@code Model} representing the file's data.
-     * @throws IOException 
+     * @throws IOException
+     *             if an I/O error occurs
      */
     public static Model loadFrom(String filename) throws IOException {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
-        	Model model = (Model) ois.readObject();
+            final Model model = (Model) ois.readObject();
             // everything went well, remember the original file
             model.setBackingFile(filename);
             return model;
-        } catch (FileNotFoundException e) {
+        } catch (final FileNotFoundException e) {
             throw e;
         } catch (IOException | ClassNotFoundException e) {
             throw new IOException("I/O error while loading model from file '" + filename + "'", e);
@@ -180,51 +183,53 @@ public class Model implements Serializable {
 
     public void registerListener(ModelListener listener) {
         System.out.println("Listener registered: " + listener.getClass().getSimpleName());
-        if (listeners == null)
-        	listeners = new LinkedList<>();
+        if (listeners == null) {
+            listeners = new LinkedList<>();
+        }
         listeners.add(listener);
     }
 
     public void unregisterListener(ModelListener listener) {
         System.out.println("Listener unregistered: " + listener.getClass().getSimpleName());
-        if (listeners != null)
-        	listeners.remove(listener);
+        if (listeners != null) {
+            listeners.remove(listener);
+        }
     }
 
     private void fireElementAdded(Element e) {
-        for (ModelListener l : listeners) {
+        for (final ModelListener l : listeners) {
             System.out.println("fire element added on listener " + l.getClass().getSimpleName());
             l.onElementAdded(e);
         }
     }
 
     private void fireObstacleAdded(Obstacle o) {
-        for (ModelListener l : listeners) {
+        for (final ModelListener l : listeners) {
             l.onObstacleAdded(o);
         }
     }
 
     private void fireAccessPointAdded(AccessPoint ap) {
-        for (ModelListener l : listeners) {
+        for (final ModelListener l : listeners) {
             System.out.println("fire access point added on listener " + l.getClass().getSimpleName());
             l.onAccessPointAdded(ap);
         }
     }
 
     private void fireElementRemoved(Element e) {
-        for (ModelListener l : listeners) {
+        for (final ModelListener l : listeners) {
             l.onElementRemoved(e);
         }
     }
 
     private void fireObstacleRemoved(Obstacle o) {
-        for (ModelListener l : listeners) {
+        for (final ModelListener l : listeners) {
             l.onObstacleRemoved(o);
         }
     }
 
     private void fireAccessPointRemoved(AccessPoint ap) {
-        for (ModelListener l : listeners) {
+        for (final ModelListener l : listeners) {
             l.onAccessPointRemoved(ap);
         }
     }

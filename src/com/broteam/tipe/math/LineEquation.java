@@ -61,7 +61,7 @@ class LineEquation {
      * point) is above this line, then the triangle (P, P1, P2) is <b>clockwise</b>,
      * otherwise it is anti-clockwise.
      * </p>
-     * 
+     *
      * <p>
      * Since the line is assumed horizontal, we have {@code a=0} (see constructor).
      * The equation hence becomes {@code y = -c/b}. If {@code Py} denotes P's Y
@@ -85,13 +85,13 @@ class LineEquation {
      * <li>{@code b * Py + c < 0} means <b>clockwise</b></li>
      * <li>{@code b * Py + c > 0} means <b>anti-clockwise</b></li>
      * </ul>
-     * 
+     *
      * Back to the general case, this means:
      * <ul>
      * <li>{@code a * Px + b * Py  + c < 0} means <b>clockwise</b></li>
      * <li>{@code a * Px + b * Py  + c > 0} means <b>anti-clockwise</b></li>
      * </ul>
-     * 
+     *
      * @param point
      *            The point to get the position for.
      * @return {@code true} if the triangle ({@code point}, {@code P1}, {@code P2})

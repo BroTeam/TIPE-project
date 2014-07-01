@@ -38,7 +38,7 @@ enum Side {
      *
      * @return the next side, in clockwise order.
      */
-    public Side next() {        
+    public Side next() {
         return VALUES[(ordinal() + 1) % VALUES.length];
     }
 
@@ -70,8 +70,8 @@ enum Side {
      *         or {@code null} if the point is not on the rectangle boundaries.
      */
     public static Side get(Point2D point, double rectWidth, double rectHeight) {
-        double x = point.getX();
-        double y = point.getY();
+        final double x = point.getX();
+        final double y = point.getY();
         return get(x, y, rectWidth, rectHeight);
     }
 

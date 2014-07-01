@@ -11,14 +11,11 @@ class Main {
     public static void main(String[] args) {
         // pour ne pas bloquer l'UI, on utilise un mécanisme Swing qui ouvre la
         // fenêtre dans un autre thread
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                setSystemLookAndFeel();
-                Window w = new Window();
-                w.setSize(800, 600);
-                w.setVisible(true);
-            }
+        SwingUtilities.invokeLater(() -> {
+            setSystemLookAndFeel();
+            final Window w = new Window();
+            w.setSize(800, 600);
+            w.setVisible(true);
         });
     }
 

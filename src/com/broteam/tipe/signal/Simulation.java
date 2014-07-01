@@ -11,8 +11,7 @@ public class Simulation {
 
     private static final double ANTENNA_GAIN = 10; // dB
 
-    private AccessPoint ap;
-    private MutuallyExclusiveAreas areas = new MutuallyExclusiveAreas();
+    private final MutuallyExclusiveAreas areas = new MutuallyExclusiveAreas();
 
     /* Buffer */
     private double apPower;
@@ -28,7 +27,6 @@ public class Simulation {
     }
 
     public void launchSimulation(AccessPoint ap, Model model, double rightLimit, double bottomLimit) {
-        this.ap = ap;
         this.apLoc = ap.getLocation();
         this.apFreq = ap.getFrequency();
         this.apPower = ap.getPower();
@@ -37,7 +35,7 @@ public class Simulation {
             return;
         }
         this.areas.addExclusive(new SignalArea(new Rectangle2D.Double(0, 0, rightLimit, bottomLimit)));
-        for (Obstacle o : model.getObstacles()) {
+        for (final Obstacle o : model.getObstacles()) {
             this.areas.addAllExclusive(o.getAttenuatedAreas(ap, rightLimit, bottomLimit));
         }
     }
@@ -48,7 +46,7 @@ public class Simulation {
 
     /**
      * Returns the power of the signal at the specified point.
-     * 
+     *
      * @param x
      *            The x coordinate of the point where we want the total attenuation.
      * @param y
@@ -58,9 +56,9 @@ public class Simulation {
      * @return The total attenuation (in dB) at the specified point.
      */
     public double getPower(int x, int y, SignalArea area) {
-        double distance = apLoc.distance(x, y) / Physics.PIXELS_PER_METER;
-        double fspl = Physics.freeSpacePathLossDB(distance, apFreq);
-        double attenuation = fspl / 20 + area.getObstaclesAttenuation();
+        final double distance = apLoc.distance(x, y) / Physics.PIXELS_PER_METER;
+        final double fspl = Physics.freeSpacePathLossDB(distance, apFreq);
+        final double attenuation = fspl / 20 + area.getObstaclesAttenuation();
         return Physics.applyDBGain(apPower, ANTENNA_GAIN + attenuation);
     }
 }

@@ -7,13 +7,12 @@ import java.util.List;
 
 import com.broteam.tipe.model.elements.AccessPoint;
 import com.broteam.tipe.model.elements.Obstacle;
-
 import com.broteam.tipe.model.elements.Wall;
 
 /**
  * Represents an area of points that are separated from the underlying
  * {@link AccessPoint} by the same obstacles.
- * 
+ *
  * @author Titouan on 15/04/14.
  */
 public class SignalArea extends Area {
@@ -22,7 +21,7 @@ public class SignalArea extends Area {
      * The obstacles separating each point of this area from the underlying
      * {@link AccessPoint}.
      */
-    private List<Obstacle> obstacles;
+    private final List<Obstacle> obstacles;
     /**
      * The total dB attenuation of the obstacles creating this area.
      */
@@ -30,7 +29,7 @@ public class SignalArea extends Area {
 
     /**
      * Creates a signal area with 0 attenuation.
-     * 
+     *
      * @param s
      *            The shape of this area.
      */
@@ -42,7 +41,7 @@ public class SignalArea extends Area {
 
     /**
      * Creates a signal area representing the shadow of the specified wall.
-     * 
+     *
      * @param w
      *            The wall creating this area.
      * @param s
@@ -57,7 +56,7 @@ public class SignalArea extends Area {
 
     /**
      * Creates a deep copy of the specified {@link SignalArea}.
-     * 
+     *
      * @param source
      *            The area to copy.
      */
@@ -77,7 +76,7 @@ public class SignalArea extends Area {
 
     /**
      * Reduces this {@link SignalArea} to its intersection with the specified area.
-     * 
+     *
      * @param other
      *            The {@link SignalArea} to intersect with this area.
      */
@@ -90,7 +89,7 @@ public class SignalArea extends Area {
     /**
      * Returns the intersection of {@code area1} and {@code area2}, and subtract it
      * to the original areas.
-     * 
+     *
      * @param area1
      *            The first area to intersect.
      * @param area2
@@ -98,7 +97,7 @@ public class SignalArea extends Area {
      * @return The intersection of the 2 specified areas.
      */
     public static SignalArea intersect(SignalArea area1, SignalArea area2) {
-        SignalArea intersection = new SignalArea(area1);
+        final SignalArea intersection = new SignalArea(area1);
         intersection.intersect(area2);
         area1.subtract(intersection);
         area2.subtract(intersection);

@@ -18,9 +18,10 @@ public class PhysicsTest {
         printFSPL(200);
         printFSPL(1000);
     }
-    
+
     private static void printFSPL(double distance) {
-        //System.out.println("distance = " + distance + "   \tFSPL = " + Physics.FSPL(distance, 5));
+        // System.out.println("distance = " + distance + "   \tFSPL = " +
+        // Physics.FSPL(distance, 5));
         Physics.freeSpacePathLossDB(distance, 5);
     }
 

@@ -11,17 +11,19 @@ import org.junit.Test;
 public class ProjectionHelperTest {
 
     @Test
-    public void testProjectionOnEdge() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-        
-        Method getProjectionOnEdge = Geometry.class.getDeclaredMethod("getProjectionOnEdge", Point2D.class, Point2D.class, double.class, double.class);
+    public void testProjectionOnEdge() throws IllegalAccessException, IllegalArgumentException,
+            InvocationTargetException, NoSuchMethodException, SecurityException {
+
+        final Method getProjectionOnEdge = Geometry.class.getDeclaredMethod("getProjectionOnEdge", Point2D.class,
+                Point2D.class, double.class, double.class);
         getProjectionOnEdge.setAccessible(true);
 
-        double width = 20;
-        double height = 15;
+        final double width = 20;
+        final double height = 15;
 
-        Point2D source = new Point2D.Double();
-        Point2D wayPoint = new Point2D.Double();
-        Point2D projection = new Point2D.Double();
+        final Point2D source = new Point2D.Double();
+        final Point2D wayPoint = new Point2D.Double();
+        final Point2D projection = new Point2D.Double();
 
         source.setLocation(3, 8);
         wayPoint.setLocation(5, 8);

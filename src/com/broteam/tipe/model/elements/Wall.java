@@ -18,17 +18,17 @@ public class Wall extends Obstacle {
 
     @Override
     public List<SignalArea> getAttenuatedAreas(AccessPoint ap, double panelWidth, double panelHeight) {
-        LinkedList<SignalArea> list = new LinkedList<>();
-        Shape shadow = Geometry.getWallShadow(ap.getLocation(), (Line2D) getShape(), panelWidth, panelHeight);
+        final LinkedList<SignalArea> list = new LinkedList<>();
+        final Shape shadow = Geometry.getWallShadow(ap.getLocation(), (Line2D) getShape(), panelWidth, panelHeight);
         list.add(new SignalArea(this, shadow));
         return list;
     }
 
-	@Override
-	public List<Wall> getWalls() {
-		LinkedList<Wall> walls = new LinkedList<>();
-		walls.add(this);
-		return walls;
-	}
-    
+    @Override
+    public List<Wall> getWalls() {
+        final LinkedList<Wall> walls = new LinkedList<>();
+        walls.add(this);
+        return walls;
+    }
+
 }
