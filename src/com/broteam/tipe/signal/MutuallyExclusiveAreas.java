@@ -16,7 +16,7 @@ public class MutuallyExclusiveAreas extends LinkedList<SignalArea> {
      * exclusive.
      * <p>
      * <b>WARNING: this method is destructive.</b> The specified {@link SignalArea}
-     * will be modified.</b>
+     * will be modified.
      * </p>
      *
      * @param areaToAdd
